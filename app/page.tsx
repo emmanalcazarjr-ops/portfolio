@@ -180,7 +180,7 @@ export default function Home() {
             Hi, I'm <span className="gradient-text">Emmanuel</span>
           </h1>
           <p className="text-xl md:text-2xl text-slate-400 mb-8">
-            Software Engineer | Data Science & ML Developer
+            Licensed Electronics Engineer | Software Engineer | ML Developer
           </p>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
             I build intelligent systems that solve real-world problems. 
@@ -227,6 +227,69 @@ export default function Home() {
                 {tech.name}
               </span>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Licenses & Certifications */}
+      <section className="py-12 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl font-bold text-center mb-8 text-slate-400">Licenses & Certifications</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">⚡</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">Electronics Engineer (ECE)</h3>
+                <p className="text-slate-400 text-sm">Licensed Professional - PRC</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">🔧</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">Electronics Technician (ECT)</h3>
+                <p className="text-slate-400 text-sm">Licensed Professional - PRC</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">🛡️</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">Safety Officer 2</h3>
+                <p className="text-slate-400 text-sm">Occupational Safety Certified</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">📊</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">PMP Certification Prep</h3>
+                <p className="text-slate-400 text-sm">35-hour Training - May 2026</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">📈</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">Data Analyst Associate</h3>
+                <p className="text-slate-400 text-sm">DataCamp Certified</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">🤖</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">AI Engineer Associate</h3>
+                <p className="text-slate-400 text-sm">DataCamp Certified</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
