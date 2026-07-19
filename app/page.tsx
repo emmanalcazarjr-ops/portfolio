@@ -74,7 +74,7 @@ interface DemoForm {
 const demos: Record<DemoType, DemoForm> = {
   fraud: {
     title: 'Fraud Detection',
-    endpoint: 'https://fraud-api.vercel.app/api',
+    endpoint: 'https://fraud-api-ten.vercel.app/api',
     fields: [
       { name: 'amount', label: 'Amount ($)', type: 'number', placeholder: '1500' },
       { name: 'num_transactions_24h', label: 'Transactions (24h)', type: 'number', placeholder: '8' },
@@ -85,7 +85,7 @@ const demos: Record<DemoType, DemoForm> = {
   },
   credit: {
     title: 'Credit Risk',
-    endpoint: 'https://credit-api.vercel.app/api',
+    endpoint: 'https://credit-api-zeta.vercel.app/api',
     fields: [
       { name: 'age', label: 'Age', type: 'number', placeholder: '35' },
       { name: 'income', label: 'Income ($)', type: 'number', placeholder: '75000' },
@@ -96,7 +96,7 @@ const demos: Record<DemoType, DemoForm> = {
   },
   stock: {
     title: 'Stock Predictor',
-    endpoint: 'https://stock-api.vercel.app/api',
+    endpoint: 'https://stock-api-phi-jet.vercel.app/api',
     fields: [
       { name: 'prices', label: 'Last 5 Prices', type: 'text', placeholder: '150,152,148,155,153' },
       { name: 'volumes', label: 'Last 5 Volumes', type: 'text', placeholder: '1000000,1200000,900000,1100000,1050000' },
@@ -105,7 +105,7 @@ const demos: Record<DemoType, DemoForm> = {
   },
   churn: {
     title: 'Churn Predictor',
-    endpoint: 'https://churn-api.vercel.app/api',
+    endpoint: 'https://churn-api-zeta.vercel.app/api',
     fields: [
       { name: 'age', label: 'Age', type: 'number', placeholder: '45' },
       { name: 'tenure_months', label: 'Tenure (months)', type: 'number', placeholder: '24' },
