@@ -663,12 +663,183 @@ export default function Home() {
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="mt-6 p-6 bg-slate-800/50 border border-slate-700/50 rounded-xl"
+                        className="mt-6"
                       >
-                        <h4 className="text-lg font-bold mb-4 text-gradient">Result</h4>
-                        <pre className="text-sm text-slate-300 overflow-x-auto font-mono">
-                          {JSON.stringify(result, null, 2)}
-                        </pre>
+                        {/* Fraud Detection Result */}
+                        {activeDemo === 'fraud' && (
+                          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-2xl overflow-hidden">
+                            <div className={`p-4 ${result.is_fraud ? 'bg-red-500/20 border-b border-red-500/30' : 'bg-green-500/20 border-b border-green-500/30'}`}>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-2xl">{result.is_fraud ? '🚨' : '✅'}</span>
+                                  <div>
+                                    <h4 className="font-bold text-lg">{result.is_fraud ? 'Fraud Detected' : 'Transaction Safe'}</h4>
+                                    <p className="text-sm text-slate-400">Risk Level: <span className={`font-semibold ${result.risk_level === 'HIGH' ? 'text-red-400' : result.risk_level === 'MEDIUM' ? 'text-yellow-400' : 'text-green-400'}`}>{result.risk_level}</span></p>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-3xl font-bold text-gradient">{(result.fraud_probability * 100).toFixed(1)}%</div>
+                                  <p className="text-xs text-slate-500">Fraud Probability</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-6">
+                              <div className="mb-4">
+                                <div className="flex justify-between text-sm mb-2">
+                                  <span className="text-slate-400">Risk Score</span>
+                                  <span className="text-slate-300">{(result.fraud_probability * 100).toFixed(1)}%</span>
+                                </div>
+                                <div className="h-3 bg-slate-700 rounded-full overflow-hidden">
+                                  <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${result.fraud_probability * 100}%` }}
+                                    transition={{ duration: 1, ease: 'easeOut' }}
+                                    className={`h-full rounded-full ${result.fraud_probability > 0.7 ? 'bg-gradient-to-r from-red-500 to-red-600' : result.fraud_probability > 0.4 ? 'bg-gradient-to-r from-yellow-500 to-orange-500' : 'bg-gradient-to-r from-green-500 to-emerald-500'}`}
+                                  />
+                                </div>
+                              </div>
+                              <div className="grid grid-cols-2 gap-4 mt-6">
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Amount</p>
+                                  <p className="font-bold text-white">${result.input?.amount?.toLocaleString() || 'N/A'}</p>
+                                </div>
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Transactions (24h)</p>
+                                  <p className="font-bold text-white">{result.input?.num_transactions_24h || 'N/A'}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Credit Risk Result */}
+                        {activeDemo === 'credit' && (
+                          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-2xl overflow-hidden">
+                            <div className={`p-4 ${result.recommendation === 'APPROVE' ? 'bg-green-500/20 border-b border-green-500/30' : result.recommendation === 'REVIEW' ? 'bg-yellow-500/20 border-b border-yellow-500/30' : 'bg-red-500/20 border-b border-red-500/30'}`}>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-2xl">{result.recommendation === 'APPROVE' ? '✅' : result.recommendation === 'REVIEW' ? '⚠️' : '❌'}</span>
+                                  <div>
+                                    <h4 className="font-bold text-lg">{result.recommendation}</h4>
+                                    <p className="text-sm text-slate-400">Risk Level: <span className={`font-semibold ${result.risk_level === 'VERY HIGH' || result.risk_level === 'HIGH' ? 'text-red-400' : result.risk_level === 'MEDIUM' ? 'text-yellow-400' : 'text-green-400'}`}>{result.risk_level}</span></p>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-3xl font-bold text-gradient">{(result.approval_probability * 100).toFixed(1)}%</div>
+                                  <p className="text-xs text-slate-500">Approval Rate</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-6">
+                              <div className="grid grid-cols-2 gap-4">
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Risk Score</p>
+                                  <p className="font-bold text-white">{(result.risk_score * 100).toFixed(1)}%</p>
+                                </div>
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Credit Score</p>
+                                  <p className="font-bold text-white">{result.input?.credit_score || 'N/A'}</p>
+                                </div>
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Income</p>
+                                  <p className="font-bold text-white">${result.input?.income?.toLocaleString() || 'N/A'}</p>
+                                </div>
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Debt Ratio</p>
+                                  <p className="font-bold text-white">{result.input?.debt_to_income_ratio || 'N/A'}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Stock Prediction Result */}
+                        {activeDemo === 'stock' && (
+                          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-2xl overflow-hidden">
+                            <div className={`p-4 ${result.trend === 'UP' ? 'bg-green-500/20 border-b border-green-500/30' : result.trend === 'DOWN' ? 'bg-red-500/20 border-b border-red-500/30' : 'bg-blue-500/20 border-b border-blue-500/30'}`}>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-2xl">{result.trend === 'UP' ? '📈' : result.trend === 'DOWN' ? '📉' : '📊'}</span>
+                                  <div>
+                                    <h4 className="font-bold text-lg">{result.trend === 'UP' ? 'Bullish Trend' : result.trend === 'DOWN' ? 'Bearish Trend' : 'Stable'}</h4>
+                                    <p className="text-sm text-slate-400">Confidence: <span className="font-semibold text-blue-400">{(result.confidence * 100).toFixed(1)}%</span></p>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-3xl font-bold text-gradient">${result.predicted_price?.toFixed(2)}</div>
+                                  <p className={`text-sm font-semibold ${result.price_change >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                                    {result.price_change >= 0 ? '▲' : '▼'} ${Math.abs(result.price_change)?.toFixed(2)} ({result.price_change_percent?.toFixed(2)}%)
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-6">
+                              <div className="grid grid-cols-3 gap-4">
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Predicted</p>
+                                  <p className="font-bold text-green-400">${result.predicted_price?.toFixed(2)}</p>
+                                </div>
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Change</p>
+                                  <p className={`font-bold ${result.price_change >= 0 ? 'text-green-400' : 'text-red-400'}`}>{result.price_change >= 0 ? '+' : ''}{result.price_change_percent?.toFixed(2)}%</p>
+                                </div>
+                                <div className="bg-slate-800/50 rounded-xl p-4 text-center">
+                                  <p className="text-xs text-slate-500 mb-1">Confidence</p>
+                                  <p className="font-bold text-blue-400">{(result.confidence * 100).toFixed(1)}%</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        {/* Churn Prediction Result */}
+                        {activeDemo === 'churn' && (
+                          <div className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border border-slate-700/50 rounded-2xl overflow-hidden">
+                            <div className={`p-4 ${result.will_churn ? 'bg-red-500/20 border-b border-red-500/30' : 'bg-green-500/20 border-b border-green-500/30'}`}>
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                  <span className="text-2xl">{result.will_churn ? '⚠️' : '✅'}</span>
+                                  <div>
+                                    <h4 className="font-bold text-lg">{result.will_churn ? 'High Churn Risk' : 'Low Churn Risk'}</h4>
+                                    <p className="text-sm text-slate-400">Risk Level: <span className={`font-semibold ${result.risk_level === 'HIGH' ? 'text-red-400' : result.risk_level === 'MEDIUM' ? 'text-yellow-400' : 'text-green-400'}`}>{result.risk_level}</span></p>
+                                  </div>
+                                </div>
+                                <div className="text-right">
+                                  <div className="text-3xl font-bold text-gradient">{(result.churn_probability * 100).toFixed(1)}%</div>
+                                  <p className="text-xs text-slate-500">Churn Probability</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="p-6">
+                              {result.risk_factors && result.risk_factors.length > 0 && (
+                                <div className="mb-6">
+                                  <h5 className="text-sm font-semibold text-slate-400 mb-3">Risk Factors</h5>
+                                  <div className="space-y-2">
+                                    {result.risk_factors.map((factor: string, i: number) => (
+                                      <div key={i} className="flex items-center gap-2 text-sm text-red-400 bg-red-500/10 rounded-lg px-3 py-2">
+                                        <span>⚠️</span>
+                                        <span>{factor}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                              {result.retention_recommendations && result.retention_recommendations.length > 0 && (
+                                <div>
+                                  <h5 className="text-sm font-semibold text-slate-400 mb-3">Recommendations</h5>
+                                  <div className="space-y-2">
+                                    {result.retention_recommendations.map((rec: string, i: number) => (
+                                      <div key={i} className="flex items-center gap-2 text-sm text-green-400 bg-green-500/10 rounded-lg px-3 py-2">
+                                        <span>💡</span>
+                                        <span>{rec}</span>
+                                      </div>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </div>
+                        )}
                       </motion.div>
                     )}
                   </AnimatePresence>
