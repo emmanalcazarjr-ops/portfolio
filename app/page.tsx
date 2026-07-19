@@ -1,7 +1,22 @@
 'use client'
 
-import { useState } from 'react'
-import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown, FaExternalLinkAlt } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { 
+  FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
+  FaArrowUp, FaRocket, FaCode, FaBrain, FaShieldAlt,
+  FaChartLine, FaRobot, FaDatabase, FaJava, FaPython
+} from 'react-icons/fa'
+import { 
+  SiTensorflow, SiPytorch, SiScikitlearn, SiPandas, 
+  SiNumpy, SiMysql, SiApache, SiVercel
+} from 'react-icons/si'
+import AnimatedBackground from './components/AnimatedBackground'
+import TypeWriter from './components/TypeWriter'
+import ScrollReveal from './components/ScrollReveal'
+import TiltCard from './components/TiltCard'
+import SkillBar from './components/SkillBar'
+import Counter from './components/Counter'
 
 const projects = [
   {
@@ -9,69 +24,73 @@ const projects = [
     description: 'CLI-based banking application with transaction processing, role-based access, and ACID compliance.',
     tech: ['Java', 'MySQL', 'Maven', 'JDBC'],
     github: 'https://github.com/emmanalcazarjr-ops/core-banking-system',
-    color: 'from-orange-500 to-red-500',
+    icon: FaDatabase,
+    gradient: 'from-orange-500 via-red-500 to-pink-500',
   },
   {
     title: 'Fraud Detection System',
     description: 'ML-based fraud detection using Random Forest with feature engineering and real-time predictions.',
     tech: ['Python', 'scikit-learn', 'pandas', 'NumPy'],
     github: 'https://github.com/emmanalcazarjr-ops/fraud-detection-system',
-    color: 'from-blue-500 to-cyan-500',
+    icon: FaShieldAlt,
+    gradient: 'from-blue-500 via-cyan-500 to-teal-500',
   },
   {
     title: 'Credit Risk Predictor',
     description: 'Deep learning model to predict loan default risk using neural networks with TensorFlow.',
     tech: ['Python', 'TensorFlow', 'pandas', 'NumPy'],
     github: 'https://github.com/emmanalcazarjr-ops/credit-risk-predictor',
-    color: 'from-purple-500 to-pink-500',
+    icon: FaChartLine,
+    gradient: 'from-purple-500 via-pink-500 to-rose-500',
   },
   {
     title: 'Stock Price Predictor',
     description: 'LSTM-based neural network for stock price forecasting with confidence intervals.',
     tech: ['Python', 'PyTorch', 'NumPy', 'pandas'],
     github: 'https://github.com/emmanalcazarjr-ops/stock-price-predictor',
-    color: 'from-green-500 to-emerald-500',
+    icon: FaChartLine,
+    gradient: 'from-green-500 via-emerald-500 to-teal-500',
   },
   {
     title: 'Customer Churn Predictor',
     description: 'Predict customer churn using Gradient Boosting with SHAP explainability.',
     tech: ['Python', 'scikit-learn', 'SHAP', 'XGBoost'],
     github: 'https://github.com/emmanalcazarjr-ops/customer-churn-predictor',
-    color: 'from-yellow-500 to-orange-500',
+    icon: FaRobot,
+    gradient: 'from-yellow-500 via-orange-500 to-red-500',
   },
   {
     title: 'Sentiment Analysis Tool',
     description: 'NLP-based sentiment analysis for text using TextBlob with preprocessing pipeline.',
     tech: ['Python', 'TextBlob', 'pandas', 'NLP'],
     github: 'https://github.com/emmanalcazarjr-ops/sentiment-analysis-tool',
-    color: 'from-indigo-500 to-violet-500',
+    icon: FaBrain,
+    gradient: 'from-indigo-500 via-violet-500 to-purple-500',
   },
 ]
 
-const techStack = [
-  { name: 'Java', color: 'bg-orange-600' },
-  { name: 'Python', color: 'bg-blue-600' },
-  { name: 'MySQL', color: 'bg-blue-800' },
-  { name: 'TensorFlow', color: 'bg-orange-500' },
-  { name: 'PyTorch', color: 'bg-red-600' },
-  { name: 'scikit-learn', color: 'bg-orange-400' },
-  { name: 'pandas', color: 'bg-blue-900' },
-  { name: 'NumPy', color: 'bg-blue-700' },
-  { name: 'Maven', color: 'bg-red-700' },
-  { name: 'SHAP', color: 'bg-purple-600' },
-  { name: 'Git', color: 'bg-red-500' },
-  { name: 'REST APIs', color: 'bg-green-600' },
+const skills = [
+  { name: 'Java', level: 85, color: '#ED8B00', icon: FaJava },
+  { name: 'Python', level: 90, color: '#3776AB', icon: FaPython },
+  { name: 'TensorFlow', level: 80, color: '#FF6F00', icon: SiTensorflow },
+  { name: 'PyTorch', level: 75, color: '#EE4C2C', icon: SiPytorch },
+  { name: 'scikit-learn', level: 85, color: '#F7931E', icon: SiScikitlearn },
+  { name: 'MySQL', level: 80, color: '#4479A1', icon: SiMysql },
+]
+
+const certifications = [
+  { title: 'Electronics Engineer License (ECE)', org: 'PRC', icon: '⚡' },
+  { title: 'ICT Infrastructure Certification', org: 'Internetworking End Devices', icon: '🌐' },
+  { title: 'Electronics Technician License (ECT)', org: 'PRC', icon: '🔧' },
+  { title: 'Safety Officer 2', org: 'Occupational Safety', icon: '🛡️' },
+  { title: 'PMP Certification Prep', org: '35-hour Training - May 2026', icon: '📊' },
+  { title: 'Data Analyst Associate', org: 'DataCamp', icon: '📈' },
+  { title: 'AI Engineer for Developers', org: 'DataCamp', icon: '🤖' },
 ]
 
 type DemoType = 'fraud' | 'credit' | 'stock' | 'churn'
 
-interface DemoForm {
-  title: string
-  endpoint: string
-  fields: { name: string; label: string; type: string; placeholder: string }[]
-}
-
-const demos: Record<DemoType, DemoForm> = {
+const demos: Record<DemoType, { title: string; endpoint: string; fields: { name: string; label: string; type: string; placeholder: string }[] }> = {
   fraud: {
     title: 'Fraud Detection',
     endpoint: 'https://fraud-api-ten.vercel.app/api',
@@ -122,6 +141,29 @@ export default function Home() {
   const [result, setResult] = useState<any>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [activeSection, setActiveSection] = useState('')
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 500)
+      
+      const sections = ['projects', 'skills', 'certifications', 'demos', 'contact']
+      for (const section of sections) {
+        const el = document.getElementById(section)
+        if (el) {
+          const rect = el.getBoundingClientRect()
+          if (rect.top <= 100 && rect.bottom >= 100) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -160,298 +202,593 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen">
-      {/* Header */}
-      <nav className="fixed top-0 w-full bg-slate-950/80 backdrop-blur-md z-50 border-b border-slate-800">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="#" className="text-xl font-bold gradient-text">EA</a>
-          <div className="flex gap-6">
-            <a href="#projects" className="text-slate-400 hover:text-white transition">Projects</a>
-            <a href="#demos" className="text-slate-400 hover:text-white transition">Demos</a>
-            <a href="#contact" className="text-slate-400 hover:text-white transition">Contact</a>
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6">
-            Hi, I'm <span className="gradient-text">Emmanuel</span>
-          </h1>
-          <p className="text-xl md:text-2xl text-slate-400 mb-8">
-            Licensed Electronics Engineer | Software Engineer | ML Developer
-          </p>
-          <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
-            I build intelligent systems that solve real-world problems. 
-            Passionate about software engineering, machine learning, and data-driven solutions in banking & finance.
-          </p>
-          <div className="flex justify-center gap-4">
-            <a
-              href="#projects"
-              className="px-8 py-3 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium transition"
+    <>
+      <AnimatedBackground />
+      
+      <main className="relative z-10">
+        {/* Navigation */}
+        <nav className="fixed top-0 w-full z-50 glass">
+          <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5 }}
             >
-              View Projects
-            </a>
-            <a
-              href="#contact"
-              className="px-8 py-3 border border-slate-700 hover:border-slate-500 rounded-lg font-medium transition"
+              <a href="#" className="text-2xl font-bold text-gradient-animate">EA</a>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="hidden md:flex items-center gap-8"
             >
-              Contact Me
-            </a>
-          </div>
-          <div className="flex justify-center gap-6 mt-10">
-            <a href="https://github.com/emmanalcazarjr-ops" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition">
-              <FaGithub size={24} />
-            </a>
-            <a href="https://www.linkedin.com/in/emmanalcazarjr/" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-white transition">
-              <FaLinkedin size={24} />
-            </a>
-            <a href="mailto:EmmanAlcazarJr@gmail.com" className="text-slate-500 hover:text-white transition">
-              <FaEnvelope size={24} />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section className="py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-10 text-slate-400">Tech Stack</h2>
-          <div className="flex flex-wrap justify-center gap-3">
-            {techStack.map((tech) => (
-              <span
-                key={tech.name}
-                className={`${tech.color} px-4 py-2 rounded-full text-sm font-medium text-white`}
-              >
-                {tech.name}
-              </span>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Licenses & Certifications */}
-      <section className="py-12 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold text-center mb-8 text-slate-400">Licenses & Certifications</h2>
-          <div className="grid md:grid-cols-2 gap-4">
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">⚡</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">Electronics Engineer License (ECE)</h3>
-                <p className="text-slate-400 text-sm">Licensed Professional - PRC</p>
-              </div>
-            </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">🌐</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">ICT Infrastructure Certification</h3>
-                <p className="text-slate-400 text-sm">Internetworking End Devices</p>
-              </div>
-            </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">🔧</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">Electronics Technician License (ECT)</h3>
-                <p className="text-slate-400 text-sm">Licensed Professional - PRC</p>
-              </div>
-            </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">🛡️</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">Safety Officer 2</h3>
-                <p className="text-slate-400 text-sm">Occupational Safety Certified</p>
-              </div>
-            </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">📊</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">PMP Certification Prep</h3>
-                <p className="text-slate-400 text-sm">Certificate of Completion - 35-hour Training, May 2026</p>
-              </div>
-            </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-indigo-500 to-violet-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">📈</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">Data Analyst Associate Certification</h3>
-                <p className="text-slate-400 text-sm">DataCamp Certified</p>
-              </div>
-            </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4 md:col-span-2">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center flex-shrink-0">
-                <span className="text-xl">🤖</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-lg">AI Engineer for Developers Associate Certification</h3>
-                <p className="text-slate-400 text-sm">DataCamp Certified</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects */}
-      <section id="projects" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">Featured Projects</h2>
-          <p className="text-slate-500 text-center mb-12">Click to view on GitHub</p>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-              <a
-                key={project.title}
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-hover block bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-slate-600"
-              >
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-br ${project.color} flex items-center justify-center mb-4`}>
-                  <FaExternalLinkAlt size={20} className="text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-slate-400 text-sm mb-4">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t) => (
-                    <span key={t} className="text-xs px-3 py-1 bg-slate-800 rounded-full text-slate-300">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Demos */}
-      <section id="demos" className="py-20 px-4 bg-slate-900/30">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-4">Live Demos</h2>
-          <p className="text-slate-500 text-center mb-10">Test the ML APIs in real-time</p>
-
-          {/* Demo Tabs */}
-          <div className="flex justify-center gap-2 mb-8 flex-wrap">
-            {(Object.keys(demos) as DemoType[]).map((key) => (
-              <button
-                key={key}
-                onClick={() => {
-                  setActiveDemo(key)
-                  setResult(null)
-                  setError('')
-                  setFormData({})
-                }}
-                className={`px-6 py-2 rounded-lg font-medium transition ${
-                  activeDemo === key
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-slate-800 text-slate-400 hover:text-white'
-                }`}
-              >
-                {demos[key].title}
-              </button>
-            ))}
-          </div>
-
-          {/* Demo Form */}
-          <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-8">
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                {demos[activeDemo].fields.map((field) => (
-                  <div key={field.name}>
-                    <label className="block text-sm font-medium text-slate-400 mb-2">
-                      {field.label}
-                    </label>
-                    <input
-                      type={field.type}
-                      placeholder={field.placeholder}
-                      value={formData[field.name] || ''}
-                      onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
-                      className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-600 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
-                      required
+              {['projects', 'skills', 'certifications', 'demos', 'contact'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item}`}
+                  className={`text-sm font-medium transition-all duration-300 capitalize ${
+                    activeSection === item 
+                      ? 'text-blue-400' 
+                      : 'text-slate-400 hover:text-white'
+                  }`}
+                >
+                  {item}
+                  {activeSection === item && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="h-0.5 bg-blue-400 mt-1"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                     />
+                  )}
+                </a>
+              ))}
+            </motion.div>
+          </div>
+        </nav>
+
+        {/* Hero Section */}
+        <section className="min-h-screen flex items-center justify-center px-6 pt-20">
+          <div className="max-w-5xl mx-auto text-center">
+            <ScrollReveal>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 0.2 }}
+                className="inline-block mb-6"
+              >
+                <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 p-1 animate-pulse-glow">
+                  <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
+                    <span className="text-5xl">👨‍💻</span>
                   </div>
+                </div>
+              </motion.div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.2}>
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
+                <span className="text-white">Hi, I'm </span>
+                <span className="text-gradient-animate">Emmanuel</span>
+              </h1>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.4}>
+              <div className="text-xl md:text-2xl text-slate-400 mb-4 h-8">
+                <TypeWriter 
+                  texts={[
+                    'Licensed Electronics Engineer',
+                    'Software Engineer',
+                    'Data Science & ML Developer',
+                    'Banking & Finance Systems'
+                  ]}
+                  speed={80}
+                  deleteSpeed={40}
+                  pauseTime={2500}
+                />
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.6}>
+              <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
+                Building intelligent systems that solve real-world problems. 
+                Passionate about software engineering, machine learning, and data-driven solutions.
+              </p>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.8}>
+              <div className="flex justify-center gap-4 mb-12">
+                <motion.a
+                  href="#projects"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-medium text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow"
+                >
+                  View Projects
+                </motion.a>
+                <motion.a
+                  href="#contact"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-4 glass rounded-xl font-medium text-white hover:bg-white/10 transition-colors"
+                >
+                  Contact Me
+                </motion.a>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal delay={1}>
+              <div className="flex justify-center gap-6">
+                {[
+                  { icon: FaGithub, href: 'https://github.com/emmanalcazarjr-ops', label: 'GitHub' },
+                  { icon: FaLinkedin, href: 'https://www.linkedin.com/in/emmanalcazarjr/', label: 'LinkedIn' },
+                  { icon: FaEnvelope, href: 'mailto:EmmanAlcazarJr@gmail.com', label: 'Email' },
+                  { icon: SiVercel, href: 'https://portfolio-elalcazarjr.vercel.app', label: 'Portfolio' },
+                ].map((social, i) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1 + i * 0.1 }}
+                    whileHover={{ scale: 1.2, y: -5 }}
+                    className="w-12 h-12 rounded-xl glass flex items-center justify-center text-slate-400 hover:text-blue-400 transition-colors"
+                  >
+                    <social.icon size={20} />
+                  </motion.a>
                 ))}
               </div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:bg-slate-700 rounded-lg font-medium transition"
+            </ScrollReveal>
+
+            {/* Stats */}
+            <ScrollReveal delay={1.2}>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
+                {[
+                  { label: 'Projects', value: 11, suffix: '+' },
+                  { label: 'Technologies', value: 15, suffix: '+' },
+                  { label: 'Certifications', value: 7, suffix: '' },
+                  { label: 'GitHub Repos', value: 13, suffix: '+' },
+                ].map((stat, i) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="glass-card rounded-xl p-6 text-center"
+                  >
+                    <div className="text-3xl md:text-4xl font-bold text-gradient mb-2">
+                      <Counter to={stat.value} suffix={stat.suffix} duration={2} />
+                    </div>
+                    <div className="text-sm text-slate-500">{stat.label}</div>
+                  </motion.div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <motion.span 
+                  className="text-blue-500 font-medium text-sm uppercase tracking-wider"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  Portfolio
+                </motion.span>
+                <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                  Featured <span className="text-gradient">Projects</span>
+                </h2>
+                <p className="text-slate-500 max-w-2xl mx-auto">
+                  Click on any project to view the source code on GitHub
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, i) => (
+                <ScrollReveal key={project.title} delay={i * 0.1}>
+                  <TiltCard className="h-full">
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block h-full glass-card rounded-2xl overflow-hidden group"
+                    >
+                      {/* Gradient header */}
+                      <div className={`h-2 bg-gradient-to-r ${project.gradient}`} />
+                      
+                      <div className="p-8">
+                        <div className="flex items-center gap-4 mb-6">
+                          <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${project.gradient} p-0.5`}>
+                            <div className="w-full h-full rounded-xl bg-slate-950 flex items-center justify-center">
+                              <project.icon size={24} className="text-white" />
+                            </div>
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                              {project.title}
+                            </h3>
+                          </div>
+                        </div>
+                        
+                        <p className="text-slate-400 text-sm mb-6 leading-relaxed">
+                          {project.description}
+                        </p>
+                        
+                        <div className="flex flex-wrap gap-2">
+                          {project.tech.map((t) => (
+                            <span 
+                              key={t} 
+                              className="text-xs px-3 py-1.5 rounded-full bg-slate-800/50 text-slate-300 border border-slate-700/50"
+                            >
+                              {t}
+                            </span>
+                          ))}
+                        </div>
+                        
+                        <div className="mt-6 flex items-center gap-2 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span className="text-sm font-medium">View on GitHub</span>
+                          <FaExternalLinkAlt size={12} />
+                        </div>
+                      </div>
+                    </a>
+                  </TiltCard>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section id="skills" className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <ScrollReveal direction="left">
+                <div>
+                  <motion.span 
+                    className="text-blue-500 font-medium text-sm uppercase tracking-wider"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                  >
+                    Expertise
+                  </motion.span>
+                  <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                    Technical <span className="text-gradient">Skills</span>
+                  </h2>
+                  <p className="text-slate-500 mb-10">
+                    Proficient in software engineering and machine learning technologies,
+                    with expertise in building enterprise-grade applications.
+                  </p>
+                  
+                  <div className="space-y-6">
+                    {skills.map((skill, i) => (
+                      <SkillBar
+                        key={skill.name}
+                        name={skill.name}
+                        level={skill.level}
+                        color={skill.color}
+                        delay={i * 0.1}
+                      />
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right">
+                <div className="grid grid-cols-2 gap-4">
+                  {[
+                    { icon: FaCode, title: 'Software Engineering', desc: 'Java, Python, REST APIs', color: 'from-blue-500 to-cyan-500' },
+                    { icon: FaBrain, title: 'Machine Learning', desc: 'TensorFlow, PyTorch, scikit-learn', color: 'from-purple-500 to-pink-500' },
+                    { icon: FaDatabase, title: 'Databases', desc: 'MySQL, SQL Server, Oracle', color: 'from-green-500 to-emerald-500' },
+                    { icon: FaRocket, title: 'DevOps', desc: 'Git, GitHub, Vercel, CI/CD', color: 'from-orange-500 to-red-500' },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="glass-card rounded-2xl p-6 text-center"
+                    >
+                      <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} p-0.5 mx-auto mb-4`}>
+                        <div className="w-full h-full rounded-xl bg-slate-950 flex items-center justify-center">
+                          <item.icon size={24} className="text-white" />
+                        </div>
+                      </div>
+                      <h3 className="font-bold text-white mb-2">{item.title}</h3>
+                      <p className="text-xs text-slate-500">{item.desc}</p>
+                    </motion.div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        {/* Certifications Section */}
+        <section id="certifications" className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <motion.span 
+                  className="text-blue-500 font-medium text-sm uppercase tracking-wider"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  Credentials
+                </motion.span>
+                <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                  Licenses & <span className="text-gradient">Certifications</span>
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {certifications.map((cert, i) => (
+                <ScrollReveal key={cert.title} delay={i * 0.1}>
+                  <motion.div
+                    whileHover={{ scale: 1.02, y: -5 }}
+                    className="glass-card rounded-2xl p-6 flex items-start gap-4"
+                  >
+                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
+                      {cert.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-white mb-1">{cert.title}</h3>
+                      <p className="text-sm text-slate-500">{cert.org}</p>
+                    </div>
+                  </motion.div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Interactive Demos Section */}
+        <section id="demos" className="py-32 px-6">
+          <div className="max-w-5xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <motion.span 
+                  className="text-blue-500 font-medium text-sm uppercase tracking-wider"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  Interactive
+                </motion.span>
+                <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                  Live <span className="text-gradient">Demos</span>
+                </h2>
+                <p className="text-slate-500">
+                  Test the ML APIs in real-time with interactive forms
+                </p>
+              </div>
+            </ScrollReveal>
+
+            <ScrollReveal>
+              <div className="glass rounded-2xl overflow-hidden">
+                {/* Demo Tabs */}
+                <div className="flex border-b border-white/10 overflow-x-auto">
+                  {(Object.keys(demos) as DemoType[]).map((key) => (
+                    <button
+                      key={key}
+                      onClick={() => {
+                        setActiveDemo(key)
+                        setResult(null)
+                        setError('')
+                        setFormData({})
+                      }}
+                      className={`flex-1 min-w-[120px] px-6 py-4 text-sm font-medium transition-all ${
+                        activeDemo === key
+                          ? 'bg-blue-600/20 text-blue-400 border-b-2 border-blue-400'
+                          : 'text-slate-500 hover:text-white hover:bg-white/5'
+                      }`}
+                    >
+                      {demos[key].title}
+                    </button>
+                  ))}
+                </div>
+
+                {/* Demo Content */}
+                <div className="p-8">
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-4">
+                      {demos[activeDemo].fields.map((field) => (
+                        <motion.div
+                          key={field.name}
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <label className="block text-sm font-medium text-slate-400 mb-2">
+                            {field.label}
+                          </label>
+                          <input
+                            type={field.type}
+                            placeholder={field.placeholder}
+                            value={formData[field.name] || ''}
+                            onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+                            className="w-full px-4 py-3 bg-slate-800/50 border border-slate-700/50 rounded-xl text-white placeholder-slate-600 transition-all hover:border-slate-600 focus:border-blue-500"
+                            required
+                          />
+                        </motion.div>
+                      ))}
+                    </div>
+                    <motion.button
+                      type="submit"
+                      disabled={loading}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-medium text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 disabled:opacity-50 disabled:cursor-not-allowed transition-shadow"
+                    >
+                      {loading ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <motion.div
+                            animate={{ rotate: 360 }}
+                            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                          />
+                          Processing...
+                        </span>
+                      ) : (
+                        'Get Prediction'
+                      )}
+                    </motion.button>
+                  </form>
+
+                  <AnimatePresence>
+                    {error && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        className="mt-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl text-red-400"
+                      >
+                        {error}
+                      </motion.div>
+                    )}
+
+                    {result && (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.95 }}
+                        className="mt-6 p-6 bg-slate-800/50 border border-slate-700/50 rounded-xl"
+                      >
+                        <h4 className="text-lg font-bold mb-4 text-gradient">Result</h4>
+                        <pre className="text-sm text-slate-300 overflow-x-auto font-mono">
+                          {JSON.stringify(result, null, 2)}
+                        </pre>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="py-32 px-6">
+          <div className="max-w-4xl mx-auto text-center">
+            <ScrollReveal>
+              <motion.span 
+                className="text-blue-500 font-medium text-sm uppercase tracking-wider"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
               >
-                {loading ? 'Predicting...' : 'Get Prediction'}
-              </button>
-            </form>
+                Get In Touch
+              </motion.span>
+              <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                Let's <span className="text-gradient">Connect</span>
+              </h2>
+              <p className="text-slate-500 mb-12 max-w-xl mx-auto">
+                Feel free to reach out for opportunities, collaborations, or just to say hello!
+              </p>
+            </ScrollReveal>
 
-            {/* Result */}
-            {error && (
-              <div className="mt-6 p-4 bg-red-900/30 border border-red-800 rounded-lg text-red-400">
-                {error}
+            <ScrollReveal delay={0.2}>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { 
+                    icon: FaEnvelope, 
+                    title: 'Email', 
+                    value: 'EmmanAlcazarJr@gmail.com',
+                    href: 'mailto:EmmanAlcazarJr@gmail.com',
+                    gradient: 'from-red-500 to-orange-500'
+                  },
+                  { 
+                    icon: FaLinkedin, 
+                    title: 'LinkedIn', 
+                    value: 'emmanalcazarjr',
+                    href: 'https://www.linkedin.com/in/emmanalcazarjr/',
+                    gradient: 'from-blue-600 to-blue-400'
+                  },
+                  { 
+                    icon: FaGithub, 
+                    title: 'GitHub', 
+                    value: 'emmanalcazarjr-ops',
+                    href: 'https://github.com/emmanalcazarjr-ops',
+                    gradient: 'from-gray-700 to-gray-500'
+                  },
+                ].map((contact, i) => (
+                  <motion.a
+                    key={contact.title}
+                    href={contact.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    whileHover={{ scale: 1.05, y: -5 }}
+                    className="glass-card rounded-2xl p-8 text-center group"
+                  >
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${contact.gradient} p-0.5 mx-auto mb-6`}>
+                      <div className="w-full h-full rounded-2xl bg-slate-950 flex items-center justify-center">
+                        <contact.icon size={28} className="text-white" />
+                      </div>
+                    </div>
+                    <h3 className="font-bold text-white mb-2">{contact.title}</h3>
+                    <p className="text-sm text-slate-500 group-hover:text-blue-400 transition-colors">
+                      {contact.value}
+                    </p>
+                  </motion.a>
+                ))}
               </div>
-            )}
-            {result && (
-              <div className="mt-6 p-6 bg-slate-800/50 border border-slate-700 rounded-lg animate-fade-in">
-                <h4 className="text-lg font-bold mb-4 text-blue-400">Result</h4>
-                <pre className="text-sm text-slate-300 overflow-x-auto">
-                  {JSON.stringify(result, null, 2)}
-                </pre>
-              </div>
-            )}
+            </ScrollReveal>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Contact */}
-      <section id="contact" className="py-20 px-4">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4">Get In Touch</h2>
-          <p className="text-slate-500 mb-10">Feel free to reach out for opportunities or collaborations</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-6">
-            <a
-              href="mailto:EmmanAlcazarJr@gmail.com"
-              className="flex items-center gap-3 px-6 py-3 bg-slate-900 border border-slate-800 rounded-lg hover:border-slate-600 transition"
+        {/* Footer */}
+        <footer className="py-12 px-6 border-t border-white/5">
+          <div className="max-w-7xl mx-auto text-center">
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-slate-600 text-sm"
             >
-              <FaEnvelope size={20} className="text-blue-400" />
-              <span>EmmanAlcazarJr@gmail.com</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/emmanalcazarjr/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 bg-slate-900 border border-slate-800 rounded-lg hover:border-slate-600 transition"
+              Built with Next.js, Tailwind CSS, Framer Motion & Vercel
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-slate-700 text-xs mt-4"
             >
-              <FaLinkedin size={20} className="text-blue-400" />
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="https://github.com/emmanalcazarjr-ops"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-6 py-3 bg-slate-900 border border-slate-800 rounded-lg hover:border-slate-600 transition"
-            >
-              <FaGithub size={20} className="text-blue-400" />
-              <span>GitHub</span>
-            </a>
+              © {new Date().getFullYear()} Emmanuel L. Alcazar Jr. — Licensed Electronics Engineer
+            </motion.p>
           </div>
-        </div>
-      </section>
+        </footer>
 
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t border-slate-800">
-        <div className="max-w-6xl mx-auto text-center text-slate-600 text-sm">
-          <p>Built with Next.js & Vercel</p>
-          <p className="mt-2">&copy; {new Date().getFullYear()} Emmanuel L. Alcazar Jr.</p>
-        </div>
-      </footer>
-    </main>
+        {/* Scroll to Top */}
+        <AnimatePresence>
+          {showScrollTop && (
+            <motion.button
+              initial={{ opacity: 0, scale: 0 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0 }}
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className="fixed bottom-8 right-8 w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow z-50"
+            >
+              <FaArrowUp size={20} />
+            </motion.button>
+          )}
+        </AnimatePresence>
+      </main>
+    </>
   )
 }

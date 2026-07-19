@@ -1,12 +1,9 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-
-const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Emmanuel Alcazar Jr. | Software Engineer & ML Developer',
-  description: 'Portfolio showcasing software engineering and machine learning projects',
+  description: 'Licensed Electronics Engineer | Software Engineer | Data Science & ML Developer',
   icons: {
     icon: '/favicon.ico',
   },
@@ -19,7 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-slate-950 text-white`}>{children}</body>
+      <body className="gradient-bg min-h-screen">{children}</body>
     </html>
   )
 }
