@@ -241,8 +241,17 @@ export default function Home() {
                 <span className="text-xl">⚡</span>
               </div>
               <div>
-                <h3 className="font-bold text-lg">Electronics Engineer (ECE)</h3>
+                <h3 className="font-bold text-lg">Electronics Engineer License (ECE)</h3>
                 <p className="text-slate-400 text-sm">Licensed Professional - PRC</p>
+              </div>
+            </div>
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-500 flex items-center justify-center flex-shrink-0">
+                <span className="text-xl">🌐</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-lg">ICT Infrastructure Certification</h3>
+                <p className="text-slate-400 text-sm">Internetworking End Devices</p>
               </div>
             </div>
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
@@ -250,12 +259,12 @@ export default function Home() {
                 <span className="text-xl">🔧</span>
               </div>
               <div>
-                <h3 className="font-bold text-lg">Electronics Technician (ECT)</h3>
+                <h3 className="font-bold text-lg">Electronics Technician License (ECT)</h3>
                 <p className="text-slate-400 text-sm">Licensed Professional - PRC</p>
               </div>
             </div>
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
-              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-indigo-500 flex items-center justify-center flex-shrink-0">
                 <span className="text-xl">🛡️</span>
               </div>
               <div>
@@ -269,7 +278,7 @@ export default function Home() {
               </div>
               <div>
                 <h3 className="font-bold text-lg">PMP Certification Prep</h3>
-                <p className="text-slate-400 text-sm">35-hour Training - May 2026</p>
+                <p className="text-slate-400 text-sm">Certificate of Completion - 35-hour Training, May 2026</p>
               </div>
             </div>
             <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
@@ -277,16 +286,16 @@ export default function Home() {
                 <span className="text-xl">📈</span>
               </div>
               <div>
-                <h3 className="font-bold text-lg">Data Analyst Associate</h3>
+                <h3 className="font-bold text-lg">Data Analyst Associate Certification</h3>
                 <p className="text-slate-400 text-sm">DataCamp Certified</p>
               </div>
             </div>
-            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4">
+            <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 flex items-start gap-4 md:col-span-2">
               <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center flex-shrink-0">
                 <span className="text-xl">🤖</span>
               </div>
               <div>
-                <h3 className="font-bold text-lg">AI Engineer Associate</h3>
+                <h3 className="font-bold text-lg">AI Engineer for Developers Associate Certification</h3>
                 <p className="text-slate-400 text-sm">DataCamp Certified</p>
               </div>
             </div>
