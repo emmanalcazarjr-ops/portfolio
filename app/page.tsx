@@ -67,6 +67,14 @@ const projects = [
     icon: FaBrain,
     gradient: 'from-indigo-500 via-violet-500 to-purple-500',
   },
+  {
+    title: 'Task Management System',
+    description: 'Full-stack task management application with CRUD operations, filtering, and real-time status updates.',
+    tech: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
+    github: 'https://github.com/emmanalcazarjr-ops/task-management-system',
+    icon: FaCode,
+    gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
+  },
 ]
 
 const skills = [
@@ -344,10 +352,10 @@ export default function Home() {
             <ScrollReveal delay={1.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
                 {[
-                  { label: 'Projects', value: 11, suffix: '+' },
+                  { label: 'Projects', value: 12, suffix: '+' },
                   { label: 'Technologies', value: 15, suffix: '+' },
                   { label: 'Certifications', value: 7, suffix: '' },
-                  { label: 'GitHub Repos', value: 13, suffix: '+' },
+                  { label: 'GitHub Repos', value: 14, suffix: '+' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
