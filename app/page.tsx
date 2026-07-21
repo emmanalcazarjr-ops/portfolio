@@ -75,6 +75,14 @@ const projects = [
     icon: FaCode,
     gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
   },
+  {
+    title: 'ML API Showcase',
+    description: 'Interactive showcase of Machine Learning APIs with live demos and real-time predictions.',
+    tech: ['Next.js 14', 'TypeScript', 'Python', 'Tailwind CSS'],
+    github: 'https://github.com/emmanalcazarjr-ops/ml-api-showcase',
+    icon: FaRocket,
+    gradient: 'from-fuchsia-500 via-purple-500 to-indigo-500',
+  },
 ]
 
 const skills = [
@@ -352,10 +360,10 @@ export default function Home() {
             <ScrollReveal delay={1.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
                 {[
-                  { label: 'Projects', value: 12, suffix: '+' },
+                  { label: 'Projects', value: 13, suffix: '+' },
                   { label: 'Technologies', value: 15, suffix: '+' },
                   { label: 'Certifications', value: 7, suffix: '' },
-                  { label: 'GitHub Repos', value: 14, suffix: '+' },
+                  { label: 'GitHub Repos', value: 15, suffix: '+' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
