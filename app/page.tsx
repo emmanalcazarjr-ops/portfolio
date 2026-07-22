@@ -17,6 +17,7 @@ import ScrollReveal from './components/ScrollReveal'
 import TiltCard from './components/TiltCard'
 import SkillBar from './components/SkillBar'
 import Counter from './components/Counter'
+import ChatWidget from './components/ChatWidget'
 
 const projects = [
   {
@@ -1020,6 +1021,9 @@ export default function Home() {
             </motion.button>
           )}
         </AnimatePresence>
+
+        {/* Rush AI Butler Chatbot */}
+        <ChatWidget />
       </main>
     </>
   )
