@@ -301,7 +301,7 @@ export default function Home() {
             <ScrollReveal delay={0.2}>
               <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 leading-tight">
                 <span className="text-white">Hi, I'm </span>
-                <span className="text-gradient-animate">Emmanuel</span>
+                <span className="text-gradient-animate">Engr. Emman</span>
               </h1>
             </ScrollReveal>
 
