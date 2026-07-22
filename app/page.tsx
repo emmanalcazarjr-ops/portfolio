@@ -24,6 +24,7 @@ const projects = [
     description: 'CLI-based banking application with transaction processing, role-based access, and ACID compliance.',
     tech: ['Java', 'MySQL', 'Maven', 'JDBC'],
     github: 'https://github.com/emmanalcazarjr-ops/core-banking-system',
+    live: 'https://core-banking-showcase.vercel.app',
     icon: FaDatabase,
     gradient: 'from-orange-500 via-red-500 to-pink-500',
   },
@@ -32,6 +33,7 @@ const projects = [
     description: 'ML-based fraud detection using Random Forest with feature engineering and real-time predictions.',
     tech: ['Python', 'scikit-learn', 'pandas', 'NumPy'],
     github: 'https://github.com/emmanalcazarjr-ops/fraud-detection-system',
+    live: 'https://fraud-api-ten.vercel.app',
     icon: FaShieldAlt,
     gradient: 'from-blue-500 via-cyan-500 to-teal-500',
   },
@@ -40,6 +42,7 @@ const projects = [
     description: 'Deep learning model to predict loan default risk using neural networks with TensorFlow.',
     tech: ['Python', 'TensorFlow', 'pandas', 'NumPy'],
     github: 'https://github.com/emmanalcazarjr-ops/credit-risk-predictor',
+    live: 'https://credit-api-zeta.vercel.app',
     icon: FaChartLine,
     gradient: 'from-purple-500 via-pink-500 to-rose-500',
   },
@@ -48,6 +51,7 @@ const projects = [
     description: 'LSTM-based neural network for stock price forecasting with confidence intervals.',
     tech: ['Python', 'PyTorch', 'NumPy', 'pandas'],
     github: 'https://github.com/emmanalcazarjr-ops/stock-price-predictor',
+    live: 'https://stock-api-phi-jet.vercel.app',
     icon: FaChartLine,
     gradient: 'from-green-500 via-emerald-500 to-teal-500',
   },
@@ -56,6 +60,7 @@ const projects = [
     description: 'Predict customer churn using Gradient Boosting with SHAP explainability.',
     tech: ['Python', 'scikit-learn', 'SHAP', 'XGBoost'],
     github: 'https://github.com/emmanalcazarjr-ops/customer-churn-predictor',
+    live: 'https://churn-api-zeta.vercel.app',
     icon: FaRobot,
     gradient: 'from-yellow-500 via-orange-500 to-red-500',
   },
@@ -64,6 +69,7 @@ const projects = [
     description: 'NLP-based sentiment analysis for text using TextBlob with preprocessing pipeline.',
     tech: ['Python', 'TextBlob', 'pandas', 'NLP'],
     github: 'https://github.com/emmanalcazarjr-ops/sentiment-analysis-tool',
+    live: 'https://sentiment-api-nine.vercel.app',
     icon: FaBrain,
     gradient: 'from-indigo-500 via-violet-500 to-purple-500',
   },
@@ -72,6 +78,7 @@ const projects = [
     description: 'Full-stack task management application with CRUD operations, filtering, and real-time status updates.',
     tech: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
     github: 'https://github.com/emmanalcazarjr-ops/task-management-system',
+    live: 'https://task-management-system-umber-three.vercel.app',
     icon: FaCode,
     gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
   },
@@ -80,6 +87,7 @@ const projects = [
     description: 'Interactive showcase of Machine Learning APIs with live demos and real-time predictions.',
     tech: ['Next.js 14', 'TypeScript', 'Python', 'Tailwind CSS'],
     github: 'https://github.com/emmanalcazarjr-ops/ml-api-showcase',
+    live: 'https://ml-api-showcase.vercel.app',
     icon: FaRocket,
     gradient: 'from-fuchsia-500 via-purple-500 to-indigo-500',
   },
@@ -468,9 +476,17 @@ export default function Home() {
                           ))}
                         </div>
                         
-                        <div className="mt-6 flex items-center gap-2 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="text-sm font-medium">View on GitHub</span>
-                          <FaExternalLinkAlt size={12} />
+                        <div className="flex items-center gap-4">
+                          <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span className="text-sm font-medium">View on GitHub</span>
+                            <FaExternalLinkAlt size={12} />
+                          </a>
+                          {project.live && (
+                            <a href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                              <span className="text-sm font-medium">Live Demo</span>
+                              <FaExternalLinkAlt size={12} />
+                            </a>
+                          )}
                         </div>
                       </div>
                     </a>
