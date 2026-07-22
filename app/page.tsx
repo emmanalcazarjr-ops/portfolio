@@ -326,7 +326,7 @@ export default function Home() {
             <ScrollReveal delay={0.6}>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
                 "Creativity is intelligence having fun." — Einstein. 
-                I build things, learn as I go, and hope it makes someone's life a little easier.
+                I build, I break, I learn. The present is theirs — the future, for which I really work, is ours.
               </p>
             </ScrollReveal>
 
