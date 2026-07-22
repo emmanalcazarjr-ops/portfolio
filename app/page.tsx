@@ -109,6 +109,15 @@ const projects = [
     icon: FaDatabase,
     gradient: 'from-orange-500 via-amber-500 to-yellow-500',
   },
+  {
+    title: 'Rush AI Butler',
+    description: 'AI-powered customer support chatbot with conversation memory, webhook support, and rate limiting. Powered by DeepSeek AI.',
+    tech: ['Python', 'DeepSeek AI', 'REST API', 'Chatbot'],
+    github: 'https://github.com/emmanalcazarjr-ops/chatbot-api',
+    live: 'https://chatbot-api-two-teal.vercel.app',
+    icon: FaRobot,
+    gradient: 'from-purple-500 via-violet-500 to-indigo-500',
+  },
 ]
 
 const skills = [
@@ -388,7 +397,7 @@ export default function Home() {
             <ScrollReveal delay={1.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
                 {[
-                  { label: 'Projects', value: 15, suffix: '+' },
+                  { label: 'Projects', value: 16, suffix: '+' },
                   { label: 'Technologies', value: 18, suffix: '+' },
                   { label: 'Certifications', value: 7, suffix: '' },
                   { label: 'GitHub Repos', value: 22, suffix: '+' },
