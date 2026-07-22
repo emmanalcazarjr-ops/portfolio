@@ -325,8 +325,8 @@ export default function Home() {
 
             <ScrollReveal delay={0.6}>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
-                I turn your business problems into smart, automated solutions. 
-                From fraud detection to AI chatbots — let's build something that makes you money while you sleep.
+                "Creativity is intelligence having fun." — Einstein. 
+                I build things, learn as I go, and hope it makes someone's life a little easier.
               </p>
             </ScrollReveal>
 
