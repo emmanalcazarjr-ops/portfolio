@@ -83,6 +83,24 @@ const projects = [
     icon: FaRocket,
     gradient: 'from-fuchsia-500 via-purple-500 to-indigo-500',
   },
+  {
+    title: 'RAG Document Q&A API',
+    description: 'Retrieval-Augmented Generation system using TF-IDF vector search and DeepSeek AI for intelligent document retrieval.',
+    tech: ['Python', 'TF-IDF', 'DeepSeek AI', 'RAG'],
+    github: 'https://github.com/emmanalcazarjr-ops/rag-qa-api',
+    live: 'https://rag-qa-api.vercel.app',
+    icon: FaBrain,
+    gradient: 'from-teal-500 via-cyan-500 to-blue-500',
+  },
+  {
+    title: 'Semantic Search API',
+    description: 'TF-IDF based semantic search with cosine similarity for intelligent document retrieval and information retrieval.',
+    tech: ['Python', 'TF-IDF', 'Cosine Similarity', 'NLP'],
+    github: 'https://github.com/emmanalcazarjr-ops/semantic-search-api',
+    live: 'https://semantic-search-api-xi.vercel.app',
+    icon: FaDatabase,
+    gradient: 'from-orange-500 via-amber-500 to-yellow-500',
+  },
 ]
 
 const skills = [
@@ -360,10 +378,10 @@ export default function Home() {
             <ScrollReveal delay={1.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
                 {[
-                  { label: 'Projects', value: 13, suffix: '+' },
-                  { label: 'Technologies', value: 15, suffix: '+' },
+                  { label: 'Projects', value: 15, suffix: '+' },
+                  { label: 'Technologies', value: 18, suffix: '+' },
                   { label: 'Certifications', value: 7, suffix: '' },
-                  { label: 'GitHub Repos', value: 15, suffix: '+' },
+                  { label: 'GitHub Repos', value: 22, suffix: '+' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
