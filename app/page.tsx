@@ -291,9 +291,11 @@ export default function Home() {
                 className="inline-block mb-6"
               >
                 <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-500 p-1 animate-pulse-glow">
-                  <div className="w-full h-full rounded-full bg-slate-950 flex items-center justify-center">
-                    <span className="text-5xl">👨‍💻</span>
-                  </div>
+                  <img 
+                    src="/PFP.jpg" 
+                    alt="Engr. Emman" 
+                    className="w-full h-full rounded-full object-cover"
+                  />
                 </div>
               </motion.div>
             </ScrollReveal>
@@ -323,8 +325,8 @@ export default function Home() {
 
             <ScrollReveal delay={0.6}>
               <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
-                Building intelligent systems that solve real-world problems. 
-                Passionate about software engineering, machine learning, and data-driven solutions.
+                I turn your business problems into smart, automated solutions. 
+                From fraud detection to AI chatbots — let's build something that makes you money while you sleep.
               </p>
             </ScrollReveal>
 
