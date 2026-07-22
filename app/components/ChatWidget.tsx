@@ -97,6 +97,9 @@ export default function ChatWidget() {
                   <span className="text-xs text-green-400">Online</span>
                 </div>
               </div>
+              <div className="ml-auto text-[10px] text-slate-500 bg-white/5 px-2 py-1 rounded-full border border-white/10">
+                Powered by DeepSeek
+              </div>
             </div>
 
             {/* Messages */}
