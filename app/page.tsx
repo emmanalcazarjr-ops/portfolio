@@ -119,6 +119,14 @@ const projects = [
     icon: FaRobot,
     gradient: 'from-purple-500 via-violet-500 to-indigo-500',
   },
+  {
+    title: 'Spotify Lyrics Overlay',
+    description: 'Transparent desktop overlay with synced lyrics from Spotify. Features click-through mode, playback controls, and real-time lyrics synchronization.',
+    tech: ['Electron', 'TypeScript', 'Spotify API', 'LRCLIB'],
+    github: 'https://github.com/emmanalcazarjr-ops/spotify-lyrics-overlay',
+    icon: FaCode,
+    gradient: 'from-green-500 via-emerald-500 to-teal-500',
+  },
 ]
 
 const skills = [
