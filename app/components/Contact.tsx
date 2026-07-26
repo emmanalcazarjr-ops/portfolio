@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane, FaCheck, FaSpinner } from 'react-icons/fa'
+import { FaEnvelope, FaLinkedin, FaGithub, FaPaperPlane, FaCheck, FaSpinner, FaTimes } from 'react-icons/fa'
 import ScrollReveal from './ScrollReveal'
 
 const contactLinks = [
@@ -37,11 +37,34 @@ export default function Contact() {
     e.preventDefault()
     setStatus('sending')
     
-    setTimeout(() => {
-      setStatus('sent')
-      setFormData({ name: '', email: '', message: '' })
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${formData.name}`,
+          from_name: 'Portfolio Contact Form',
+        }),
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setStatus('sent')
+        setFormData({ name: '', email: '', message: '' })
+        setTimeout(() => setStatus('idle'), 3000)
+      } else {
+        setStatus('error')
+        setTimeout(() => setStatus('idle'), 3000)
+      }
+    } catch {
+      setStatus('error')
       setTimeout(() => setStatus('idle'), 3000)
-    }, 1500)
+    }
   }
 
   return (
@@ -128,6 +151,11 @@ export default function Contact() {
                     <>
                       <FaCheck />
                       Message Sent!
+                    </>
+                  ) : status === 'error' ? (
+                    <>
+                      <FaTimes />
+                      Failed to Send
                     </>
                   ) : (
                     <>
