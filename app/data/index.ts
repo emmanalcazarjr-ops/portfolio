@@ -18,6 +18,7 @@ export interface Project {
   icon: IconType
   gradient: string
   badge?: string
+  featured?: boolean
 }
 
 export interface Skill {
@@ -103,6 +104,7 @@ export const projects: Project[] = [
     live: 'https://rag-qa-api.vercel.app',
     icon: FaBrain,
     gradient: 'from-teal-500 via-cyan-500 to-blue-500',
+    featured: true,
   },
   {
     title: 'Rush AI Butler',
@@ -112,6 +114,7 @@ export const projects: Project[] = [
     live: 'https://chatbot-api-two-teal.vercel.app',
     icon: FaRobot,
     gradient: 'from-purple-500 via-violet-500 to-indigo-500',
+    featured: true,
   },
   {
     title: 'Iris Classifier',
@@ -145,6 +148,26 @@ export const projects: Project[] = [
     github: 'https://github.com/emmanalcazarjr-ops/core-banking-system',
     icon: FaDatabase,
     gradient: 'from-amber-500 via-yellow-500 to-orange-500',
+    featured: true,
+  },
+  {
+    title: 'ML API Showcase',
+    description: 'Interactive showcase of all ML APIs with live demos, real-time predictions, and animated visualizations. A unified dashboard for testing every API.',
+    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    github: 'https://github.com/emmanalcazarjr-ops/ml-api-showcase',
+    live: 'https://ml-api-showcase.vercel.app',
+    icon: FaRocket,
+    gradient: 'from-indigo-500 via-blue-500 to-cyan-500',
+    featured: true,
+  },
+  {
+    title: 'Semantic Search API',
+    description: 'TF-IDF based semantic search engine with cosine similarity for intelligent document retrieval across categorized knowledge bases.',
+    tech: ['Python', 'TF-IDF', 'Cosine Similarity', 'Vercel'],
+    github: 'https://github.com/emmanalcazarjr-ops/semantic-search-api',
+    live: 'https://semantic-search-api-xi.vercel.app',
+    icon: FaCode,
+    gradient: 'from-emerald-500 via-green-500 to-teal-500',
   },
 ]
 
@@ -204,7 +227,7 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const stats = [
-  { label: 'Projects', value: 11, suffix: '+' },
+  { label: 'Projects', value: 13, suffix: '+' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 5, suffix: '' },
   { label: 'GitHub Repos', value: 15, suffix: '+' },

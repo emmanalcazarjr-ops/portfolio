@@ -39,7 +39,7 @@ export default function Hero() {
             <TypeWriter 
               texts={[
                 'Licensed Electronics Engineer',
-                'Software Engineer',
+                'AI/ML Developer',
                 'Data Science & ML Developer',
                 'Banking & Finance Systems'
               ]}

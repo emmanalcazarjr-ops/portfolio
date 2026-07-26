@@ -1,7 +1,6 @@
 'use client'
 
-import { motion, useMotionValue, useTransform, animate } from 'framer-motion'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 interface CounterProps {
   from?: number
@@ -18,17 +17,25 @@ export default function Counter({
   suffix = '',
   prefix = '' 
 }: CounterProps) {
-  const count = useMotionValue(from)
-  const rounded = useTransform(count, (latest) => Math.round(latest))
-  const display = useTransform(rounded, (latest) => `${prefix}${latest}${suffix}`)
+  const [value, setValue] = useState(from)
 
   useEffect(() => {
-    const controls = animate(count, to, {
-      duration,
-      ease: 'easeOut',
-    })
-    return controls.stop
-  }, [count, to, duration])
+    let startTime: number | null = null
+    let frame: number
 
-  return <motion.span>{display}</motion.span>
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1)
+      const eased = 1 - Math.pow(1 - progress, 3)
+      setValue(Math.round(from + (to - from) * eased))
+      if (progress < 1) {
+        frame = requestAnimationFrame(step)
+      }
+    }
+
+    frame = requestAnimationFrame(step)
+    return () => cancelAnimationFrame(frame)
+  }, [from, to, duration])
+
+  return <span>{prefix}{value}{suffix}</span>
 }

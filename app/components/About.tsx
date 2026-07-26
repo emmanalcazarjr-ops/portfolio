@@ -46,8 +46,8 @@ export default function About() {
             <div className="space-y-6">
               <p className="text-lg text-slate-400 leading-relaxed">
                 I'm a <span className="text-white font-semibold">Licensed Electronics Engineer</span> turned 
-                <span className="text-white font-semibold"> Software Engineer</span> and 
-                <span className="text-white font-semibold"> Machine Learning Developer</span>. My journey 
+                <span className="text-white font-semibold"> AI/ML Developer</span> and 
+                <span className="text-white font-semibold"> Software Engineer</span>. My journey 
                 started in electronics and telecommunications, but my passion for building intelligent 
                 systems led me to the world of AI and software engineering.
               </p>

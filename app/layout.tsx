@@ -3,9 +3,9 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://portfolio-elalcazarjr.vercel.app'),
-  title: 'Emmanuel Alcazar Jr. | Software Engineer & ML Developer',
-  description: 'Licensed Electronics Engineer specializing in Software Engineering, Machine Learning, and AI-powered applications for banking, finance, and enterprise solutions.',
-  keywords: ['Software Engineer', 'Machine Learning', 'Python', 'Java', 'TensorFlow', 'PyTorch', 'scikit-learn', 'Next.js', 'Portfolio'],
+  title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
+  description: 'Licensed Electronics Engineer specializing in AI/ML Development, Machine Learning, and intelligent applications for banking, finance, and enterprise solutions.',
+  keywords: ['Electronics Engineer', 'AI/ML Developer', 'Machine Learning', 'Python', 'Java', 'TensorFlow', 'PyTorch', 'scikit-learn', 'Next.js', 'Portfolio'],
   authors: [{ name: 'Emmanuel L. Alcazar Jr.' }],
   creator: 'Emmanuel L. Alcazar Jr.',
   openGraph: {
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://portfolio-elalcazarjr.vercel.app',
     siteName: 'Emmanuel Alcazar Jr. Portfolio',
-    title: 'Emmanuel Alcazar Jr. | Software Engineer & ML Developer',
-    description: 'Licensed Electronics Engineer specializing in Software Engineering, Machine Learning, and AI-powered applications.',
+    title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
+    description: 'Licensed Electronics Engineer specializing in AI/ML Development, Machine Learning, and intelligent applications.',
     images: [
       {
         url: '/PFP.jpg',
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emmanuel Alcazar Jr. | Software Engineer & ML Developer',
-    description: 'Licensed Electronics Engineer specializing in Software Engineering, Machine Learning, and AI-powered applications.',
+    title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
+    description: 'Licensed Electronics Engineer specializing in AI/ML Development, Machine Learning, and intelligent applications.',
     images: ['/PFP.jpg'],
   },
   icons: {
