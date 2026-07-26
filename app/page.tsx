@@ -2,11 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Link from 'next/link'
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
   FaArrowUp, FaRocket, FaCode, FaBrain, FaShieldAlt,
   FaChartLine, FaRobot, FaDatabase, FaJava, FaPython,
-  FaCalendar, FaClock, FaTag
+  FaCalendar, FaClock, FaTag, FaBars, FaTimes
 } from 'react-icons/fa'
 import { 
   SiTensorflow, SiPytorch, SiScikitlearn, SiPandas, 
@@ -32,6 +33,42 @@ const projects = [
     badge: '98.6% Accuracy',
   },
   {
+    title: 'Credit Risk Predictor',
+    description: 'Deep learning model using TensorFlow to predict credit risk scores. Features include loan default probability, risk categorization, and financial health assessment.',
+    tech: ['Python', 'TensorFlow', 'Deep Learning', 'Vercel'],
+    github: 'https://github.com/emmanalcazarjr-ops/credit-api',
+    live: 'https://credit-api-zeta.vercel.app',
+    icon: FaChartLine,
+    gradient: 'from-orange-500 via-red-500 to-pink-500',
+  },
+  {
+    title: 'Stock Price Predictor',
+    description: 'PyTorch-based LSTM model for stock price prediction. Features include technical indicators, trend analysis, and multi-day forecasting.',
+    tech: ['Python', 'PyTorch', 'LSTM', 'Vercel'],
+    github: 'https://github.com/emmanalcazarjr-ops/stock-api',
+    live: 'https://stock-api-phi-jet.vercel.app',
+    icon: FaChartLine,
+    gradient: 'from-green-500 via-emerald-500 to-teal-500',
+  },
+  {
+    title: 'Customer Churn Predictor',
+    description: 'Machine learning model with SHAP explainability to predict customer churn. Features include risk factors, retention strategies, and feature importance analysis.',
+    tech: ['Python', 'scikit-learn', 'SHAP', 'Vercel'],
+    github: 'https://github.com/emmanalcazarjr-ops/churn-api',
+    live: 'https://churn-api-zeta.vercel.app',
+    icon: FaBrain,
+    gradient: 'from-yellow-500 via-orange-500 to-red-500',
+  },
+  {
+    title: 'Sentiment Analysis Tool',
+    description: 'NLP-powered sentiment analysis API using TextBlob and DeepSeek AI. Features include emotion detection, confidence scoring, and multi-language support.',
+    tech: ['Python', 'TextBlob', 'DeepSeek AI', 'Vercel'],
+    github: 'https://github.com/emmanalcazarjr-ops/sentiment-api',
+    live: 'https://sentiment-api-nine.vercel.app',
+    icon: FaRobot,
+    gradient: 'from-pink-500 via-rose-500 to-red-500',
+  },
+  {
     title: 'RAG Document Q&A API',
     description: 'Retrieval-Augmented Generation system using TF-IDF vector search and DeepSeek AI for intelligent document retrieval and context-aware answers.',
     tech: ['Python', 'TF-IDF', 'DeepSeek AI', 'RAG'],
@@ -50,6 +87,22 @@ const projects = [
     gradient: 'from-purple-500 via-violet-500 to-indigo-500',
   },
   {
+    title: 'Iris Classifier',
+    description: 'Classic machine learning classification model using scikit-learn to classify iris flower species. Features include data visualization and model evaluation.',
+    tech: ['Python', 'scikit-learn', 'pandas', 'matplotlib'],
+    github: 'https://github.com/emmanalcazarjr-ops/iris-classifier',
+    icon: FaCode,
+    gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
+  },
+  {
+    title: 'Spam Email Detector',
+    description: 'Natural language processing model to detect spam emails using scikit-learn. Features include text preprocessing, TF-IDF vectorization, and classification.',
+    tech: ['Python', 'scikit-learn', 'NLP', 'TF-IDF'],
+    github: 'https://github.com/emmanalcazarjr-ops/spam-email-detector',
+    icon: FaShieldAlt,
+    gradient: 'from-red-500 via-orange-500 to-yellow-500',
+  },
+  {
     title: 'Task Management System',
     description: 'Full-stack task management application with CRUD operations, filtering, real-time status updates, and PostgreSQL database integration.',
     tech: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
@@ -57,6 +110,14 @@ const projects = [
     live: 'https://task-management-system-umber-three.vercel.app',
     icon: FaCode,
     gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
+  },
+  {
+    title: 'Core Banking System',
+    description: 'Java CLI banking application with account management, transaction processing, and financial reporting. Built with Maven and MySQL.',
+    tech: ['Java', 'Maven', 'MySQL', 'JDBC'],
+    github: 'https://github.com/emmanalcazarjr-ops/core-banking-system',
+    icon: FaDatabase,
+    gradient: 'from-amber-500 via-yellow-500 to-orange-500',
   },
 ]
 
@@ -111,12 +172,13 @@ const blogPosts = [
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
       setShowScrollTop(window.scrollY > 500)
       
-      const sections = ['projects', 'skills', 'certifications', 'blog', 'contact']
+      const sections = ['about', 'projects', 'skills', 'certifications', 'blog', 'contact']
       for (const section of sections) {
         const el = document.getElementById(section)
         if (el) {
@@ -148,13 +210,15 @@ export default function Home() {
             >
               <a href="#" className="text-2xl font-bold text-gradient-animate">EA</a>
             </motion.div>
+            
+            {/* Desktop Navigation */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="hidden md:flex items-center gap-8"
             >
-              {['projects', 'skills', 'certifications', 'blog', 'contact'].map((item) => (
+              {['about', 'projects', 'skills', 'certifications', 'blog', 'contact'].map((item) => (
                 <a
                   key={item}
                   href={`#${item}`}
@@ -175,7 +239,46 @@ export default function Home() {
                 </a>
               ))}
             </motion.div>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="md:hidden text-slate-400 hover:text-white transition-colors"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </motion.button>
           </div>
+
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {mobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                className="md:hidden border-t border-white/10"
+              >
+                <div className="px-6 py-4 space-y-4">
+                  {['about', 'projects', 'skills', 'certifications', 'blog', 'contact'].map((item) => (
+                    <a
+                      key={item}
+                      href={`#${item}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={`block text-sm font-medium transition-all duration-300 capitalize ${
+                        activeSection === item 
+                          ? 'text-blue-400' 
+                          : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      {item}
+                    </a>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
 
         {/* Hero Section */}
@@ -279,10 +382,10 @@ export default function Home() {
             <ScrollReveal delay={1.2}>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20">
                 {[
-                  { label: 'Projects', value: 4, suffix: '+' },
+                  { label: 'Projects', value: 11, suffix: '+' },
                   { label: 'Technologies', value: 15, suffix: '+' },
                   { label: 'Certifications', value: 5, suffix: '' },
-                  { label: 'GitHub Repos', value: 10, suffix: '+' },
+                  { label: 'GitHub Repos', value: 15, suffix: '+' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
@@ -300,6 +403,94 @@ export default function Home() {
                 ))}
               </div>
             </ScrollReveal>
+          </div>
+        </section>
+
+        {/* About Section */}
+        <section id="about" className="py-32 px-6">
+          <div className="max-w-7xl mx-auto">
+            <ScrollReveal>
+              <div className="text-center mb-16">
+                <motion.span 
+                  className="text-blue-500 font-medium text-sm uppercase tracking-wider"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                >
+                  Background
+                </motion.span>
+                <h2 className="text-4xl md:text-5xl font-bold mt-4 mb-6">
+                  About <span className="text-gradient">Me</span>
+                </h2>
+              </div>
+            </ScrollReveal>
+
+            <div className="grid lg:grid-cols-2 gap-16 items-center">
+              <ScrollReveal direction="left">
+                <div className="space-y-6">
+                  <p className="text-lg text-slate-400 leading-relaxed">
+                    I'm a <span className="text-white font-semibold">Licensed Electronics Engineer</span> turned 
+                    <span className="text-white font-semibold"> Software Engineer</span> and 
+                    <span className="text-white font-semibold"> Machine Learning Developer</span>. My journey 
+                    started in electronics and telecommunications, but my passion for building intelligent 
+                    systems led me to the world of AI and software engineering.
+                  </p>
+                  <p className="text-lg text-slate-400 leading-relaxed">
+                    With expertise in <span className="text-blue-400">Python</span>, <span className="text-blue-400">Java</span>, 
+                    and modern ML frameworks, I specialize in building production-ready applications that solve 
+                    real-world problems in banking, finance, and enterprise solutions.
+                  </p>
+                  <p className="text-lg text-slate-400 leading-relaxed">
+                    My goal is to bridge the gap between cutting-edge AI research and practical business applications, 
+                    creating systems that are both intelligent and reliable.
+                  </p>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal direction="right">
+                <div className="space-y-6">
+                  {[
+                    { 
+                      title: 'Education', 
+                      icon: '🎓',
+                      items: ['BS Electronics Engineering', 'Licensed ECE & ECT', 'DataCamp Certifications']
+                    },
+                    { 
+                      title: 'Experience', 
+                      icon: '💼',
+                      items: ['Software Engineering', 'Machine Learning Development', 'Banking & Finance Systems']
+                    },
+                    { 
+                      title: 'Focus Areas', 
+                      icon: '🎯',
+                      items: ['AI-Powered Applications', 'ML Model Deployment', 'Enterprise Solutions']
+                    },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                      className="glass-card rounded-2xl p-6"
+                    >
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-2xl">{item.icon}</span>
+                        <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                      </div>
+                      <ul className="space-y-2">
+                        {item.items.map((text) => (
+                          <li key={text} className="flex items-center gap-2 text-slate-400">
+                            <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                            {text}
+                          </li>
+                        ))}
+                      </ul>
+                    </motion.div>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </div>
           </div>
         </section>
 
@@ -563,9 +754,9 @@ export default function Home() {
                     </div>
                     
                     <div className="px-8 pb-6">
-                      <span className="text-blue-400 text-sm font-medium hover:underline cursor-pointer">
+                      <Link href={`/blog/${post.slug}`} className="text-blue-400 text-sm font-medium hover:underline">
                         Read Article →
-                      </span>
+                      </Link>
                     </div>
                   </motion.div>
                 </ScrollReveal>
