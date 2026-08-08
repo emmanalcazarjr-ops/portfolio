@@ -81,6 +81,8 @@ export const certifications: Certification[] = [
   { title: 'ICT Infrastructure Certification', org: 'Internetworking End Devices', icon: '🌐' },
   { title: 'Data Analyst Associate', org: 'DataCamp', icon: '📈' },
   { title: 'AI Engineer for Developers', org: 'DataCamp', icon: '🤖' },
+  { title: 'Workflow Automation with n8n', org: 'DataCamp', icon: '⚙️' },
+  { title: 'Python', org: 'DataCamp', icon: '🐍' },
 ]
 
 export const blogPosts: BlogPost[] = [
@@ -104,7 +106,7 @@ export const socialLinks: SocialLink[] = [
 export const stats = [
   { label: 'Projects', value: 1, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
-  { label: 'Certifications', value: 5, suffix: '' },
+  { label: 'Certifications', value: 7, suffix: '' },
   { label: 'GitHub Repos', value: 11, suffix: '' },
 ]
 
