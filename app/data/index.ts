@@ -1,6 +1,6 @@
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
-  FaRocket, FaCode, FaShieldAlt,
+  FaRocket, FaCode,
   FaRobot, FaDatabase, FaJava, FaPython,
   FaCalendar, FaClock, FaTag
 } from 'react-icons/fa'
@@ -58,31 +58,6 @@ export const projects: Project[] = [
     live: 'https://chatbot-api-two-teal.vercel.app',
     icon: FaRobot,
     gradient: 'from-purple-500 via-violet-500 to-indigo-500',
-    featured: true,
-  },
-  {
-    title: 'Iris Classifier',
-    description: 'Classic machine learning classification model using scikit-learn to classify iris flower species. Features include data visualization and model evaluation.',
-    tech: ['Python', 'scikit-learn', 'pandas', 'matplotlib'],
-    github: 'https://github.com/emmanalcazarjr-ops/iris-classifier',
-    icon: FaCode,
-    gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
-  },
-  {
-    title: 'Spam Email Detector',
-    description: 'Natural language processing model to detect spam emails using scikit-learn. Features include text preprocessing, TF-IDF vectorization, and classification.',
-    tech: ['Python', 'scikit-learn', 'NLP', 'TF-IDF'],
-    github: 'https://github.com/emmanalcazarjr-ops/spam-email-detector',
-    icon: FaShieldAlt,
-    gradient: 'from-red-500 via-orange-500 to-yellow-500',
-  },
-  {
-    title: 'Core Banking System',
-    description: 'Java CLI banking application with account management, transaction processing, and financial reporting. Built with Maven and MySQL.',
-    tech: ['Java', 'Maven', 'MySQL', 'JDBC'],
-    github: 'https://github.com/emmanalcazarjr-ops/core-banking-system',
-    icon: FaDatabase,
-    gradient: 'from-amber-500 via-yellow-500 to-orange-500',
     featured: true,
   },
 ]
@@ -143,7 +118,7 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const stats = [
-  { label: 'Projects', value: 4, suffix: '' },
+  { label: 'Projects', value: 1, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 5, suffix: '' },
   { label: 'GitHub Repos', value: 15, suffix: '+' },

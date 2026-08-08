@@ -101,6 +101,7 @@ export default function Projects() {
         </div>
 
         {/* More Projects — expandable section */}
+        {more.length > 0 && (
         <div className="mt-16">
           <button
             onClick={() => setShowMore(!showMore)}
@@ -173,6 +174,7 @@ export default function Projects() {
             )}
           </AnimatePresence>
         </div>
+        )}
       </div>
     </section>
   )
