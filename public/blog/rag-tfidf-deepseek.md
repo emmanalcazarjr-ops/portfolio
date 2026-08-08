@@ -179,12 +179,12 @@ TF-IDF works well for keyword-based retrieval. For semantic search, consider usi
 | Dense Embeddings | Better semantic search | Requires GPU, slower |
 | Hybrid | Best of both worlds | More complex |
 
-## Try It Live
+## Try It
 
-Test the RAG API at [rag-qa-api.vercel.app](https://rag-qa-api.vercel.app).
+Test the RAG API from the [rag-qa-api repository on GitHub](https://github.com/emmanalcazarjr-ops/rag-qa-api).
 
 ```bash
-curl -X POST https://rag-qa-api.vercel.app/api \
+curl -X POST http://localhost:8000/api \
   -H "Content-Type: application/json" \
   -d '{"query": "What is machine learning?", "max_results": 5}'
 ```

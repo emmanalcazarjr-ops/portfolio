@@ -122,12 +122,12 @@ fraud_probability = model.predict_proba(features)[0][1]
 
 4. **Class imbalance**: Real-world fraud datasets are highly imbalanced. Consider using `class_weight='balanced'` in production.
 
-## Try It Live
+## Try It
 
-You can test the fraud detection API at [fraud-api-ten.vercel.app](https://fraud-api-ten.vercel.app).
+You can run and test the fraud detection API from the [fraud-api repository on GitHub](https://github.com/emmanalcazarjr-ops/fraud-api).
 
 ```bash
-curl -X POST https://fraud-api-ten.vercel.app/api \
+curl -X POST http://localhost:8000/api \
   -H "Content-Type: application/json" \
   -d '{"amount": 1500, "num_transactions_24h": 8, "distance_from_home": 150, "is_foreign": 1, "is_online": 0}'
 ```

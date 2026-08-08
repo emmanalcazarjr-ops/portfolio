@@ -1,7 +1,7 @@
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
-  FaRocket, FaCode, FaBrain, FaShieldAlt,
-  FaChartLine, FaRobot, FaDatabase, FaJava, FaPython,
+  FaRocket, FaCode, FaShieldAlt,
+  FaRobot, FaDatabase, FaJava, FaPython,
   FaCalendar, FaClock, FaTag
 } from 'react-icons/fa'
 import { 
@@ -51,62 +51,6 @@ export interface SocialLink {
 
 export const projects: Project[] = [
   {
-    title: 'Fraud Detection System',
-    description: 'Real-time fraud detection using scikit-learn Random Forest model with 98.6% accuracy. Features include transaction analysis, risk scoring, and detailed risk factor breakdown.',
-    tech: ['Python', 'scikit-learn', 'joblib', 'Vercel'],
-    github: 'https://github.com/emmanalcazarjr-ops/fraud-api',
-    live: 'https://fraud-api-ten.vercel.app',
-    icon: FaShieldAlt,
-    gradient: 'from-blue-500 via-cyan-500 to-teal-500',
-    badge: '98.6% Accuracy',
-  },
-  {
-    title: 'Credit Risk Predictor',
-    description: 'Deep learning model using TensorFlow to predict credit risk scores. Features include loan default probability, risk categorization, and financial health assessment.',
-    tech: ['Python', 'TensorFlow', 'Deep Learning', 'Vercel'],
-    github: 'https://github.com/emmanalcazarjr-ops/credit-api',
-    live: 'https://credit-api-zeta.vercel.app',
-    icon: FaChartLine,
-    gradient: 'from-orange-500 via-red-500 to-pink-500',
-  },
-  {
-    title: 'Stock Price Predictor',
-    description: 'PyTorch-based LSTM model for stock price prediction. Features include technical indicators, trend analysis, and multi-day forecasting.',
-    tech: ['Python', 'PyTorch', 'LSTM', 'Vercel'],
-    github: 'https://github.com/emmanalcazarjr-ops/stock-api',
-    live: 'https://stock-api-phi-jet.vercel.app',
-    icon: FaChartLine,
-    gradient: 'from-green-500 via-emerald-500 to-teal-500',
-  },
-  {
-    title: 'Customer Churn Predictor',
-    description: 'Machine learning model with SHAP explainability to predict customer churn. Features include risk factors, retention strategies, and feature importance analysis.',
-    tech: ['Python', 'scikit-learn', 'SHAP', 'Vercel'],
-    github: 'https://github.com/emmanalcazarjr-ops/churn-api',
-    live: 'https://churn-api-zeta.vercel.app',
-    icon: FaBrain,
-    gradient: 'from-yellow-500 via-orange-500 to-red-500',
-  },
-  {
-    title: 'Sentiment Analysis Tool',
-    description: 'NLP-powered sentiment analysis API using TextBlob and DeepSeek AI. Features include emotion detection, confidence scoring, and multi-language support.',
-    tech: ['Python', 'TextBlob', 'DeepSeek AI', 'Vercel'],
-    github: 'https://github.com/emmanalcazarjr-ops/sentiment-api',
-    live: 'https://sentiment-api-nine.vercel.app',
-    icon: FaRobot,
-    gradient: 'from-pink-500 via-rose-500 to-red-500',
-  },
-  {
-    title: 'RAG Document Q&A API',
-    description: 'Retrieval-Augmented Generation system using TF-IDF vector search and DeepSeek AI for intelligent document retrieval and context-aware answers.',
-    tech: ['Python', 'TF-IDF', 'DeepSeek AI', 'RAG'],
-    github: 'https://github.com/emmanalcazarjr-ops/rag-qa-api',
-    live: 'https://rag-qa-api.vercel.app',
-    icon: FaBrain,
-    gradient: 'from-teal-500 via-cyan-500 to-blue-500',
-    featured: true,
-  },
-  {
     title: 'Rush AI Butler',
     description: 'AI-powered customer support chatbot with conversation memory, webhook support, and rate limiting. Powered by DeepSeek AI for intelligent responses.',
     tech: ['Python', 'DeepSeek AI', 'FastAPI', 'Chatbot'],
@@ -133,15 +77,6 @@ export const projects: Project[] = [
     gradient: 'from-red-500 via-orange-500 to-yellow-500',
   },
   {
-    title: 'Task Management System',
-    description: 'Full-stack task management application with CRUD operations, filtering, real-time status updates, and PostgreSQL database integration.',
-    tech: ['Next.js 14', 'TypeScript', 'PostgreSQL', 'Tailwind CSS'],
-    github: 'https://github.com/emmanalcazarjr-ops/task-management-system',
-    live: 'https://task-management-system-umber-three.vercel.app',
-    icon: FaCode,
-    gradient: 'from-cyan-500 via-blue-500 to-indigo-500',
-  },
-  {
     title: 'Core Banking System',
     description: 'Java CLI banking application with account management, transaction processing, and financial reporting. Built with Maven and MySQL.',
     tech: ['Java', 'Maven', 'MySQL', 'JDBC'],
@@ -149,25 +84,6 @@ export const projects: Project[] = [
     icon: FaDatabase,
     gradient: 'from-amber-500 via-yellow-500 to-orange-500',
     featured: true,
-  },
-  {
-    title: 'ML API Showcase',
-    description: 'Interactive showcase of all ML APIs with live demos, real-time predictions, and animated visualizations. A unified dashboard for testing every API.',
-    tech: ['Next.js 14', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
-    github: 'https://github.com/emmanalcazarjr-ops/ml-api-showcase',
-    live: 'https://ml-api-showcase.vercel.app',
-    icon: FaRocket,
-    gradient: 'from-indigo-500 via-blue-500 to-cyan-500',
-    featured: true,
-  },
-  {
-    title: 'Semantic Search API',
-    description: 'TF-IDF based semantic search engine with cosine similarity for intelligent document retrieval across categorized knowledge bases.',
-    tech: ['Python', 'TF-IDF', 'Cosine Similarity', 'Vercel'],
-    github: 'https://github.com/emmanalcazarjr-ops/semantic-search-api',
-    live: 'https://semantic-search-api-xi.vercel.app',
-    icon: FaCode,
-    gradient: 'from-emerald-500 via-green-500 to-teal-500',
   },
 ]
 
@@ -227,7 +143,7 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const stats = [
-  { label: 'Projects', value: 13, suffix: '+' },
+  { label: 'Projects', value: 4, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 5, suffix: '' },
   { label: 'GitHub Repos', value: 15, suffix: '+' },
