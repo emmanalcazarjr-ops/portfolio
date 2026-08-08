@@ -1,6 +1,6 @@
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
-  FaRocket, FaCode,
+  FaRocket, FaCode, FaFileAlt,
   FaRobot, FaDatabase, FaJava, FaPython,
   FaCalendar, FaClock, FaTag
 } from 'react-icons/fa'
@@ -60,6 +60,16 @@ export const projects: Project[] = [
     gradient: 'from-blue-600 to-cyan-500',
     featured: true,
   },
+  {
+    title: 'Automated Report Generator',
+    description: 'Upload CSV data and get a formatted performance report with KPIs, trends, and AI-written insights — automatically.',
+    tech: ['Python', 'FastAPI', 'DeepSeek AI', 'Vercel'],
+    github: 'https://github.com/emmanalcazarjr-ops/automated-report-generator',
+    live: 'https://automated-report-generator.vercel.app',
+    icon: FaFileAlt,
+    gradient: 'from-cyan-500 via-blue-500 to-violet-500',
+    featured: true,
+  },
 ]
 
 export const skills: Skill[] = [
@@ -104,10 +114,10 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const stats = [
-  { label: 'Projects', value: 1, suffix: '' },
+  { label: 'Projects', value: 2, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 7, suffix: '' },
-  { label: 'GitHub Repos', value: 11, suffix: '' },
+  { label: 'GitHub Repos', value: 12, suffix: '' },
 ]
 
 export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
@@ -139,7 +149,7 @@ export const roadmap: RoadmapGroup[] = [
     title: 'Short-Term Goals',
     icon: '🎯',
     items: [
-      { title: 'Ship the Automated Report Generator with a live demo', status: 'planned' },
+      { title: 'Ship the Automated Report Generator with a live demo', status: 'done' },
       { title: 'Ship the Data Reconciliation & Exception Monitor', status: 'planned' },
       { title: 'Build an Internal AI Knowledge Assistant', status: 'planned' },
       { title: 'Build a KPI Dashboard (Power BI / Looker Studio) on top of the report pipeline', status: 'planned' },
