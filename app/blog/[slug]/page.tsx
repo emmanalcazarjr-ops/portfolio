@@ -7,23 +7,11 @@ import Link from 'next/link'
 import { marked } from 'marked'
 
 const blogPosts: Record<string, { title: string; date: string; readTime: string; tags: string[] }> = {
-  'fraud-detection-scikit-learn': {
-    title: 'Building a Fraud Detection System with scikit-learn',
-    date: 'July 2026',
+  'rush-ai-butler': {
+    title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
+    date: 'August 2026',
     readTime: '8 min read',
-    tags: ['Machine Learning', 'Python', 'scikit-learn'],
-  },
-  'rag-tfidf-deepseek': {
-    title: 'Implementing RAG with TF-IDF and DeepSeek AI',
-    date: 'July 2026',
-    readTime: '10 min read',
-    tags: ['RAG', 'NLP', 'DeepSeek AI'],
-  },
-  'ml-vercel-serverless': {
-    title: 'Deploying ML Models on Vercel Serverless',
-    date: 'July 2026',
-    readTime: '6 min read',
-    tags: ['DevOps', 'Vercel', 'Serverless'],
+    tags: ['Python', 'FastAPI', 'DeepSeek AI', 'AI'],
   },
 }
 

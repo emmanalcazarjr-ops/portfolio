@@ -85,28 +85,12 @@ export const certifications: Certification[] = [
 
 export const blogPosts: BlogPost[] = [
   {
-    title: 'Building a Fraud Detection System with scikit-learn',
-    excerpt: 'How I built a real-time fraud detection API using Random Forest classifier, achieving 98.6% accuracy on synthetic transaction data.',
-    date: 'July 2026',
+    title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
+    excerpt: 'How I built a production-ready conversational AI assistant with FastAPI, DeepSeek AI, session memory, webhooks, and rate limiting — deployed on Vercel serverless.',
+    date: 'August 2026',
     readTime: '8 min read',
-    tags: ['Machine Learning', 'Python', 'scikit-learn'],
-    slug: 'fraud-detection-scikit-learn',
-  },
-  {
-    title: 'Implementing RAG with TF-IDF and DeepSeek AI',
-    excerpt: 'A deep dive into building a Retrieval-Augmented Generation system that combines TF-IDF vector search with LLM-powered responses.',
-    date: 'July 2026',
-    readTime: '10 min read',
-    tags: ['RAG', 'NLP', 'DeepSeek AI'],
-    slug: 'rag-tfidf-deepseek',
-  },
-  {
-    title: 'Deploying ML Models on Vercel Serverless',
-    excerpt: 'Lessons learned from deploying scikit-learn models as serverless functions, including cold start optimization and model serialization.',
-    date: 'July 2026',
-    readTime: '6 min read',
-    tags: ['DevOps', 'Vercel', 'Serverless'],
-    slug: 'ml-vercel-serverless',
+    tags: ['Python', 'FastAPI', 'DeepSeek AI', 'AI'],
+    slug: 'rush-ai-butler',
   },
 ]
 
