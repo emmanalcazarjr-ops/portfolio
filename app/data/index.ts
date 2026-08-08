@@ -160,6 +160,7 @@ export const roadmap: RoadmapGroup[] = [
       { title: 'Deepen TensorFlow and PyTorch (advanced architectures)', status: 'in-progress' },
       { title: 'Advanced deep learning architectures (transformers, LLMs)', status: 'in-progress' },
       { title: 'MLOps: model serving, CI/CD for ML, monitoring', status: 'planned' },
+      { title: 'n8n automation basics', status: 'done', note: 'Workflow automation with n8n' },
       { title: 'Complete DataCamp certifications', status: 'done', note: 'Data Analyst + AI Engineer Associate' },
     ],
   },
