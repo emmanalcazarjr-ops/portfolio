@@ -124,4 +124,61 @@ export const stats = [
   { label: 'GitHub Repos', value: 15, suffix: '+' },
 ]
 
-export const navItems = ['about', 'projects', 'skills', 'certifications', 'blog', 'contact']
+export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
+
+export interface RoadmapItem {
+  title: string
+  status: RoadmapStatus
+  note?: string
+}
+
+export interface RoadmapGroup {
+  title: string
+  icon: string
+  items: RoadmapItem[]
+}
+
+export const roadmap: RoadmapGroup[] = [
+  {
+    title: 'Currently Working On',
+    icon: '⚡',
+    items: [
+      { title: 'Expanding the AI/ML portfolio with new banking & finance projects', status: 'in-progress' },
+      { title: 'Producing portfolio case studies and screenshots for GitHub repos', status: 'in-progress' },
+      { title: 'Job search for AI/ML and software engineering roles', status: 'in-progress' },
+      { title: 'Improving Rush AI Butler with more automation integrations', status: 'planned' },
+    ],
+  },
+  {
+    title: 'Short-Term Goals',
+    icon: '🎯',
+    items: [
+      { title: 'Publish at least 3 polished case studies with business value', status: 'planned' },
+      { title: 'Add screenshots and demo media to all public repositories', status: 'planned' },
+      { title: 'Complete 1–2 new end-to-end machine learning projects', status: 'planned' },
+      { title: 'Redeploy a flagship ML API as a live demo', status: 'planned' },
+    ],
+  },
+  {
+    title: 'Long-Term Goals',
+    icon: '🚀',
+    items: [
+      { title: 'Land an AI/ML engineer role in banking or fintech', status: 'planned' },
+      { title: 'Build production-grade intelligent systems end-to-end', status: 'planned' },
+      { title: 'Specialize in deep learning for financial applications', status: 'planned' },
+      { title: 'Grow a public technical brand through blog, talks, and open source', status: 'planned' },
+    ],
+  },
+  {
+    title: 'Learning Goals',
+    icon: '📚',
+    items: [
+      { title: 'Deepen TensorFlow and PyTorch (advanced architectures)', status: 'in-progress' },
+      { title: 'Advanced deep learning architectures (transformers, LLMs)', status: 'in-progress' },
+      { title: 'MLOps: model serving, CI/CD for ML, monitoring', status: 'planned' },
+      { title: 'Complete DataCamp certifications', status: 'done', note: 'Data Analyst + AI Engineer Associate' },
+    ],
+  },
+]
+
+export const navItems = ['about', 'projects', 'roadmap', 'skills', 'certifications', 'blog', 'contact']

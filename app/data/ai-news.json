@@ -1,0 +1,40 @@
+{
+  "updatedAt": "2026-08-08T05:02:32.271Z",
+  "news": [
+    {
+      "title": "LLMs reward expertise",
+      "url": "https://www.seangoedecke.com/llms-reward-expertise/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-03",
+      "summary": "1404 points | 568 comments on Hacker News"
+    },
+    {
+      "title": "AI-Generated Images Discourage Me from Reading Your Blog",
+      "url": "https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-04",
+      "summary": "793 points | 465 comments on Hacker News"
+    },
+    {
+      "title": "SQLite Critical CVEs or LLM Slop?",
+      "url": "https://research.jfrog.com/post/sqlite-critical-cves-or-llm-slops/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-03",
+      "summary": "726 points | 374 comments on Hacker News"
+    },
+    {
+      "title": "Prevent cognitive debt by manually retyping LLM-generated code",
+      "url": "https://ankursethi.com/blog/prevent-cognitive-debt-by-manually-retyping-llm-generated-code/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-03",
+      "summary": "538 points | 443 comments on Hacker News"
+    },
+    {
+      "title": "Born Against, or why hobby programming communities are against LLM usage",
+      "url": "https://blog.fogus.me/llm/born-against.html",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-05",
+      "summary": "427 points | 516 comments on Hacker News"
+    }
+  ]
+}

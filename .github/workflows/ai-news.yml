@@ -1,0 +1,35 @@
+name: AI News Agent
+
+on:
+  schedule:
+    - cron: '0 6 * * *' # daily 06:00 UTC
+  workflow_dispatch: # allow manual trigger
+
+permissions:
+  contents: write
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Fetch latest AI news
+        run: node scripts/fetch-ai-news.mjs
+
+      - name: Commit if changed
+        run: |
+          git config user.name "AI News Agent"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain app/data/ai-news.json)" ]; then
+            git add app/data/ai-news.json
+            git commit -m "chore: update AI news ($(date -u +%F))"
+            git push
+            echo "News updated and pushed."
+          else
+            echo "No news changes."
+          fi
