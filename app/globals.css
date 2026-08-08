@@ -2,12 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap');
 
 :root {
   --primary: #3B82F6;
-  --secondary: #8B5CF6;
-  --accent: #06B6D4;
+  --secondary: #06B6D4;
+  --accent: #8B5CF6;
 }
 
 * {
@@ -24,6 +24,16 @@ body {
   background: #030712;
   color: #fff;
   overflow-x: hidden;
+}
+
+/* Display headings */
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  letter-spacing: -0.02em;
+}
+
+code, pre, .font-mono {
+  font-family: 'JetBrains Mono', monospace;
 }
 
 /* Animated gradient background */
@@ -44,12 +54,12 @@ body {
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.3), 0 0 60px rgba(59, 130, 246, 0.1);
 }
 
-.glow-purple {
-  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
-}
-
 .glow-cyan {
   box-shadow: 0 0 20px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.1);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.3), 0 0 60px rgba(139, 92, 246, 0.1);
 }
 
 /* Glass effect */
@@ -70,7 +80,7 @@ body {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(59, 130, 246, 0.3);
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(59, 130, 246, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(6, 182, 212, 0.12);
 }
 
 /* Animated border gradient */
@@ -85,7 +95,7 @@ body {
   position: absolute;
   inset: -1px;
   border-radius: 1rem;
-  background: linear-gradient(135deg, #3B82F6, #8B5CF6, #06B6D4);
+  background: linear-gradient(135deg, #3B82F6, #06B6D4, #8B5CF6);
   z-index: -1;
   opacity: 0.5;
   transition: opacity 0.3s ease;
@@ -97,14 +107,14 @@ body {
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, #3B82F6, #8B5CF6, #06B6D4);
+  background: linear-gradient(135deg, #3B82F6, #06B6D4, #8B5CF6);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-animate {
-  background: linear-gradient(90deg, #3B82F6, #8B5CF6, #06B6D4, #3B82F6);
+  background: linear-gradient(90deg, #3B82F6, #06B6D4, #8B5CF6, #3B82F6);
   background-size: 300% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -131,7 +141,7 @@ body {
 /* Pulse glow */
 @keyframes pulseGlow {
   0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.2); }
-  50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(6, 182, 212, 0.4); }
 }
 
 .animate-pulse-glow {
@@ -216,4 +226,80 @@ input:focus, textarea:focus, select:focus {
 ::selection {
   background: rgba(59, 130, 246, 0.3);
   color: #fff;
+}
+
+/* ===== Aurora background ===== */
+.aurora-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.55;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.aurora-blob-1 {
+  width: 46vw;
+  height: 46vw;
+  background: radial-gradient(circle, #3b82f6 0%, transparent 65%);
+  top: -12%;
+  left: -10%;
+  animation: auroraFloat1 18s ease-in-out infinite;
+}
+
+.aurora-blob-2 {
+  width: 42vw;
+  height: 42vw;
+  background: radial-gradient(circle, #06b6d4 0%, transparent 65%);
+  top: 8%;
+  right: -12%;
+  animation: auroraFloat2 22s ease-in-out infinite;
+}
+
+.aurora-blob-3 {
+  width: 40vw;
+  height: 40vw;
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 65%);
+  bottom: -15%;
+  left: 12%;
+  animation: auroraFloat3 26s ease-in-out infinite;
+}
+
+.aurora-blob-4 {
+  width: 30vw;
+  height: 30vw;
+  background: radial-gradient(circle, #38bdf8 0%, transparent 65%);
+  bottom: 4%;
+  right: 6%;
+  animation: auroraFloat2 20s ease-in-out infinite reverse;
+}
+
+.aurora-blob-5 {
+  width: 26vw;
+  height: 26vw;
+  background: radial-gradient(circle, #60a5fa 0%, transparent 65%);
+  top: 32%;
+  left: 38%;
+  animation: auroraFloat1 30s ease-in-out infinite reverse;
+}
+
+.aurora-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, #030712 100%);
+}
+
+@keyframes auroraFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(4vw, -3vw) scale(1.15); }
+}
+
+@keyframes auroraFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-4vw, 3vw) scale(1.2); }
+}
+
+@keyframes auroraFloat3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(3vw, 4vw) scale(0.9); }
 }

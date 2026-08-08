@@ -12,8 +12,8 @@ const statusStyles: Record<RoadmapStatus, { badge: string; icon: React.ReactNode
     icon: <FaCheckCircle size={16} className="text-green-400" />,
   },
   'in-progress': {
-    badge: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
-    icon: <FaSpinner size={16} className="text-blue-400 animate-spin" />,
+    badge: 'bg-blue-500/20 text-cyan-400 border-blue-500/30',
+    icon: <FaSpinner size={16} className="text-cyan-400 animate-spin" />,
   },
   planned: {
     badge: 'bg-slate-800/50 text-slate-400 border-slate-700/50',
@@ -56,7 +56,7 @@ export default function Roadmap() {
             <ScrollReveal key={group.title} delay={i * 0.1}>
               <div className="glass-card rounded-2xl p-6 h-full">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
                     {group.icon}
                   </div>
                   <h3 className="text-xl font-bold text-white">{group.title}</h3>
@@ -93,7 +93,7 @@ export default function Roadmap() {
         <ScrollReveal>
           <div className="mt-20">
             <div className="flex items-center justify-center gap-3 mb-8">
-              <FaNewspaper size={20} className="text-blue-400" />
+              <FaNewspaper size={20} className="text-cyan-400" />
               <h3 className="text-2xl md:text-3xl font-bold">
                 AI News <span className="text-gradient">Now</span>
               </h3>
@@ -120,16 +120,16 @@ export default function Roadmap() {
                   className="glass-card rounded-xl p-5 group hover:bg-white/5 transition-colors"
                 >
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30 uppercase tracking-wide">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-blue-500/20 text-cyan-400 border border-blue-500/30 uppercase tracking-wide">
                       {item.source}
                     </span>
                     <span className="text-xs text-slate-500">{item.publishedAt}</span>
                   </div>
-                  <h4 className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors mb-2">
+                  <h4 className="font-bold text-white text-sm group-hover:text-cyan-400 transition-colors mb-2">
                     {item.title}
                   </h4>
                   {item.summary && <p className="text-xs text-slate-500 leading-relaxed">{item.summary}</p>}
-                  <span className="inline-flex items-center gap-1 text-blue-400 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="inline-flex items-center gap-1 text-cyan-400 text-xs mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
                     Read story <FaExternalLinkAlt size={10} />
                   </span>
                 </motion.a>

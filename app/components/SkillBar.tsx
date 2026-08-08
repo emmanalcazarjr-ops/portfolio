@@ -22,7 +22,7 @@ export default function SkillBar({ name, level, color, delay = 0 }: SkillBarProp
         <span className="text-sm font-medium text-slate-300 group-hover:text-white transition-colors">
           {name}
         </span>
-        <span className="text-sm text-slate-500 group-hover:text-blue-400 transition-colors">
+        <span className="text-sm text-slate-500 group-hover:text-cyan-400 transition-colors">
           {level}%
         </span>
       </div>

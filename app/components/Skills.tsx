@@ -8,9 +8,9 @@ import { skills } from '../data'
 
 const skillCategories = [
   { icon: FaCode, title: 'Software Engineering', desc: 'Java, Python, REST APIs', color: 'from-blue-500 to-cyan-500' },
-  { icon: FaBrain, title: 'Machine Learning', desc: 'TensorFlow, PyTorch, scikit-learn', color: 'from-purple-500 to-pink-500' },
+  { icon: FaBrain, title: 'Machine Learning', desc: 'TensorFlow, PyTorch, scikit-learn', color: 'from-cyan-500 to-blue-500' },
   { icon: FaDatabase, title: 'Databases', desc: 'MySQL, PostgreSQL, Oracle', color: 'from-green-500 to-emerald-500' },
-  { icon: FaRocket, title: 'DevOps', desc: 'Git, GitHub, Vercel, CI/CD', color: 'from-orange-500 to-red-500' },
+  { icon: FaRocket, title: 'DevOps', desc: 'Git, GitHub, Vercel, CI/CD', color: 'from-blue-500 to-indigo-500' },
 ]
 
 export default function Skills() {

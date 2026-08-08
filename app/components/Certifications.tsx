@@ -31,7 +31,7 @@ export default function Certifications() {
                 whileHover={{ scale: 1.02, y: -5 }}
                 className="glass-card rounded-2xl p-6 flex items-start gap-4"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center flex-shrink-0 text-2xl">
                   {cert.icon}
                 </div>
                 <div>

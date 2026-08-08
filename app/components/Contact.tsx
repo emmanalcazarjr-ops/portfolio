@@ -11,14 +11,14 @@ const contactLinks = [
     title: 'Email', 
     value: 'EmmanAlcazarJr@gmail.com',
     href: 'mailto:EmmanAlcazarJr@gmail.com',
-    gradient: 'from-red-500 to-orange-500'
+    gradient: 'from-blue-600 to-cyan-500'
   },
   { 
     icon: FaLinkedin, 
     title: 'LinkedIn', 
     value: 'emmanalcazarjr',
     href: 'https://www.linkedin.com/in/emmanalcazarjr/',
-    gradient: 'from-blue-600 to-blue-400'
+    gradient: 'from-blue-600 to-cyan-500'
   },
   { 
     icon: FaGithub, 
@@ -140,7 +140,7 @@ export default function Contact() {
                   disabled={status === 'sending'}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl font-medium text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-cyan-500 rounded-xl font-medium text-white shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-shadow disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {status === 'sending' ? (
                     <>
@@ -197,7 +197,7 @@ export default function Contact() {
                         </div>
                       </div>
                       <div>
-                        <h4 className="font-medium text-white group-hover:text-blue-400 transition-colors">
+                        <h4 className="font-medium text-white group-hover:text-cyan-400 transition-colors">
                           {contact.title}
                         </h4>
                         <p className="text-sm text-slate-500">{contact.value}</p>

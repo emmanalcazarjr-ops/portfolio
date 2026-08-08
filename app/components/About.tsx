@@ -52,7 +52,7 @@ export default function About() {
                 systems led me to the world of AI and software engineering.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
-                With expertise in <span className="text-blue-400">Python</span>, <span className="text-blue-400">Java</span>, 
+                With expertise in <span className="text-cyan-400">Python</span>, <span className="text-cyan-400">Java</span>, 
                 and modern ML frameworks, I specialize in building production-ready applications that solve 
                 real-world problems in banking, finance, and enterprise solutions.
               </p>

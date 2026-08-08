@@ -26,7 +26,7 @@ export default function BlogPage() {
         >
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors mb-8"
           >
             <FaArrowLeft size={14} />
             Back to Home
@@ -60,7 +60,7 @@ export default function BlogPage() {
                       </span>
                     </div>
 
-                    <h2 className="text-2xl font-bold text-white mb-3 hover:text-blue-400 transition-colors">
+                    <h2 className="text-2xl font-bold text-white mb-3 hover:text-cyan-400 transition-colors">
                       {post.title}
                     </h2>
 
@@ -72,7 +72,7 @@ export default function BlogPage() {
                       {post.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20 text-sm"
+                          className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-blue-500/10 text-cyan-400 border border-blue-500/20 text-sm"
                         >
                           <FaTag size={10} />
                           {tag}

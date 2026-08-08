@@ -55,7 +55,7 @@ export default function Projects() {
                         </div>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-white group-hover:text-blue-400 transition-colors">
+                        <h3 className="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">
                           {project.title}
                         </h3>
                         {project.badge && (
@@ -82,7 +82,7 @@ export default function Projects() {
                     </div>
                     
                     <div className="flex items-center gap-4 mt-4">
-                      <span className="flex items-center gap-2 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <span className="flex items-center gap-2 text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity">
                         <span className="text-sm font-medium">View on GitHub</span>
                         <FaExternalLinkAlt size={12} />
                       </span>
@@ -143,7 +143,7 @@ export default function Projects() {
                             <project.icon size={16} className="text-white" />
                           </div>
                         </div>
-                        <h3 className="font-bold text-white text-sm group-hover:text-blue-400 transition-colors">
+                        <h3 className="font-bold text-white text-sm group-hover:text-cyan-400 transition-colors">
                           {project.title}
                         </h3>
                       </div>
@@ -158,7 +158,7 @@ export default function Projects() {
                         ))}
                       </div>
                       <div className="flex items-center gap-3 text-xs">
-                        <span className="text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
+                        <span className="text-cyan-400 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
                           GitHub <FaExternalLinkAlt size={10} />
                         </span>
                         {project.live && (

@@ -48,7 +48,7 @@ export default function Blog() {
                     </span>
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-3 hover:text-blue-400 transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-3 hover:text-cyan-400 transition-colors">
                     {post.title}
                   </h3>
                   
@@ -60,7 +60,7 @@ export default function Blog() {
                     {post.tags.map((tag) => (
                       <span 
                         key={tag} 
-                        className="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                        className="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 text-cyan-400 border border-blue-500/20"
                       >
                         {tag}
                       </span>
@@ -69,7 +69,7 @@ export default function Blog() {
                 </div>
                 
                 <div className="px-8 pb-6">
-                  <Link href={`/blog/${post.slug}`} className="text-blue-400 text-sm font-medium hover:underline">
+                  <Link href={`/blog/${post.slug}`} className="text-cyan-400 text-sm font-medium hover:underline">
                     Read Article →
                   </Link>
                 </div>

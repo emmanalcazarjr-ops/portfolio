@@ -36,7 +36,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
               href={`#${item}`}
               className={`text-sm font-medium transition-all duration-300 capitalize ${
                 activeSection === item 
-                  ? 'text-blue-400' 
+                  ? 'text-cyan-400' 
                   : 'text-slate-400 hover:text-white'
               }`}
             >
@@ -44,7 +44,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
               {activeSection === item && (
                 <motion.div
                   layoutId="activeSection"
-                  className="h-0.5 bg-blue-400 mt-1"
+                  className="h-0.5 bg-cyan-400 mt-1"
                   transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                 />
               )}
@@ -80,7 +80,7 @@ export default function Navigation({ activeSection }: NavigationProps) {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block text-sm font-medium transition-all duration-300 capitalize ${
                     activeSection === item 
-                      ? 'text-blue-400' 
+                      ? 'text-cyan-400' 
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >

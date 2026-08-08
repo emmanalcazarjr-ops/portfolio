@@ -41,7 +41,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-4xl font-bold text-white mb-4">Post Not Found</h1>
-          <Link href="/#blog" className="text-blue-400 hover:underline">
+          <Link href="/#blog" className="text-cyan-400 hover:underline">
             Back to Blog
           </Link>
         </div>
@@ -59,7 +59,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
         >
           <Link
             href="/#blog"
-            className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-400 transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-slate-400 hover:text-cyan-400 transition-colors mb-8"
           >
             <FaArrowLeft size={14} />
             Back to Blog
@@ -81,7 +81,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
             {post.tags.map((tag) => (
               <span
                 key={tag}
-                className="flex items-center gap-1 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 border border-blue-500/20"
+                  className="flex items-center gap-1 px-3 py-1 rounded-full bg-blue-500/10 text-cyan-400 border border-blue-500/20"
               >
                 <FaTag size={10} />
                 {tag}
@@ -103,7 +103,7 @@ export default function BlogPost({ params }: { params: { slug: string } }) {
                   [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:text-white [&_h2]:mt-10 [&_h2]:mb-4
                   [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-white [&_h3]:mt-8 [&_h3]:mb-3
                   [&_p]:text-slate-400 [&_p]:leading-relaxed [&_p]:mb-4
-                  [&_a]:text-blue-400 [&_a]:hover:underline
+                  [&_a]:text-cyan-400 [&_a]:hover:underline
                   [&_strong]:text-white [&_strong]:font-semibold
                   [&_em]:text-slate-300
                   [&_code]:bg-slate-800 [&_code]:px-2 [&_code]:py-1 [&_code]:rounded [&_code]:text-cyan-400 [&_code]:text-sm

@@ -15,7 +15,7 @@ function parseMarkdown(text: string): string {
   html = html.replace(/__(.+?)__/g, '<strong>$1</strong>')
   html = html.replace(/\*(.+?)\*/g, '<em>$1</em>')
   html = html.replace(/_(.+?)_/g, '<em>$1</em>')
-  html = html.replace(/`(.+?)`/g, '<code class="bg-purple-500/15 px-1.5 py-0.5 rounded text-xs">$1</code>')
+  html = html.replace(/`(.+?)`/g, '<code class="bg-cyan-500/15 px-1.5 py-0.5 rounded text-xs">$1</code>')
   html = html.replace(/\n/g, '<br>')
   html = html.replace(/^[\-\*]\s+(.+)$/gm, '<span class="block pl-3">&bull; $1</span>')
   return html
@@ -70,7 +70,7 @@ export default function ChatWidget() {
         animate={{ scale: 1 }}
         transition={{ type: 'spring', stiffness: 260, damping: 20, delay: 1.5 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-violet-600 text-white flex items-center justify-center shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 transition-shadow z-50"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 hover:shadow-blue-500/50 transition-shadow z-50"
       >
         {isOpen ? <FaTimes size={20} /> : <FaRobot size={22} />}
       </motion.button>
@@ -83,11 +83,11 @@ export default function ChatWidget() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="fixed bottom-24 right-6 w-[360px] h-[480px] bg-[#0a0a0f] border border-white/10 rounded-2xl shadow-2xl shadow-black/50 z-50 flex flex-col overflow-hidden"
+            className="fixed bottom-24 right-6 w-[360px] h-[480px] bg-[#030712] border border-white/10 rounded-2xl shadow-2xl shadow-black/50 z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
-            <div className="bg-gradient-to-r from-purple-600/20 to-violet-600/20 border-b border-white/10 p-4 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center">
+            <div className="bg-gradient-to-r from-blue-600/20 to-cyan-500/20 border-b border-white/10 p-4 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
                 <FaRobot size={16} className="text-white" />
               </div>
               <div>
@@ -109,7 +109,7 @@ export default function ChatWidget() {
                   <div
                     className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${
                       msg.role === 'user'
-                        ? 'bg-gradient-to-br from-purple-600 to-violet-600 text-white rounded-br-md'
+                        ? 'bg-gradient-to-br from-blue-600 to-cyan-500 text-white rounded-br-md'
                         : 'bg-white/5 border border-white/10 text-slate-200 rounded-bl-md'
                     }`}
                     dangerouslySetInnerHTML={{ __html: msg.role === 'bot' ? parseMarkdown(msg.content) : msg.content }}
@@ -120,9 +120,9 @@ export default function ChatWidget() {
                 <div className="flex justify-start">
                   <div className="bg-white/5 border border-white/10 px-4 py-3 rounded-2xl rounded-bl-md">
                     <div className="flex gap-1.5">
-                      <span className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
-                      <span className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '150ms' }}></span>
-                      <span className="w-2 h-2 rounded-full bg-purple-400 animate-bounce" style={{ animationDelay: '300ms' }}></span>
+                      <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: '0ms' }}></span>
+                      <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: '150ms' }}></span>
+                      <span className="w-2 h-2 rounded-full bg-cyan-400 animate-bounce" style={{ animationDelay: '300ms' }}></span>
                     </div>
                   </div>
                 </div>
@@ -139,13 +139,13 @@ export default function ChatWidget() {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
                   placeholder="Type a message..."
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-purple-500/50 transition-colors"
+                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-500 outline-none focus:border-blue-500/50 transition-colors"
                   disabled={loading}
                 />
                 <button
                   onClick={sendMessage}
                   disabled={loading || !input.trim()}
-                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-600 to-violet-600 text-white flex items-center justify-center disabled:opacity-50 transition-opacity"
+                  className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-cyan-500 text-white flex items-center justify-center disabled:opacity-50 transition-opacity"
                 >
                   <FaPaperPlane size={14} />
                 </button>
