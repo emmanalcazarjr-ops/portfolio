@@ -52,9 +52,8 @@ export default function Hero() {
 
         <ScrollReveal delay={0.6}>
           <p className="text-lg text-slate-500 max-w-2xl mx-auto mb-10">
-            I build intelligent systems that solve real-world problems. 
-            Specializing in machine learning, NLP, and AI-powered applications 
-            for banking, finance, and enterprise solutions.
+            I build AI automation and intelligent systems that help people
+            and businesses work smarter and faster.
           </p>
         </ScrollReveal>
 
