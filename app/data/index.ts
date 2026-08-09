@@ -150,7 +150,9 @@ export const roadmap: RoadmapGroup[] = [
     icon: '🎯',
     items: [
       { title: 'Ship the Automated Report Generator with a live demo', status: 'done' },
+      { title: 'Wire the full stack: Supabase + Obsidian + Vercel auto-publish', status: 'done' },
       { title: 'Ship the Data Reconciliation & Exception Monitor', status: 'planned' },
+      { title: 'Launch the "Automation Audit" tool that turns visitors into leads', status: 'planned', note: 'Free self-serve report that lands straight in my Supabase leads' },
       { title: 'Build an Internal AI Knowledge Assistant', status: 'planned' },
       { title: 'Build a KPI Dashboard (Power BI / Looker Studio) on top of the report pipeline', status: 'planned' },
       { title: 'Publish case studies and screenshots for each project', status: 'planned' },
