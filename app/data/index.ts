@@ -117,7 +117,7 @@ export const stats = [
   { label: 'Projects', value: 2, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 7, suffix: '' },
-  { label: 'GitHub Repos', value: 12, suffix: '' },
+  { label: 'GitHub Repos', value: 15, suffix: '' },
 ]
 
 export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
