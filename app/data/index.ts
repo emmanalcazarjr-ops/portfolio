@@ -181,4 +181,20 @@ export const roadmap: RoadmapGroup[] = [
   },
 ]
 
-export const navItems = ['about', 'projects', 'roadmap', 'skills', 'certifications', 'blog', 'contact']
+export interface NavItem {
+  id: string
+  label: string
+  href: string
+}
+
+export const navItems: NavItem[] = [
+  { id: 'about', label: 'About', href: '#about' },
+  { id: 'projects', label: 'Projects', href: '#projects' },
+  { id: 'stack', label: 'Stack', href: '#stack' },
+  { id: 'roadmap', label: 'Roadmap', href: '#roadmap' },
+  { id: 'skills', label: 'Skills', href: '#skills' },
+  { id: 'certifications', label: 'Certifications', href: '#certifications' },
+  { id: 'notes', label: 'Notes', href: '/notes' },
+  { id: 'blog', label: 'Blog', href: '#blog' },
+  { id: 'contact', label: 'Contact', href: '#contact' },
+]

@@ -32,16 +32,16 @@ export default function Navigation({ activeSection }: NavigationProps) {
         >
           {navItems.map((item) => (
             <a
-              key={item}
-              href={`#${item}`}
+              key={item.id}
+              href={item.href}
               className={`text-sm font-medium transition-all duration-300 capitalize ${
-                activeSection === item 
-                  ? 'text-cyan-400' 
+                activeSection === item.id
+                  ? 'text-cyan-400'
                   : 'text-slate-400 hover:text-white'
               }`}
             >
-              {item}
-              {activeSection === item && (
+              {item.label}
+              {activeSection === item.id && (
                 <motion.div
                   layoutId="activeSection"
                   className="h-0.5 bg-cyan-400 mt-1"
@@ -75,16 +75,16 @@ export default function Navigation({ activeSection }: NavigationProps) {
             <div className="px-6 py-4 space-y-4">
               {navItems.map((item) => (
                 <a
-                  key={item}
-                  href={`#${item}`}
+                  key={item.id}
+                  href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`block text-sm font-medium transition-all duration-300 capitalize ${
-                    activeSection === item 
-                      ? 'text-cyan-400' 
+                    activeSection === item.id
+                      ? 'text-cyan-400'
                       : 'text-slate-400 hover:text-white'
                   }`}
                 >
-                  {item}
+                  {item.label}
                 </a>
               ))}
             </div>

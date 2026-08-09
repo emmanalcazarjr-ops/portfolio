@@ -38,22 +38,19 @@ export default function Contact() {
     setStatus('sending')
     
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || 'YOUR_ACCESS_KEY',
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Portfolio Contact from ${formData.name}`,
-          from_name: 'Portfolio Contact Form',
         }),
       })
 
       const data = await response.json()
 
-      if (data.success) {
+      if (data.ok) {
         setStatus('sent')
         setFormData({ name: '', email: '', message: '' })
         setTimeout(() => setStatus('idle'), 3000)

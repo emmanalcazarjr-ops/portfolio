@@ -8,6 +8,7 @@ import Navigation from './components/Navigation'
 import Hero from './components/Hero'
 import About from './components/About'
 import Projects from './components/Projects'
+import StackIntegrations from './components/StackIntegrations'
 import Skills from './components/Skills'
 import Certifications from './components/Certifications'
 import Roadmap from './components/Roadmap'
@@ -26,11 +27,11 @@ export default function Home() {
       setShowScrollTop(window.scrollY > 500)
       
       for (const section of navItems) {
-        const el = document.getElementById(section)
+        const el = document.getElementById(section.id)
         if (el) {
           const rect = el.getBoundingClientRect()
           if (rect.top <= 100 && rect.bottom >= 100) {
-            setActiveSection(section)
+            setActiveSection(section.id)
             break
           }
         }
@@ -50,6 +51,7 @@ export default function Home() {
         <Hero />
         <About />
         <Projects />
+        <StackIntegrations />
         <Skills />
         <Certifications />
         <Roadmap />

@@ -1,0 +1,14 @@
+[
+  {
+    "slug": "welcome-to-my-notes",
+    "file": "Welcome to My Notes",
+    "title": "Welcome to My Notes",
+    "date": "2026-08-09",
+    "tags": [
+      "notes",
+      "welcome",
+      "obsidian"
+    ],
+    "excerpt": "A quick tour of my Obsidian vault. Every note here syncs to GitHub and auto-publishes to my portfolio — no manual deploy needed."
+  }
+]
