@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-08-08T06:52:36.300Z",
+  "updatedAt": "2026-08-09T06:55:41.162Z",
   "news": [
     {
       "title": "LLMs reward expertise",
       "url": "https://www.seangoedecke.com/llms-reward-expertise/",
       "source": "Hacker News",
       "publishedAt": "2026-08-03",
-      "summary": "1404 points | 569 comments on Hacker News"
+      "summary": "1409 points | 571 comments on Hacker News"
     },
     {
       "title": "AI-Generated Images Discourage Me from Reading Your Blog",
@@ -27,14 +27,14 @@
       "url": "https://ankursethi.com/blog/prevent-cognitive-debt-by-manually-retyping-llm-generated-code/",
       "source": "Hacker News",
       "publishedAt": "2026-08-03",
-      "summary": "538 points | 443 comments on Hacker News"
+      "summary": "539 points | 444 comments on Hacker News"
     },
     {
       "title": "Oracle bans AI-generated code from OpenJDK",
       "url": "https://app.dealroom.co/news/feed/oracle-bans-ai-generated-code-from-openjdk-despite-ellison-s-claim-oracle-isn-t-writing-its-own-code",
       "source": "Hacker News",
       "publishedAt": "2026-08-07",
-      "summary": "443 points | 307 comments on Hacker News"
+      "summary": "525 points | 379 comments on Hacker News"
     }
   ]
 }
