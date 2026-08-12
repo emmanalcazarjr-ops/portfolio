@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-08-11T07:06:31.725Z",
+  "updatedAt": "2026-08-12T07:24:16.396Z",
   "news": [
+    {
+      "title": "As AI eats the web, the internet’s collective memory is disappearing",
+      "url": "https://thewalrus.ca/google-search-is-dying/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-10",
+      "summary": "893 points | 902 comments on Hacker News"
+    },
     {
       "title": "How I use LLMs to learn complex topics",
       "url": "https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/",
       "source": "Hacker News",
       "publishedAt": "2026-08-09",
-      "summary": "797 points | 530 comments on Hacker News"
-    },
-    {
-      "title": "AI-Generated Images Discourage Me from Reading Your Blog",
-      "url": "https://nelson.cloud/ai-generated-images-discourage-me-from-reading-your-blog/",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-04",
-      "summary": "795 points | 465 comments on Hacker News"
+      "summary": "817 points | 537 comments on Hacker News"
     },
     {
       "title": "Docker Sandboxes – Disposable, isolated sandboxes for AI agents",
       "url": "https://www.docker.com/products/docker-sandboxes/",
       "source": "Hacker News",
       "publishedAt": "2026-08-10",
-      "summary": "649 points | 358 comments on Hacker News"
-    },
-    {
-      "title": "Oracle bans AI-generated code from OpenJDK",
-      "url": "https://app.dealroom.co/news/feed/oracle-bans-ai-generated-code-from-openjdk-despite-ellison-s-claim-oracle-isn-t-writing-its-own-code",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-07",
-      "summary": "535 points | 382 comments on Hacker News"
+      "summary": "684 points | 392 comments on Hacker News"
     },
     {
       "title": "Mark Zuckerberg attacks 'closed' AI rivals as Meta returns to open models",
       "url": "https://www.ft.com/content/4e3957f8-ea7c-4c46-a3de-cdce8e526878",
       "source": "Hacker News",
       "publishedAt": "2026-08-10",
-      "summary": "474 points | 435 comments on Hacker News"
+      "summary": "633 points | 596 comments on Hacker News"
+    },
+    {
+      "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
+      "url": "https://stolen-thoughts.com/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-11",
+      "summary": "597 points | 270 comments on Hacker News"
     }
   ]
 }
