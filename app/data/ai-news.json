@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-08-14T07:24:06.078Z",
+  "updatedAt": "2026-08-15T06:36:29.979Z",
   "news": [
     {
       "title": "AI is removing the middle class of software engineering?",
       "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
       "source": "Hacker News",
       "publishedAt": "2026-08-12",
-      "summary": "970 points | 903 comments on Hacker News"
+      "summary": "987 points | 920 comments on Hacker News"
     },
     {
       "title": "As AI eats the web, the internet’s collective memory is disappearing",
       "url": "https://thewalrus.ca/google-search-is-dying/",
       "source": "Hacker News",
       "publishedAt": "2026-08-10",
-      "summary": "933 points | 975 comments on Hacker News"
+      "summary": "934 points | 982 comments on Hacker News"
     },
     {
       "title": "How I use LLMs to learn complex topics",
       "url": "https://laurentiugabriel.github.io/blog/articles/how-i-use-llms-to-learn/",
       "source": "Hacker News",
       "publishedAt": "2026-08-09",
-      "summary": "823 points | 544 comments on Hacker News"
+      "summary": "825 points | 545 comments on Hacker News"
     },
     {
       "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
       "url": "https://stolen-thoughts.com/",
       "source": "Hacker News",
       "publishedAt": "2026-08-11",
-      "summary": "694 points | 306 comments on Hacker News"
+      "summary": "695 points | 306 comments on Hacker News"
     },
     {
       "title": "Docker Sandboxes – Disposable, isolated sandboxes for AI agents",
       "url": "https://www.docker.com/products/docker-sandboxes/",
       "source": "Hacker News",
       "publishedAt": "2026-08-10",
-      "summary": "692 points | 397 comments on Hacker News"
+      "summary": "692 points | 396 comments on Hacker News"
     }
   ]
 }
