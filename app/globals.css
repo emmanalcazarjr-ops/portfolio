@@ -83,6 +83,17 @@ code, pre, .font-mono {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 30px rgba(6, 182, 212, 0.12);
 }
 
+/* Floating skill icon tiles (inner tile — JS drives the outer wrapper transform) */
+.skill-tile {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.skill-tile:hover {
+  transform: scale(1.12);
+  border-color: rgba(6, 182, 212, 0.5);
+  box-shadow: 0 0 26px rgba(6, 182, 212, 0.35), 0 14px 32px rgba(0, 0, 0, 0.45);
+}
+
 /* Animated border gradient */
 .gradient-border {
   position: relative;
