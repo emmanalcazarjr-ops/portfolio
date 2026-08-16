@@ -70,6 +70,15 @@ export const projects: Project[] = [
     gradient: 'from-cyan-500 via-blue-500 to-violet-500',
     featured: true,
   },
+  {
+    title: 'Water Station — Telegram Bots',
+    description: 'Two Telegram bots for a water refilling station: customers order by tower and unit using a nickname + PIN, and the owner gets live order alerts with one-tap "mark done". Everything lives in chat — no web app needed.',
+    tech: ['Node.js', 'grammY', 'Supabase', 'Telegram Bot API'],
+    github: 'https://github.com/emmanalcazarjr-ops/water-station-telegram-bot',
+    icon: FaRobot,
+    gradient: 'from-emerald-500 via-cyan-500 to-blue-600',
+    featured: true,
+  },
 ]
 
 export const skills: Skill[] = [
@@ -114,10 +123,10 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const stats = [
-  { label: 'Projects', value: 2, suffix: '' },
+  { label: 'Projects', value: 3, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 7, suffix: '' },
-  { label: 'GitHub Repos', value: 15, suffix: '' },
+  { label: 'GitHub Repos', value: 16, suffix: '' },
 ]
 
 export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
