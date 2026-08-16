@@ -3,14 +3,13 @@
 import { motion } from 'framer-motion'
 import { FaCode, FaBrain, FaDatabase, FaRocket } from 'react-icons/fa'
 import ScrollReveal from './ScrollReveal'
-import SkillBar from './SkillBar'
-import { skills } from '../data'
+import { techStack } from '../data'
 
 const skillCategories = [
-  { icon: FaCode, title: 'Software Engineering', desc: 'Java, Python, REST APIs', color: 'from-blue-500 to-cyan-500' },
-  { icon: FaBrain, title: 'Machine Learning', desc: 'TensorFlow, PyTorch, scikit-learn', color: 'from-cyan-500 to-blue-500' },
-  { icon: FaDatabase, title: 'Databases', desc: 'MySQL, PostgreSQL, Oracle', color: 'from-green-500 to-emerald-500' },
-  { icon: FaRocket, title: 'DevOps', desc: 'Git, GitHub, Vercel, CI/CD', color: 'from-blue-500 to-indigo-500' },
+  { icon: FaCode, title: 'Languages & Apps', desc: 'Python, Java, Node.js, TypeScript', color: 'from-blue-500 to-cyan-500' },
+  { icon: FaBrain, title: 'Machine Learning', desc: 'scikit-learn, TensorFlow, PyTorch, pandas', color: 'from-cyan-500 to-blue-500' },
+  { icon: FaDatabase, title: 'Databases & Backend', desc: 'FastAPI, PostgreSQL, MySQL, Supabase', color: 'from-green-500 to-emerald-500' },
+  { icon: FaRocket, title: 'Deployment & Workflow', desc: 'Git, GitHub, Vercel, GitHub Actions', color: 'from-blue-500 to-indigo-500' },
 ]
 
 export default function Skills() {
@@ -32,19 +31,18 @@ export default function Skills() {
                 Technical <span className="text-gradient">Skills</span>
               </h2>
               <p className="text-slate-500 mb-10">
-                Proficient in software engineering and machine learning technologies,
-                with expertise in building enterprise-grade applications.
+                The technologies I&apos;ve actually used to build real projects — AI chatbots,
+                ML models, Telegram bots, and automation workflows.
               </p>
               
-              <div className="space-y-6">
-                {skills.map((skill, i) => (
-                  <SkillBar
-                    key={skill.name}
-                    name={skill.name}
-                    level={skill.level}
-                    color={skill.color}
-                    delay={i * 0.1}
-                  />
+              <div className="flex flex-wrap gap-3">
+                {techStack.map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-4 py-2 rounded-full glass text-sm text-slate-200 border border-slate-700/50 hover:border-cyan-400/50 hover:text-white transition-colors"
+                  >
+                    {tech}
+                  </span>
                 ))}
               </div>
             </div>

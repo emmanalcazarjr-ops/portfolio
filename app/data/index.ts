@@ -1,11 +1,11 @@
 import { 
   FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
-  FaRocket, FaCode, FaFileAlt,
-  FaRobot, FaDatabase, FaJava, FaPython,
+  FaFileAlt,
+  FaRobot,
   FaCalendar, FaClock, FaTag
 } from 'react-icons/fa'
 import { 
-  SiTensorflow, SiPytorch, SiScikitlearn, SiMysql, SiVercel
+  SiVercel
 } from 'react-icons/si'
 import { IconType } from 'react-icons'
 
@@ -19,13 +19,6 @@ export interface Project {
   gradient: string
   badge?: string
   featured?: boolean
-}
-
-export interface Skill {
-  name: string
-  level: number
-  color: string
-  icon: IconType
 }
 
 export interface Certification {
@@ -81,17 +74,12 @@ export const projects: Project[] = [
   },
 ]
 
-export const skills: Skill[] = [
-  { name: 'Java', level: 85, color: '#ED8B00', icon: FaJava },
-  { name: 'Python', level: 90, color: '#3776AB', icon: FaPython },
-  { name: 'TensorFlow', level: 80, color: '#FF6F00', icon: SiTensorflow },
-  { name: 'PyTorch', level: 75, color: '#EE4C2C', icon: SiPytorch },
-  { name: 'scikit-learn', level: 85, color: '#F7931E', icon: SiScikitlearn },
-  { name: 'MySQL', level: 80, color: '#4479A1', icon: SiMysql },
-  { name: 'Next.js/TypeScript', level: 75, color: '#000000', icon: FaCode },
-  { name: 'FastAPI', level: 70, color: '#009688', icon: FaRocket },
-  { name: 'PostgreSQL', level: 75, color: '#336791', icon: FaDatabase },
-  { name: 'Git/GitHub', level: 85, color: '#F05032', icon: FaGithub },
+export const techStack: string[] = [
+  'Python', 'Java', 'Node.js', 'TypeScript',
+  'FastAPI', 'Next.js', 'grammY',
+  'scikit-learn', 'TensorFlow', 'PyTorch', 'pandas', 'NumPy',
+  'MySQL', 'PostgreSQL', 'Supabase',
+  'Git', 'GitHub', 'Vercel', 'GitHub Actions',
 ]
 
 export const certifications: Certification[] = [
