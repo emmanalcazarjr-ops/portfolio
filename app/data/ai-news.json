@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-08-17T06:54:09.579Z",
+  "updatedAt": "2026-08-18T06:41:48.426Z",
   "news": [
     {
       "title": "AI is removing the middle class of software engineering?",
       "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
       "source": "Hacker News",
       "publishedAt": "2026-08-12",
-      "summary": "997 points | 933 comments on Hacker News"
+      "summary": "1001 points | 935 comments on Hacker News"
     },
     {
-      "title": "As AI eats the web, the internet’s collective memory is disappearing",
-      "url": "https://thewalrus.ca/google-search-is-dying/",
+      "title": "AI;DR (AI; Didn't Read)",
+      "url": "https://www.rickmanelius.com/p/aidr-ai-didnt-read",
       "source": "Hacker News",
-      "publishedAt": "2026-08-10",
-      "summary": "936 points | 985 comments on Hacker News"
+      "publishedAt": "2026-08-17",
+      "summary": "769 points | 491 comments on Hacker News"
     },
     {
       "title": "Stealing Reasoning Traces from Proprietary LLM APIs",
@@ -23,18 +23,18 @@
       "summary": "696 points | 308 comments on Hacker News"
     },
     {
-      "title": "Mark Zuckerberg attacks 'closed' AI rivals as Meta returns to open models",
-      "url": "https://www.ft.com/content/4e3957f8-ea7c-4c46-a3de-cdce8e526878",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-10",
-      "summary": "641 points | 600 comments on Hacker News"
-    },
-    {
       "title": "AI isn’t outthinking mathematicians, it’s out-remembering them",
       "url": "https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians",
       "source": "Hacker News",
       "publishedAt": "2026-08-15",
-      "summary": "611 points | 492 comments on Hacker News"
+      "summary": "629 points | 499 comments on Hacker News"
+    },
+    {
+      "title": "OpenAI’s head of ethics leaves less than a year after joining",
+      "url": "https://www.ft.com/content/e49dfb75-f841-4466-a577-f7aaff8779a0",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-11",
+      "summary": "523 points | 489 comments on Hacker News"
     }
   ]
 }
