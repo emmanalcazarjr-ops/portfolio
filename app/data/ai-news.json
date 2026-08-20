@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-08-19T06:42:08.299Z",
+  "updatedAt": "2026-08-20T06:43:53.411Z",
   "news": [
     {
       "title": "AI;DR (AI; Didn't Read)",
       "url": "https://www.rickmanelius.com/p/aidr-ai-didnt-read",
       "source": "Hacker News",
       "publishedAt": "2026-08-17",
-      "summary": "1069 points | 669 comments on Hacker News"
+      "summary": "1089 points | 686 comments on Hacker News"
     },
     {
       "title": "Israel creates fake think tank in likely attempt to dupe AI chatbots",
       "url": "https://responsiblestatecraft.org/israel-influence-chatgpt/",
       "source": "Hacker News",
       "publishedAt": "2026-08-17",
-      "summary": "1021 points | 751 comments on Hacker News"
-    },
-    {
-      "title": "AI is removing the middle class of software engineering?",
-      "url": "https://blog.florianherrengt.com/ai-removing-middle-class-software-engineering.html",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-12",
-      "summary": "1005 points | 935 comments on Hacker News"
+      "summary": "1045 points | 820 comments on Hacker News"
     },
     {
       "title": "AI isn’t outthinking mathematicians, it’s out-remembering them",
       "url": "https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians",
       "source": "Hacker News",
       "publishedAt": "2026-08-15",
-      "summary": "629 points | 506 comments on Hacker News"
+      "summary": "631 points | 516 comments on Hacker News"
     },
     {
       "title": "Google has acquired the data of failed US airline Spirit",
       "url": "https://www.theregister.com/ai-and-ml/2026/08/18/google-buys-crashed-airline-spirits-data-at-auction-because-ai/5288962",
       "source": "Hacker News",
       "publishedAt": "2026-08-18",
-      "summary": "574 points | 395 comments on Hacker News"
+      "summary": "608 points | 417 comments on Hacker News"
+    },
+    {
+      "title": "Google is making private AI practical with homomorphic encryption",
+      "url": "https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-14",
+      "summary": "498 points | 290 comments on Hacker News"
     }
   ]
 }
