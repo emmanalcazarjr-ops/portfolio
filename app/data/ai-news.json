@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-08-20T06:43:53.411Z",
+  "updatedAt": "2026-08-21T06:45:14.820Z",
   "news": [
     {
       "title": "AI;DR (AI; Didn't Read)",
       "url": "https://www.rickmanelius.com/p/aidr-ai-didnt-read",
       "source": "Hacker News",
       "publishedAt": "2026-08-17",
-      "summary": "1089 points | 686 comments on Hacker News"
+      "summary": "1099 points | 688 comments on Hacker News"
     },
     {
       "title": "Israel creates fake think tank in likely attempt to dupe AI chatbots",
       "url": "https://responsiblestatecraft.org/israel-influence-chatgpt/",
       "source": "Hacker News",
       "publishedAt": "2026-08-17",
-      "summary": "1045 points | 820 comments on Hacker News"
+      "summary": "1053 points | 844 comments on Hacker News"
+    },
+    {
+      "title": "Don't paste the AI, please",
+      "url": "https://dontpastetheai.com/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-20",
+      "summary": "1006 points | 555 comments on Hacker News"
     },
     {
       "title": "AI isn’t outthinking mathematicians, it’s out-remembering them",
       "url": "https://davidepiffer.com/p/ai-isnt-outthinking-mathematicians",
       "source": "Hacker News",
       "publishedAt": "2026-08-15",
-      "summary": "631 points | 516 comments on Hacker News"
+      "summary": "632 points | 521 comments on Hacker News"
     },
     {
       "title": "Google has acquired the data of failed US airline Spirit",
       "url": "https://www.theregister.com/ai-and-ml/2026/08/18/google-buys-crashed-airline-spirits-data-at-auction-because-ai/5288962",
       "source": "Hacker News",
       "publishedAt": "2026-08-18",
-      "summary": "608 points | 417 comments on Hacker News"
-    },
-    {
-      "title": "Google is making private AI practical with homomorphic encryption",
-      "url": "https://blog.google/security/how-google-is-making-private-ai-practical-with-homomorphic-encryption/",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-14",
-      "summary": "498 points | 290 comments on Hacker News"
+      "summary": "614 points | 419 comments on Hacker News"
     }
   ]
 }
