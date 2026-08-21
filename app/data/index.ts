@@ -2,6 +2,7 @@ import {
   FaGithub, FaLinkedin, FaEnvelope, FaExternalLinkAlt, 
   FaFileAlt,
   FaRobot,
+  FaComments,
   FaCalendar, FaClock, FaTag
 } from 'react-icons/fa'
 import { 
@@ -44,7 +45,7 @@ export interface SocialLink {
 
 export const projects: Project[] = [
   {
-    title: 'Rush AI Butler',
+    title: 'AI Chatbot API',
     description: 'AI-powered customer support chatbot with conversation memory, webhook support, and rate limiting. Powered by DeepSeek AI for intelligent responses.',
     tech: ['Python', 'DeepSeek AI', 'FastAPI', 'Chatbot'],
     github: 'https://github.com/emmanalcazarjr-ops/chatbot-api',
@@ -70,6 +71,16 @@ export const projects: Project[] = [
     github: 'https://github.com/emmanalcazarjr-ops/water-station-telegram-bot',
     icon: FaRobot,
     gradient: 'from-emerald-500 via-cyan-500 to-blue-600',
+    featured: true,
+  },
+  {
+    title: 'Rush — Personal AI Assistant',
+    description: 'A private AI butler in Telegram: turns saved links into organized tasks, logs meals from food photos against a daily calorie cap, sends 7 AM / 7 PM briefings, and chats with memory. Runs 24/7 on Supabase Edge Functions — no server needed.',
+    tech: ['TypeScript', 'grammY', 'DeepSeek AI', 'Supabase Edge Functions'],
+    github: 'https://github.com/emmanalcazarjr-ops/personal-assistant-bot',
+    live: 'https://t.me/RushDailyBot',
+    icon: FaComments,
+    gradient: 'from-violet-500 via-blue-500 to-cyan-500',
     featured: true,
   },
 ]
@@ -111,10 +122,10 @@ export const socialLinks: SocialLink[] = [
 ]
 
 export const stats = [
-  { label: 'Projects', value: 3, suffix: '' },
+  { label: 'Projects', value: 4, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 7, suffix: '' },
-  { label: 'GitHub Repos', value: 7, suffix: '' },
+  { label: 'GitHub Repos', value: 8, suffix: '' },
 ]
 
 export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
