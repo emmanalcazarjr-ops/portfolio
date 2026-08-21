@@ -4,12 +4,12 @@ import { useEffect, useRef } from 'react'
 import { motion } from 'framer-motion'
 import {
   FaCode, FaBrain, FaDatabase, FaRocket,
-  FaPython, FaJava, FaNodeJs, FaGitAlt, FaGithub,
+  FaPython, FaNodeJs, FaGitAlt, FaGithub,
 } from 'react-icons/fa'
 import {
-  SiTensorflow, SiPytorch, SiScikitlearn, SiTypescript, SiFastapi,
-  SiNextdotjs, SiTelegram, SiPandas, SiNumpy, SiMysql, SiPostgresql,
-  SiSupabase, SiVercel,
+  SiScikitlearn, SiTypescript, SiFastapi,
+  SiNextdotjs, SiTelegram, SiPandas, SiNumpy, SiPostgresql,
+  SiSupabase, SiVercel, SiN8N, SiTailwindcss,
 } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import ScrollReveal from './ScrollReveal'
@@ -17,18 +17,16 @@ import { techStack } from '../data'
 
 const stackIcons: Record<string, { icon: IconType; color: string }> = {
   Python: { icon: FaPython, color: '#3776AB' },
-  Java: { icon: FaJava, color: '#ED8B00' },
-  'Node.js': { icon: FaNodeJs, color: '#6CC24A' },
   TypeScript: { icon: SiTypescript, color: '#3178C6' },
+  'Node.js': { icon: FaNodeJs, color: '#6CC24A' },
   FastAPI: { icon: SiFastapi, color: '#009688' },
   'Next.js': { icon: SiNextdotjs, color: '#FFFFFF' },
   grammY: { icon: SiTelegram, color: '#26A5E4' },
+  'Tailwind CSS': { icon: SiTailwindcss, color: '#38BDF8' },
+  n8n: { icon: SiN8N, color: '#EA4B71' },
   'scikit-learn': { icon: SiScikitlearn, color: '#F7931E' },
-  TensorFlow: { icon: SiTensorflow, color: '#FF6F00' },
-  PyTorch: { icon: SiPytorch, color: '#EE4C2C' },
   pandas: { icon: SiPandas, color: '#B8C4D9' },
   NumPy: { icon: SiNumpy, color: '#4DABCF' },
-  MySQL: { icon: SiMysql, color: '#4479A1' },
   PostgreSQL: { icon: SiPostgresql, color: '#699ECA' },
   Supabase: { icon: SiSupabase, color: '#3ECF8E' },
   Git: { icon: FaGitAlt, color: '#F05032' },
@@ -38,10 +36,10 @@ const stackIcons: Record<string, { icon: IconType; color: string }> = {
 }
 
 const skillCategories = [
-  { icon: FaCode, title: 'Languages & Apps', desc: 'Python, Java, Node.js, TypeScript', color: 'from-blue-500 to-cyan-500' },
-  { icon: FaBrain, title: 'Machine Learning', desc: 'scikit-learn, TensorFlow, PyTorch, pandas', color: 'from-cyan-500 to-blue-500' },
-  { icon: FaDatabase, title: 'Databases & Backend', desc: 'FastAPI, PostgreSQL, MySQL, Supabase', color: 'from-green-500 to-emerald-500' },
-  { icon: FaRocket, title: 'Deployment & Workflow', desc: 'Git, GitHub, Vercel, GitHub Actions', color: 'from-blue-500 to-indigo-500' },
+  { icon: FaCode, title: 'Languages & Web', desc: 'Python, TypeScript, Node.js, Next.js, Tailwind CSS', color: 'from-blue-500 to-cyan-500' },
+  { icon: FaBrain, title: 'AI & Data Science', desc: 'FastAPI, pandas, NumPy, scikit-learn, LLM APIs', color: 'from-cyan-500 to-blue-500' },
+  { icon: FaDatabase, title: 'Automation & Backend', desc: 'n8n, grammY, Supabase, PostgreSQL', color: 'from-green-500 to-emerald-500' },
+  { icon: FaRocket, title: 'DevOps & Tooling', desc: 'Git, GitHub, Vercel, GitHub Actions', color: 'from-blue-500 to-indigo-500' },
 ]
 
 // even scatter across the cloud (golden-angle spiral), as % of container

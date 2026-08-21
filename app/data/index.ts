@@ -75,10 +75,10 @@ export const projects: Project[] = [
 ]
 
 export const techStack: string[] = [
-  'Python', 'Java', 'Node.js', 'TypeScript',
-  'FastAPI', 'Next.js', 'grammY',
-  'scikit-learn', 'TensorFlow', 'PyTorch', 'pandas', 'NumPy',
-  'MySQL', 'PostgreSQL', 'Supabase',
+  'Python', 'TypeScript', 'Node.js',
+  'FastAPI', 'Next.js', 'grammY', 'Tailwind CSS',
+  'n8n', 'pandas', 'NumPy', 'scikit-learn',
+  'PostgreSQL', 'Supabase',
   'Git', 'GitHub', 'Vercel', 'GitHub Actions',
 ]
 
