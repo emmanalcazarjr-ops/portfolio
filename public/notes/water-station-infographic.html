@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Water Delivery - Automated Telegram Ordering</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: #090d16;
+      color: #f8fafc;
+    }
+    .poster-container {
+      width: 794px;
+      min-height: 1123px;
+      margin: 0 auto;
+      background: radial-gradient(circle at 50% 0%, #1e293b 0%, #090d16 70%);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+      position: relative;
+      overflow: hidden;
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .glow-blob {
+      position: absolute;
+      filter: blur(80px);
+      opacity: 0.25;
+      pointer-events: none;
+    }
+    .card-glass {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+    @media print {
+      body { background: transparent; }
+      .poster-container { box-shadow: none; width: 100%; height: 100%; }
+    }
+  </style>
+</head>
+<body class="py-8">
+
+  <div class="poster-container p-10 flex flex-col justify-between border border-slate-800 rounded-3xl relative">
+    
+    <!-- Glow Accents -->
+    <div class="glow-blob w-96 h-96 bg-cyan-500 top-[-100px] left-[-100px]"></div>
+    <div class="glow-blob w-96 h-96 bg-emerald-500 bottom-[-100px] right-[-100px]"></div>
+
+    <!-- Header Section -->
+    <div class="text-center relative z-10">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-wider mb-4">
+        ⚡ Smart Local Business Automation
+      </div>
+      <h1 class="text-4xl font-black tracking-tight leading-none mb-3">
+        Automate Your <span class="gradient-text">Delivery Orders</span>
+      </h1>
+      <p class="text-slate-400 text-sm max-w-md mx-auto">
+        Say goodbye to messy chats, lost orders, and high commission fees. Get a 24/7 digital ordering assistant right inside Telegram.
+      </p>
+    </div>
+
+    <!-- The 2-Phone System Flow -->
+    <div class="grid grid-cols-2 gap-6 my-6 relative z-10 items-center">
+      
+      <!-- Customer Phone Card -->
+      <div class="card-glass p-5 rounded-2xl relative">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm">1</div>
+          <div>
+            <h3 class="text-sm font-bold text-white">Customer Orders (10s)</h3>
+            <p class="text-[11px] text-slate-400">No App Download Needed</p>
+          </div>
+        </div>
+        <div class="bg-slate-950/90 rounded-xl p-3.5 border border-slate-800 space-y-2 text-xs">
+          <div class="bg-slate-900 text-slate-300 p-2 rounded-lg text-[11px]">
+            👋 Welcome! Where should we deliver?
+          </div>
+          <div class="grid grid-cols-2 gap-1.5">
+            <div class="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-center py-1 rounded font-semibold text-[10px]">🏢 Tower 1</div>
+            <div class="bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-center py-1 rounded font-semibold text-[10px]">🚪 Unit 1204</div>
+          </div>
+          <div class="bg-slate-900 text-slate-300 p-2 rounded-lg text-[11px]">
+            ⏰ Delivery Time: <b>Today 2:00 PM</b>
+          </div>
+          <div class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white text-center py-2 rounded-lg font-bold text-xs shadow-md">
+            🛒 Confirm Order (2 Gallons)
+          </div>
+        </div>
+      </div>
+
+      <!-- Operator Phone Card -->
+      <div class="card-glass p-5 rounded-2xl relative">
+        <div class="flex items-center gap-2 mb-3">
+          <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm">2</div>
+          <div>
+            <h3 class="text-sm font-bold text-white">Operator Alert & Dispatch</h3>
+            <p class="text-[11px] text-slate-400">Instant Alert on Your Phone</p>
+          </div>
+        </div>
+        <div class="bg-slate-950/90 rounded-xl p-3.5 border border-emerald-500/30 space-y-2 text-xs shadow-lg">
+          <div class="flex items-center justify-between text-[11px]">
+            <span class="text-emerald-400 font-bold">🔔 NEW ORDER #108</span>
+            <span class="text-slate-400 text-[10px]">Just now</span>
+          </div>
+          <div class="bg-slate-900/90 p-2.5 rounded-lg border border-slate-800 text-[11px] space-y-1">
+            <p class="text-white font-semibold">👤 Mark (Tower 1 - Unit 1204)</p>
+            <p class="text-slate-400">📦 2x Slim Gallons (Refill)</p>
+            <p class="text-cyan-400">🕒 Deliver at: 2:00 PM</p>
+          </div>
+          <button class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-black py-2 rounded-lg text-xs tracking-wide shadow-md flex items-center justify-center gap-1">
+            ✅ ONE-TAP: MARK DELIVERED
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 3 Key Value Props -->
+    <div class="grid grid-cols-3 gap-3 my-4 relative z-10">
+      <div class="bg-slate-900/80 border border-slate-800 p-3.5 rounded-xl text-center">
+        <div class="text-2xl mb-1">⏱️</div>
+        <h4 class="font-bold text-xs text-white mb-0.5">Save 2+ Hours Daily</h4>
+        <p class="text-[10px] text-slate-400">No more manual typing & asking for unit details</p>
+      </div>
+      <div class="bg-slate-900/80 border border-slate-800 p-3.5 rounded-xl text-center">
+        <div class="text-2xl mb-1">🚀</div>
+        <h4 class="font-bold text-xs text-white mb-0.5">Zero Missed Orders</h4>
+        <p class="text-[10px] text-slate-400">Instant notifications & centralized queue</p>
+      </div>
+      <div class="bg-slate-900/80 border border-slate-800 p-3.5 rounded-xl text-center">
+        <div class="text-2xl mb-1">💰</div>
+        <h4 class="font-bold text-xs text-white mb-0.5">0% Commission</h4>
+        <p class="text-[10px] text-slate-400">Keep 100% of your earnings with no third-party cuts</p>
+      </div>
+    </div>
+
+    <!-- Comparison Table Banner -->
+    <div class="card-glass p-4 rounded-xl relative z-10 text-xs">
+      <div class="grid grid-cols-3 gap-2 text-center items-center">
+        <div class="text-left font-bold text-slate-300">Feature</div>
+        <div class="text-slate-400 font-semibold">Regular SMS / Messenger</div>
+        <div class="text-cyan-400 font-bold">Our Telegram Automation</div>
+
+        <div class="text-left text-slate-400 border-t border-slate-800 py-1.5">Order Taking Time</div>
+        <div class="text-rose-400 border-t border-slate-800 py-1.5">2 – 5 minutes manual back & forth</div>
+        <div class="text-emerald-400 font-bold border-t border-slate-800 py-1.5">10 seconds (4 taps)</div>
+
+        <div class="text-left text-slate-400 border-t border-slate-800 py-1.5">Lost / Forgotten Orders</div>
+        <div class="text-rose-400 border-t border-slate-800 py-1.5">Frequent during rush hours</div>
+        <div class="text-emerald-400 font-bold border-t border-slate-800 py-1.5">0% (Instant Audio Alert)</div>
+
+        <div class="text-left text-slate-400 border-t border-slate-800 py-1.5">Customer Friction</div>
+        <div class="text-rose-400 border-t border-slate-800 py-1.5">Must type full address every time</div>
+        <div class="text-emerald-400 font-bold border-t border-slate-800 py-1.5">1-click repeat order</div>
+      </div>
+    </div>
+
+    <!-- Call to Action Footer -->
+    <div class="mt-6 pt-4 border-t border-slate-800/80 flex items-center justify-between relative z-10">
+      <div>
+        <h4 class="font-extrabold text-sm text-white">Ready to automate your water station orders?</h4>
+        <p class="text-xs text-slate-400">Get a 7-day risk-free pilot setup for your business today.</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="text-right">
+          <p class="text-xs font-bold text-cyan-400">Emmanuel Alcazar Jr.</p>
+          <p class="text-[10px] text-slate-500">AI Automation Specialist</p>
+        </div>
+        <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 font-black text-sm">
+          📱
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
