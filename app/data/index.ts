@@ -114,7 +114,7 @@ export const stats = [
   { label: 'Projects', value: 3, suffix: '' },
   { label: 'Technologies', value: 15, suffix: '+' },
   { label: 'Certifications', value: 7, suffix: '' },
-  { label: 'GitHub Repos', value: 16, suffix: '' },
+  { label: 'GitHub Repos', value: 7, suffix: '' },
 ]
 
 export type RoadmapStatus = 'planned' | 'in-progress' | 'done'
@@ -170,7 +170,8 @@ export const roadmap: RoadmapGroup[] = [
     items: [
       { title: 'n8n automation', status: 'done', note: 'Workflow automation with n8n' },
       { title: 'DataCamp certifications', status: 'done', note: 'Data Analyst + AI Engineer Associate' },
-      { title: 'SQL and Python', status: 'in-progress' },
+      { title: 'Python', status: 'done', note: 'Intermediate Python — DataCamp' },
+      { title: 'SQL', status: 'in-progress' },
       { title: 'AI APIs: OpenAI, Claude, Gemini, DeepSeek', status: 'in-progress' },
       { title: 'Zapier, Make, GoHighLevel, Power Automate', status: 'in-progress' },
       { title: 'Excel/Google Sheets automation', status: 'planned' },

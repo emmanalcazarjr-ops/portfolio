@@ -12,12 +12,12 @@ const aboutItems = [
   { 
     title: 'Experience', 
     icon: '💼',
-    items: ['Software Engineering', 'Machine Learning Development', 'Banking & Finance Systems']
+    items: ['Software Engineering', 'Machine Learning Development', 'AI Automation & Workflows']
   },
   { 
     title: 'Focus Areas', 
     icon: '🎯',
-    items: ['AI-Powered Applications', 'ML Model Deployment', 'Enterprise Solutions']
+    items: ['AI-Powered Applications', 'Intelligent Chatbots & Bots', 'Enterprise Automation']
   },
 ]
 
@@ -52,12 +52,12 @@ export default function About() {
                 systems led me to the world of AI and software engineering.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
-                With expertise in <span className="text-cyan-400">Python</span>, <span className="text-cyan-400">Java</span>, 
-                and modern ML frameworks, I specialize in building production-ready applications that solve 
-                real-world problems in banking, finance, and enterprise solutions.
+                With expertise in <span className="text-cyan-400">Python</span>, <span className="text-cyan-400">Node.js / TypeScript</span>, 
+                and modern AI APIs, I specialize in building production-ready applications that solve 
+                real-world business problems through intelligent automation and custom AI systems.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
-                My goal is to bridge the gap between cutting-edge AI research and practical business applications, 
+                My goal is to bridge the gap between cutting-edge AI capabilities and practical business workflows, 
                 creating systems that are both intelligent and reliable.
               </p>
             </div>

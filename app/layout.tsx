@@ -4,8 +4,8 @@ import './globals.css'
 export const metadata: Metadata = {
   metadataBase: new URL('https://portfolio-elalcazarjr.vercel.app'),
   title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
-  description: 'Licensed Electronics Engineer specializing in AI/ML Development, Machine Learning, and intelligent applications for banking, finance, and enterprise solutions.',
-  keywords: ['Electronics Engineer', 'AI/ML Developer', 'Machine Learning', 'Python', 'Java', 'TensorFlow', 'PyTorch', 'scikit-learn', 'Next.js', 'Portfolio'],
+  description: 'Licensed Electronics Engineer specializing in AI Automation, Intelligent Systems, and Software Engineering.',
+  keywords: ['Electronics Engineer', 'AI Automation', 'AI/ML Developer', 'Intelligent Systems', 'Python', 'TypeScript', 'Next.js', 'FastAPI', 'Portfolio'],
   authors: [{ name: 'Emmanuel L. Alcazar Jr.' }],
   creator: 'Emmanuel L. Alcazar Jr.',
   openGraph: {
