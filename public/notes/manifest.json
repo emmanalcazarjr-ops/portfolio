@@ -24,5 +24,13 @@
       "obsidian"
     ],
     "excerpt": "A quick tour of my Obsidian vault. Every note here syncs to GitHub and auto-publishes to my portfolio — no manual deploy needed."
+  },
+  {
+    "slug": "n8n-curation-and-ai-news-guide",
+    "file": "n8n-curation-and-ai-news-guide",
+    "title": "n8n-curation-and-ai-news-guide",
+    "date": "",
+    "tags": [],
+    "excerpt": ""
   }
 ]
