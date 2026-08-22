@@ -38,7 +38,25 @@ export default function Contact() {
     setStatus('sending')
     
     try {
-      const response = await fetch('/api/contact', {
+      // 1. Dispatch email directly to EmmanAlcazarJr@gmail.com via Web3Forms
+      const emailPromise = fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: '23af2e12-09f3-4d97-ad9f-a6eb848e8eb2',
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Portfolio Contact from ${formData.name}`,
+          from_name: 'Portfolio Contact Form',
+        }),
+      })
+
+      // 2. Save lead record to Supabase
+      const dbPromise = fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -48,19 +66,25 @@ export default function Contact() {
         }),
       })
 
-      const data = await response.json()
+      const [emailRes] = await Promise.allSettled([emailPromise, dbPromise])
 
-      if (data.ok) {
+      let isSuccess = true
+      if (emailRes.status === 'fulfilled') {
+        const data = await emailRes.value.json().catch(() => ({}))
+        if (data.success === false) isSuccess = false
+      }
+
+      if (isSuccess) {
         setStatus('sent')
         setFormData({ name: '', email: '', message: '' })
-        setTimeout(() => setStatus('idle'), 3000)
+        setTimeout(() => setStatus('idle'), 4000)
       } else {
         setStatus('error')
-        setTimeout(() => setStatus('idle'), 3000)
+        setTimeout(() => setStatus('idle'), 4000)
       }
     } catch {
       setStatus('error')
-      setTimeout(() => setStatus('idle'), 3000)
+      setTimeout(() => setStatus('idle'), 4000)
     }
   }
 
