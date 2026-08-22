@@ -45,10 +45,10 @@ const skillCategories = [
 // even scatter across the cloud (golden-angle spiral), as % of container
 function scatter(i: number, n: number) {
   const angle = i * 2.399963229728653
-  const r = Math.sqrt((i + 0.5) / n) * 0.9
+  const r = Math.sqrt((i + 0.5) / n) * 0.84
   return {
-    px: 50 + Math.cos(angle) * r * 46,
-    py: 50 + Math.sin(angle) * r * 46,
+    px: Number((50 + Math.cos(angle) * r * 44).toFixed(1)),
+    py: Number((50 + Math.sin(angle) * r * 44).toFixed(1)),
   }
 }
 
@@ -60,54 +60,62 @@ export default function Skills() {
 
   useEffect(() => {
     const cloud = cloudRef.current
-    if (!cloud) return
+    if (!cloud || reduced) return
     const tiles = Array.from(cloud.querySelectorAll<HTMLElement>('[data-skill]'))
     if (!tiles.length) return
 
     let raf = 0
-    let mx = -9999
-    let my = -9999
+    let targetMx = -9999
+    let targetMy = -9999
+    let curMx = -9999
+    let curMy = -9999
+
     const onMove = (e: MouseEvent) => {
       const r = cloud.getBoundingClientRect()
-      mx = e.clientX - r.left
-      my = e.clientY - r.top
+      targetMx = e.clientX - r.left
+      targetMy = e.clientY - r.top
     }
     const onLeave = () => {
-      mx = -9999
-      my = -9999
+      targetMx = -9999
+      targetMy = -9999
     }
     cloud.addEventListener('mousemove', onMove, { passive: true })
     cloud.addEventListener('mouseleave', onLeave)
 
-    const t0 = performance.now()
-    const tick = (t: number) => {
+    const tick = () => {
       raf = requestAnimationFrame(tick)
-      const dt = (t - t0) / 1000
+      if (targetMx === -9999) {
+        curMx = -9999
+        curMy = -9999
+      } else {
+        curMx += (targetMx - curMx) * 0.18
+        curMy += (targetMy - curMy) * 0.18
+      }
+
       const rect = cloud.getBoundingClientRect()
       if (!rect.width || !rect.height) return
-      tiles.forEach((tile, i) => {
+
+      tiles.forEach((tile) => {
         const px = parseFloat(tile.dataset.px || '50')
         const py = parseFloat(tile.dataset.py || '50')
-        const bx = (px / 100) * rect.width
-        const by = (py / 100) * rect.height
-        const dx = Math.sin(dt * 0.55 + i * 1.7) * 9
-        const dy = Math.cos(dt * 0.45 + i * 2.3) * 7
-        const cx = bx + dx + tile.offsetWidth / 2
-        const cy = by + dy + tile.offsetHeight / 2
-        const rx = cx - mx
-        const ry = cy - my
+        const cx = (px / 100) * rect.width
+        const cy = (py / 100) * rect.height
+        const rx = cx - curMx
+        const ry = cy - curMy
         const dist = Math.hypot(rx, ry)
         let pushX = 0
         let pushY = 0
-        if (dist < 150 && dist > 0.001) {
-          const f = Math.pow((150 - dist) / 150, 1.4)
-          pushX = (rx / dist) * f * 30
-          pushY = (ry / dist) * f * 30
+        if (dist < 140 && dist > 0.001) {
+          const f = Math.pow((140 - dist) / 140, 1.3)
+          pushX = (rx / dist) * f * 32
+          pushY = (ry / dist) * f * 32
         }
-        tile.style.transform = `translate3d(${bx + dx + pushX}px, ${by + dy + pushY}px, 0)`
+        tile.style.transform = `translate3d(calc(-50% + ${pushX.toFixed(1)}px), calc(-50% + ${pushY.toFixed(1)}px), 0)`
       })
     }
-    if (!reduced) raf = requestAnimationFrame(tick)
+
+    raf = requestAnimationFrame(tick)
+
     return () => {
       cancelAnimationFrame(raf)
       cloud.removeEventListener('mousemove', onMove)
@@ -139,7 +147,7 @@ export default function Skills() {
 
               <div
                 ref={cloudRef}
-                className="relative h-[460px] md:h-[540px] w-full"
+                className="relative h-[480px] md:h-[560px] w-full select-none"
               >
                 {techStack.map((tech, i) => {
                   const entry = stackIcons[tech]
@@ -148,16 +156,28 @@ export default function Skills() {
                     <div
                       key={tech}
                       data-skill
-                      data-px={pos.px.toFixed(1)}
-                      data-py={pos.py.toFixed(1)}
+                      data-px={pos.px}
+                      data-py={pos.py}
                       aria-label={tech}
-                      className="absolute left-0 top-0 will-change-transform"
+                      style={{
+                        left: `${pos.px}%`,
+                        top: `${pos.py}%`,
+                        transform: 'translate3d(-50%, -50%, 0)',
+                      }}
+                      className="absolute will-change-transform"
                     >
-                      <div className="skill-tile glass rounded-2xl w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center gap-1.5 shadow-lg select-none">
-                        <entry.icon size={26} style={{ color: entry.color }} />
-                        <span className="text-[10px] text-slate-400 font-medium text-center leading-tight px-1">
-                          {tech}
-                        </span>
+                      <div
+                        style={{
+                          animation: `skillFloat ${5.5 + (i % 4) * 1.2}s ease-in-out infinite`,
+                          animationDelay: `${-(i * 0.7)}s`,
+                        }}
+                      >
+                        <div className="skill-tile glass rounded-2xl w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center gap-1.5 shadow-lg select-none cursor-pointer">
+                          <entry.icon size={26} style={{ color: entry.color }} />
+                          <span className="text-[10px] text-slate-400 font-medium text-center leading-tight px-1">
+                            {tech}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   )
