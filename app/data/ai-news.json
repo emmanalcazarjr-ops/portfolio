@@ -1,26 +1,33 @@
 {
-  "updatedAt": "2026-08-21T06:45:14.820Z",
+  "updatedAt": "2026-08-22T06:38:52.607Z",
   "news": [
     {
       "title": "AI;DR (AI; Didn't Read)",
       "url": "https://www.rickmanelius.com/p/aidr-ai-didnt-read",
       "source": "Hacker News",
       "publishedAt": "2026-08-17",
-      "summary": "1099 points | 688 comments on Hacker News"
+      "summary": "1105 points | 690 comments on Hacker News"
     },
     {
       "title": "Israel creates fake think tank in likely attempt to dupe AI chatbots",
       "url": "https://responsiblestatecraft.org/israel-influence-chatgpt/",
       "source": "Hacker News",
       "publishedAt": "2026-08-17",
-      "summary": "1053 points | 844 comments on Hacker News"
+      "summary": "1054 points | 860 comments on Hacker News"
     },
     {
       "title": "Don't paste the AI, please",
       "url": "https://dontpastetheai.com/",
       "source": "Hacker News",
       "publishedAt": "2026-08-20",
-      "summary": "1006 points | 555 comments on Hacker News"
+      "summary": "1035 points | 577 comments on Hacker News"
+    },
+    {
+      "title": "AI companies destroy physical books – let's scan rare books before it's too late",
+      "url": "https://annas-archive.pk/blog/physical-destruction.html",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-21",
+      "summary": "703 points | 2 comments on Hacker News"
     },
     {
       "title": "AI isn’t outthinking mathematicians, it’s out-remembering them",
@@ -28,13 +35,6 @@
       "source": "Hacker News",
       "publishedAt": "2026-08-15",
       "summary": "632 points | 521 comments on Hacker News"
-    },
-    {
-      "title": "Google has acquired the data of failed US airline Spirit",
-      "url": "https://www.theregister.com/ai-and-ml/2026/08/18/google-buys-crashed-airline-spirits-data-at-auction-because-ai/5288962",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-18",
-      "summary": "614 points | 419 comments on Hacker News"
     }
   ]
 }
