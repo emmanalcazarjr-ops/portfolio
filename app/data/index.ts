@@ -87,10 +87,10 @@ export const projects: Project[] = [
 
 export const techStack: string[] = [
   'Python', 'TypeScript', 'Node.js',
-  'FastAPI', 'Next.js', 'grammY', 'Tailwind CSS',
-  'n8n', 'pandas', 'NumPy', 'scikit-learn',
-  'PostgreSQL', 'Supabase',
-  'Git', 'GitHub', 'Vercel', 'GitHub Actions',
+  'DeepSeek AI', 'Gemini AI', 'FastAPI', 'Next.js',
+  'grammY', 'Telegram Bot API', 'Supabase', 'Edge Functions',
+  'Tailwind CSS', 'n8n', 'pandas', 'NumPy', 'scikit-learn',
+  'PostgreSQL', 'Git', 'GitHub', 'Vercel', 'GitHub Actions',
 ]
 
 export const certifications: Certification[] = [
@@ -123,7 +123,7 @@ export const socialLinks: SocialLink[] = [
 
 export const stats = [
   { label: 'Projects', value: 4, suffix: '' },
-  { label: 'Technologies', value: 15, suffix: '+' },
+  { label: 'Technologies', value: 20, suffix: '+' },
   { label: 'Certifications', value: 7, suffix: '' },
   { label: 'GitHub Repos', value: 8, suffix: '' },
 ]

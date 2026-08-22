@@ -10,6 +10,7 @@ import {
   SiScikitlearn, SiTypescript, SiFastapi,
   SiNextdotjs, SiTelegram, SiPandas, SiNumpy, SiPostgresql,
   SiSupabase, SiVercel, SiN8N, SiTailwindcss,
+  SiDeepseek, SiGooglegemini, SiDeno,
 } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import ScrollReveal from './ScrollReveal'
@@ -19,9 +20,12 @@ const stackIcons: Record<string, { icon: IconType; color: string }> = {
   Python: { icon: FaPython, color: '#3776AB' },
   TypeScript: { icon: SiTypescript, color: '#3178C6' },
   'Node.js': { icon: FaNodeJs, color: '#6CC24A' },
+  'DeepSeek AI': { icon: SiDeepseek, color: '#4D6BFE' },
+  'Gemini AI': { icon: SiGooglegemini, color: '#8E75FF' },
   FastAPI: { icon: SiFastapi, color: '#009688' },
   'Next.js': { icon: SiNextdotjs, color: '#FFFFFF' },
   grammY: { icon: SiTelegram, color: '#26A5E4' },
+  'Telegram Bot API': { icon: SiTelegram, color: '#229ED9' },
   'Tailwind CSS': { icon: SiTailwindcss, color: '#38BDF8' },
   n8n: { icon: SiN8N, color: '#EA4B71' },
   'scikit-learn': { icon: SiScikitlearn, color: '#F7931E' },
@@ -29,6 +33,7 @@ const stackIcons: Record<string, { icon: IconType; color: string }> = {
   NumPy: { icon: SiNumpy, color: '#4DABCF' },
   PostgreSQL: { icon: SiPostgresql, color: '#699ECA' },
   Supabase: { icon: SiSupabase, color: '#3ECF8E' },
+  'Edge Functions': { icon: SiDeno, color: '#70FFF1' },
   Git: { icon: FaGitAlt, color: '#F05032' },
   GitHub: { icon: FaGithub, color: '#FFFFFF' },
   Vercel: { icon: SiVercel, color: '#FFFFFF' },
@@ -37,15 +42,15 @@ const stackIcons: Record<string, { icon: IconType; color: string }> = {
 
 const skillCategories = [
   { icon: FaCode, title: 'Languages & Web', desc: 'Python, TypeScript, Node.js, Next.js, Tailwind CSS', color: 'from-blue-500 to-cyan-500' },
-  { icon: FaBrain, title: 'AI & Data Science', desc: 'FastAPI, pandas, NumPy, scikit-learn, LLM APIs', color: 'from-cyan-500 to-blue-500' },
-  { icon: FaDatabase, title: 'Automation & Backend', desc: 'n8n, grammY, Supabase, PostgreSQL', color: 'from-green-500 to-emerald-500' },
-  { icon: FaRocket, title: 'DevOps & Tooling', desc: 'Git, GitHub, Vercel, GitHub Actions', color: 'from-blue-500 to-indigo-500' },
+  { icon: FaBrain, title: 'AI & Machine Learning', desc: 'DeepSeek AI, Gemini AI, FastAPI, pandas, scikit-learn', color: 'from-cyan-500 to-blue-500' },
+  { icon: FaDatabase, title: 'Bots & Backend', desc: 'grammY, Telegram Bot API, Supabase Edge Functions, PostgreSQL', color: 'from-green-500 to-emerald-500' },
+  { icon: FaRocket, title: 'Automation & DevOps', desc: 'n8n, Git, GitHub, Vercel, GitHub Actions', color: 'from-blue-500 to-indigo-500' },
 ]
 
 // even scatter across the cloud (golden-angle spiral), as % of container
 function scatter(i: number, n: number) {
   const angle = i * 2.399963229728653
-  const r = Math.sqrt((i + 0.5) / n) * 0.84
+  const r = Math.sqrt((i + 0.5) / n) * 0.88
   return {
     px: Number((50 + Math.cos(angle) * r * 44).toFixed(1)),
     py: Number((50 + Math.sin(angle) * r * 44).toFixed(1)),
@@ -147,7 +152,7 @@ export default function Skills() {
 
               <div
                 ref={cloudRef}
-                className="relative h-[480px] md:h-[560px] w-full select-none"
+                className="relative h-[500px] md:h-[600px] w-full select-none"
               >
                 {techStack.map((tech, i) => {
                   const entry = stackIcons[tech]
