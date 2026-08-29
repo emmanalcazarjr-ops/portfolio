@@ -1,26 +1,26 @@
 {
-  "updatedAt": "2026-08-28T18:15:06.588Z",
+  "updatedAt": "2026-08-29T12:23:01.074Z",
   "news": [
     {
       "title": "CEO fired developers to make room for AI. Developers create open source AI CEO",
       "url": "https://github.com/SenteLabsAI/OpenExecutive",
       "source": "Hacker News",
       "publishedAt": "2026-08-27",
-      "summary": "998 points | 693 comments on Hacker News"
+      "summary": "1012 points | 706 comments on Hacker News"
     },
     {
       "title": "Anthropic's best AI model struggles to attract users as cheaper tools thrive",
       "url": "https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245",
       "source": "Hacker News",
       "publishedAt": "2026-08-23",
-      "summary": "816 points | 701 comments on Hacker News"
+      "summary": "819 points | 701 comments on Hacker News"
     },
     {
       "title": "I spent $266 and four AI models to own my tablet. GLM-5.3 finished it in a day",
       "url": "https://ericpardee.github.io/fire-hd-ownership/",
       "source": "Hacker News",
       "publishedAt": "2026-08-23",
-      "summary": "700 points | 291 comments on Hacker News"
+      "summary": "701 points | 291 comments on Hacker News"
     },
     {
       "title": "I were 17, I'd learn how to build LLMs from scratch",
@@ -34,7 +34,7 @@
       "url": "https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia",
       "source": "Hacker News",
       "publishedAt": "2026-08-25",
-      "summary": "583 points | 379 comments on Hacker News"
+      "summary": "584 points | 379 comments on Hacker News"
     }
   ]
 }
