@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa'
 
-const API_URL = 'https://chatbot-api-two-teal.vercel.app/api/chat'
+const API_URL = '/api/chat'
 
 function parseMarkdown(text: string): string {
   let html = text
@@ -56,7 +56,7 @@ export default function ChatWidget() {
       const reply = data.response || data.reply || data.message || 'Sorry, I could not process that.'
       setMessages(prev => [...prev, { role: 'bot', content: reply }])
     } catch {
-      setMessages(prev => [...prev, { role: 'bot', content: 'Unable to reach the server. Please try again later.' }])
+      setMessages(prev => [...prev, { role: 'bot', content: "I am having a brief connection delay, sir. In the meantime, please feel free to browse Emmanuel's projects above or reach him directly at **EmmanAlcazarJr@gmail.com**!" }])
     } finally {
       setLoading(false)
     }
