@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-08-30T11:21:31.216Z",
+  "updatedAt": "2026-08-31T12:50:42.377Z",
   "news": [
     {
       "title": "CEO fired developers to make room for AI. Developers create open source AI CEO",
       "url": "https://github.com/SenteLabsAI/OpenExecutive",
       "source": "Hacker News",
       "publishedAt": "2026-08-27",
-      "summary": "1023 points | 713 comments on Hacker News"
-    },
-    {
-      "title": "Anthropic's best AI model struggles to attract users as cheaper tools thrive",
-      "url": "https://www.ft.com/content/5ee49718-c258-4f01-aa32-7e5b76ae5245",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-23",
-      "summary": "819 points | 702 comments on Hacker News"
-    },
-    {
-      "title": "I spent $266 and four AI models to own my tablet. GLM-5.3 finished it in a day",
-      "url": "https://ericpardee.github.io/fire-hd-ownership/",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-23",
-      "summary": "703 points | 291 comments on Hacker News"
-    },
-    {
-      "title": "I were 17, I'd learn how to build LLMs from scratch",
-      "url": "https://twitter.com/paulg/status/2091544343589060625",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-23",
-      "summary": "605 points | 681 comments on Hacker News"
+      "summary": "1029 points | 716 comments on Hacker News"
     },
     {
       "title": "OpenAI Jalapeño: Better than Nvidia Blackwell",
       "url": "https://newsletter.semianalysis.com/p/openai-jalapeno-better-than-nvidia",
       "source": "Hacker News",
       "publishedAt": "2026-08-25",
-      "summary": "584 points | 380 comments on Hacker News"
+      "summary": "584 points | 381 comments on Hacker News"
+    },
+    {
+      "title": "Coding expertise is going to collapse from AI reliance",
+      "url": "https://larsfaye.com/articles/ai-coding-will-prevent-expertise",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-24",
+      "summary": "560 points | 545 comments on Hacker News"
+    },
+    {
+      "title": "Luanti removed from Google Play due to baseless AI copyright notice",
+      "url": "https://blog.luanti.org/2026/08/27/luanti-dmca-tracer-ai/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-28",
+      "summary": "522 points | 151 comments on Hacker News"
+    },
+    {
+      "title": "Debian votes to allow \"responsible use of generative AI\"",
+      "url": "https://lwn.net/Articles/1091231/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-29",
+      "summary": "508 points | 472 comments on Hacker News"
     }
   ]
 }
