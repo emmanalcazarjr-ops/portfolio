@@ -9,7 +9,11 @@
 
 # next.js
 /.next/
-/out/
+out/
+build/
+dist/
+.npm-cache/
+.vercel/
 
 # production
 /build

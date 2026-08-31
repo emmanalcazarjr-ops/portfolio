@@ -11,7 +11,7 @@ const blogPosts: Record<string, { title: string; date: string; readTime: string;
     title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
     date: 'August 2026',
     readTime: '8 min read',
-    tags: ['Python', 'FastAPI', 'DeepSeek AI', 'AI'],
+    tags: ['Python', 'FastAPI', 'Gemini AI', 'AI'],
   },
 }
 

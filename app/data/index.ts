@@ -46,8 +46,8 @@ export interface SocialLink {
 export const projects: Project[] = [
   {
     title: 'AI Chatbot API',
-    description: 'AI-powered customer support chatbot with conversation memory, webhook support, and rate limiting. Powered by DeepSeek AI for intelligent responses.',
-    tech: ['Python', 'DeepSeek AI', 'FastAPI', 'Chatbot'],
+    description: 'AI-powered customer support chatbot with conversation memory, webhook support, and rate limiting. Powered by Google Gemini for intelligent responses.',
+    tech: ['Python', 'FastAPI', 'Gemini AI', 'Chatbot'],
     github: 'https://github.com/emmanalcazarjr-ops/chatbot-api',
     live: 'https://chatbot-api-two-teal.vercel.app',
     icon: FaRobot,
@@ -56,8 +56,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Automated Report Generator',
-    description: 'Upload CSV data and get a formatted performance report with KPIs, trends, and AI-written insights — automatically.',
-    tech: ['Python', 'FastAPI', 'DeepSeek AI', 'Vercel'],
+    description: 'Upload CSV data and get a formatted performance report with KPIs, trends, and AI-written insights powered by Google Gemini — automatically.',
+    tech: ['Python', 'FastAPI', 'Gemini AI', 'Vercel'],
     github: 'https://github.com/emmanalcazarjr-ops/automated-report-generator',
     live: 'https://automated-report-generator.vercel.app',
     icon: FaFileAlt,
@@ -75,8 +75,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Rush — Personal AI Assistant',
-    description: 'A private AI butler in Telegram: turns saved links into organized tasks, logs meals from food photos against a daily calorie cap, sends 7 AM / 7 PM briefings, and chats with memory. Runs 24/7 on Supabase Edge Functions — no server needed.',
-    tech: ['TypeScript', 'grammY', 'DeepSeek AI', 'Supabase Edge Functions'],
+    description: 'A private AI butler in Telegram: turns saved links into organized tasks, logs meals from food photos against a daily calorie cap, sends 7 AM / 7 PM briefings, and chats with memory. Powered by Google Gemini AI on Supabase Edge Functions.',
+    tech: ['TypeScript', 'grammY', 'Gemini AI', 'Supabase Edge Functions'],
     github: 'https://github.com/emmanalcazarjr-ops/personal-assistant-bot',
     live: 'https://t.me/RushDailyBot',
     icon: FaComments,
@@ -87,7 +87,7 @@ export const projects: Project[] = [
 
 export const techStack: string[] = [
   'Python', 'TypeScript', 'Node.js',
-  'DeepSeek AI', 'Gemini AI', 'FastAPI', 'Next.js',
+  'Gemini AI', 'FastAPI', 'Next.js',
   'grammY', 'Telegram Bot API', 'Supabase', 'Edge Functions',
   'Tailwind CSS', 'n8n', 'pandas', 'NumPy', 'scikit-learn',
   'PostgreSQL', 'Git', 'GitHub', 'Vercel', 'GitHub Actions',
@@ -106,10 +106,10 @@ export const certifications: Certification[] = [
 export const blogPosts: BlogPost[] = [
   {
     title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
-    excerpt: 'How I built a production-ready conversational AI assistant with FastAPI, DeepSeek AI, session memory, webhooks, and rate limiting — deployed on Vercel serverless.',
+    excerpt: 'How I built a production-ready conversational AI assistant with FastAPI, Google Gemini AI, session memory, webhooks, and rate limiting — deployed on Vercel serverless.',
     date: 'August 2026',
     readTime: '8 min read',
-    tags: ['Python', 'FastAPI', 'DeepSeek AI', 'AI'],
+    tags: ['Python', 'FastAPI', 'Gemini AI', 'AI'],
     slug: 'rush-ai-butler',
   },
 ]
@@ -148,7 +148,7 @@ export const roadmap: RoadmapGroup[] = [
     icon: '⚡',
     items: [
       { title: 'Building AI automation projects that solve real business problems', status: 'in-progress' },
-      { title: 'Connecting AI APIs (OpenAI, Claude, Gemini, DeepSeek) to automation tools like n8n, Zapier, and Make', status: 'in-progress' },
+      { title: 'Connecting AI APIs (Google Gemini, OpenAI, Claude) to automation tools like n8n, Zapier, and Make', status: 'in-progress' },
       { title: 'Producing case studies that show business value (hours saved, manual work reduced)', status: 'in-progress' },
       { title: 'Job search for AI automation and AI/ML roles', status: 'in-progress' },
     ],
@@ -183,7 +183,7 @@ export const roadmap: RoadmapGroup[] = [
       { title: 'DataCamp certifications', status: 'done', note: 'Data Analyst + AI Engineer Associate' },
       { title: 'Python', status: 'done', note: 'Intermediate Python — DataCamp' },
       { title: 'SQL', status: 'in-progress' },
-      { title: 'AI APIs: OpenAI, Claude, Gemini, DeepSeek', status: 'in-progress' },
+      { title: 'AI APIs: Google Gemini, OpenAI, Claude', status: 'in-progress' },
       { title: 'Zapier, Make, GoHighLevel, Power Automate', status: 'in-progress' },
       { title: 'Excel/Google Sheets automation', status: 'planned' },
       { title: 'Power BI / Looker Studio / Tableau', status: 'planned' },

@@ -19,7 +19,7 @@ The goal was a chatbot that could:
 |-------|------------|
 | Language | Python 3.12 |
 | Framework | FastAPI |
-| AI Model | DeepSeek AI (`deepseek-chat`) |
+| AI Model | Google Gemini AI (`gemini-3.7-flash`) |
 | Database | Neon PostgreSQL |
 | Deployment | Vercel Serverless Functions |
 | Docs | Auto-generated Swagger UI |
@@ -32,7 +32,7 @@ Rush is a serverless FastAPI application with a thin shared layer for its cross-
 api/
   main.py            # FastAPI app + routes
 shared/
-  deepseek.py        # DeepSeek AI integration
+  gemini.py          # Google Gemini AI integration
   database.py        # PostgreSQL connection + schema helpers
   auth.py            # API key authentication
   rate_limit.py      # Per-client rate limiting
@@ -67,7 +67,7 @@ Each conversation is identified by a `session_id`. When a message arrives, Rush:
 
 1. Loads the recent history for that session from PostgreSQL
 2. Builds a prompt that includes the conversation context plus the new message
-3. Calls DeepSeek AI and returns the response
+3. Calls Google Gemini AI and returns the response
 4. Persists the exchange so follow-up questions keep their context
 
 This turns a stateless API call into a coherent conversation.
@@ -91,7 +91,7 @@ The API runs as Vercel serverless functions with `vercel.json` mapping the route
 
 ## What I Learned
 
-- **Keep the model integration isolated.** Wrapping DeepSeek behind a small module made it trivial to swap providers or add caching later.
+- **Keep the model integration isolated.** Wrapping Google Gemini behind a small module made it trivial to swap providers or add caching later.
 - **Session memory is the feature that makes a chatbot feel useful.** Persisted history beats stateless Q&A by a wide margin.
 - **Auth + rate limiting belong in middleware-ish helpers**, not copy-pasted into every route.
 - **Swagger UI is free credibility.** Auto-generated docs at `/docs` make the API immediately understandable.

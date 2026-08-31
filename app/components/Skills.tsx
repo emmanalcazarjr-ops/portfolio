@@ -10,7 +10,7 @@ import {
   SiScikitlearn, SiTypescript, SiFastapi,
   SiNextdotjs, SiTelegram, SiPandas, SiNumpy, SiPostgresql,
   SiSupabase, SiVercel, SiN8N, SiTailwindcss,
-  SiDeepseek, SiGooglegemini, SiDeno,
+  SiGooglegemini, SiDeno,
 } from 'react-icons/si'
 import type { IconType } from 'react-icons'
 import ScrollReveal from './ScrollReveal'
@@ -20,7 +20,6 @@ const stackIcons: Record<string, { icon: IconType; color: string }> = {
   Python: { icon: FaPython, color: '#3776AB' },
   TypeScript: { icon: SiTypescript, color: '#3178C6' },
   'Node.js': { icon: FaNodeJs, color: '#6CC24A' },
-  'DeepSeek AI': { icon: SiDeepseek, color: '#4D6BFE' },
   'Gemini AI': { icon: SiGooglegemini, color: '#8E75FF' },
   FastAPI: { icon: SiFastapi, color: '#009688' },
   'Next.js': { icon: SiNextdotjs, color: '#FFFFFF' },
@@ -42,7 +41,7 @@ const stackIcons: Record<string, { icon: IconType; color: string }> = {
 
 const skillCategories = [
   { icon: FaCode, title: 'Languages & Web', desc: 'Python, TypeScript, Node.js, Next.js, Tailwind CSS', color: 'from-blue-500 to-cyan-500' },
-  { icon: FaBrain, title: 'AI & Machine Learning', desc: 'DeepSeek AI, Gemini AI, FastAPI, pandas, scikit-learn', color: 'from-cyan-500 to-blue-500' },
+  { icon: FaBrain, title: 'AI & Machine Learning', desc: 'Google Gemini, FastAPI, pandas, scikit-learn, LLM APIs', color: 'from-cyan-500 to-blue-500' },
   { icon: FaDatabase, title: 'Bots & Backend', desc: 'grammY, Telegram Bot API, Supabase Edge Functions, PostgreSQL', color: 'from-green-500 to-emerald-500' },
   { icon: FaRocket, title: 'Automation & DevOps', desc: 'n8n, Git, GitHub, Vercel, GitHub Actions', color: 'from-blue-500 to-indigo-500' },
 ]
