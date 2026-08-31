@@ -46,8 +46,8 @@ export interface SocialLink {
 export const projects: Project[] = [
   {
     title: 'AI Chatbot API',
-    description: 'AI-powered customer support chatbot with conversation memory, webhook support, and rate limiting. Powered by Google Gemini for intelligent responses.',
-    tech: ['Python', 'FastAPI', 'Gemini AI', 'Chatbot'],
+    description: 'Autonomous customer support agent with multi-turn session memory, webhook triggers, and intelligent rate limiting powered by Google Gemini AI.',
+    tech: ['Python', 'FastAPI', 'Gemini AI', 'Supabase', 'AI Automation'],
     github: 'https://github.com/emmanalcazarjr-ops/chatbot-api',
     live: 'https://chatbot-api-two-teal.vercel.app',
     icon: FaRobot,
@@ -56,8 +56,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Automated Report Generator',
-    description: 'Upload CSV data and get a formatted performance report with KPIs, trends, and AI-written insights powered by Google Gemini — automatically.',
-    tech: ['Python', 'FastAPI', 'Gemini AI', 'Vercel'],
+    description: 'End-to-end data reporting automation: ingests raw CSV datasets, computes operational KPIs, and generates executive AI summaries automatically in seconds.',
+    tech: ['Python', 'FastAPI', 'Gemini AI', 'Data Pipelines', 'Vercel'],
     github: 'https://github.com/emmanalcazarjr-ops/automated-report-generator',
     live: 'https://automated-report-generator.vercel.app',
     icon: FaFileAlt,
@@ -66,8 +66,8 @@ export const projects: Project[] = [
   },
   {
     title: 'Water Station — Telegram Bots',
-    description: 'Two Telegram bots for a water refilling station: customers order by tower and unit using a nickname + PIN, and the owner gets live order alerts with one-tap "mark done". Everything lives in chat — no web app needed.',
-    tech: ['Node.js', 'grammY', 'Supabase', 'Telegram Bot API'],
+    description: 'Full-cycle conversational order automation for a water refilling station: customer unit-level ordering, operator instant dispatch, and real-time database sync.',
+    tech: ['Node.js', 'grammY', 'Supabase', 'Telegram Bot API', 'Automation'],
     github: 'https://github.com/emmanalcazarjr-ops/water-station-telegram-bot',
     icon: FaRobot,
     gradient: 'from-emerald-500 via-cyan-500 to-blue-600',
@@ -75,7 +75,7 @@ export const projects: Project[] = [
   },
   {
     title: 'Rush — Personal AI Assistant',
-    description: 'A private AI butler in Telegram: turns saved links into organized tasks, logs meals from food photos against a daily calorie cap, sends 7 AM / 7 PM briefings, and chats with memory. Powered by Google Gemini AI on Supabase Edge Functions.',
+    description: 'Autonomous 24/7 executive AI butler on Telegram: dynamic link curation queue, multimodal calorie counter vs 1,850 kcal cap, and instant desktop workspace synchronization.',
     tech: ['TypeScript', 'grammY', 'Gemini AI', 'Supabase Edge Functions'],
     github: 'https://github.com/emmanalcazarjr-ops/personal-assistant-bot',
     live: 'https://t.me/RushDailyBot',
@@ -86,24 +86,32 @@ export const projects: Project[] = [
 ]
 
 export const techStack: string[] = [
-  'Python', 'TypeScript', 'Node.js',
+  'n8n', 'Python', 'TypeScript', 'Node.js',
   'Gemini AI', 'FastAPI', 'Next.js',
   'grammY', 'Telegram Bot API', 'Supabase', 'Edge Functions',
-  'Tailwind CSS', 'n8n', 'pandas', 'NumPy', 'scikit-learn',
+  'Tailwind CSS', 'pandas', 'NumPy', 'scikit-learn',
   'PostgreSQL', 'Git', 'GitHub', 'Vercel', 'GitHub Actions',
 ]
 
 export const certifications: Certification[] = [
   { title: 'Electronics Engineer License (ECE)', org: 'PRC', icon: '⚡' },
   { title: 'Electronics Technician License (ECT)', org: 'PRC', icon: '🔧' },
-  { title: 'ICT Infrastructure Certification', org: 'Internetworking End Devices', icon: '🌐' },
-  { title: 'Data Analyst Associate', org: 'DataCamp', icon: '📈' },
-  { title: 'AI Engineer for Developers', org: 'DataCamp', icon: '🤖' },
   { title: 'Workflow Automation with n8n', org: 'DataCamp', icon: '⚙️' },
-  { title: 'Python', org: 'DataCamp', icon: '🐍' },
+  { title: 'AI Engineer for Developers', org: 'DataCamp', icon: '🤖' },
+  { title: 'Data Analyst Associate', org: 'DataCamp', icon: '📈' },
+  { title: 'ICT Infrastructure Certification', org: 'Internetworking End Devices', icon: '🌐' },
+  { title: 'Python Programming', org: 'DataCamp', icon: '🐍' },
 ]
 
 export const blogPosts: BlogPost[] = [
+  {
+    title: 'Building Production AI Agents with n8n, FastAPI & Google Gemini',
+    excerpt: 'A blueprint for architecting resilient autonomous agents: combining deterministic n8n workflows with Gemini LLM reasoning, Supabase state memory, and zero-downtime rate limit resilience.',
+    date: 'August 2026',
+    readTime: '10 min read',
+    tags: ['n8n', 'Google Gemini', 'FastAPI', 'AI Automation', 'Supabase'],
+    slug: 'production-ai-agents-n8n-gemini',
+  },
   {
     title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
     excerpt: 'How I built a production-ready conversational AI assistant with FastAPI, Google Gemini AI, session memory, webhooks, and rate limiting — deployed on Vercel serverless.',

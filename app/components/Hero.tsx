@@ -91,8 +91,9 @@ export default function Hero() {
               <TypeWriter
                 texts={[
                   'Licensed Electronics Engineer',
-                  'AI/ML Developer',
-                  'Data Science & ML Developer'
+                  'AI Automation Specialist',
+                  'Autonomous Systems Developer',
+                  'AI Solutions Engineer'
                 ]}
                 speed={80}
                 deleteSpeed={40}
@@ -103,8 +104,8 @@ export default function Hero() {
 
           <ScrollReveal delay={0.6}>
             <p className="text-lg text-slate-400 max-w-2xl mx-auto mb-10">
-              I build AI automation and intelligent systems that help people
-              and businesses work smarter and faster.
+              I build autonomous AI agents, n8n automation pipelines, and intelligent systems
+              that eliminate repetitive manual work and help businesses scale faster.
             </p>
           </ScrollReveal>
 

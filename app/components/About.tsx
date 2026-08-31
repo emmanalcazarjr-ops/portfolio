@@ -5,19 +5,19 @@ import ScrollReveal from './ScrollReveal'
 
 const aboutItems = [
   { 
-    title: 'Education', 
+    title: 'Education & Licenses', 
     icon: '🎓',
-    items: ['BS Electronics Engineering', 'Licensed ECE & ECT', 'DataCamp Certifications']
+    items: ['BS Electronics Engineering', 'Licensed ECE & ECT (PRC)', 'DataCamp AI & Data Associate']
   },
   { 
-    title: 'Experience', 
-    icon: '💼',
-    items: ['Software Engineering', 'Machine Learning Development', 'AI Automation & Workflows']
+    title: 'Core Expertise', 
+    icon: '⚙️',
+    items: ['AI Automation & n8n Workflows', 'Autonomous Telegram & Web Agents', 'API & Webhook Orchestration']
   },
   { 
-    title: 'Focus Areas', 
+    title: 'Business Impact', 
     icon: '🎯',
-    items: ['AI-Powered Applications', 'Intelligent Chatbots & Bots', 'Enterprise Automation']
+    items: ['Eliminating Repetitive Manual Work', 'Real-Time KPI & Data Pipelines', 'High-ROI Operational Systems']
   },
 ]
 
@@ -45,20 +45,22 @@ export default function About() {
           <ScrollReveal direction="left">
             <div className="space-y-6">
               <p className="text-lg text-slate-400 leading-relaxed">
-                I'm a <span className="text-white font-semibold">Licensed Electronics Engineer</span> turned 
-                <span className="text-white font-semibold"> AI/ML Developer</span> and 
-                <span className="text-white font-semibold"> Software Engineer</span>. My journey 
-                started in electronics and telecommunications, but my passion for building intelligent 
-                systems led me to the world of AI and software engineering.
+                I'm a <span className="text-white font-semibold">Licensed Electronics Engineer</span> specializing in 
+                <span className="text-white font-semibold"> AI Automation</span>, 
+                <span className="text-white font-semibold"> Autonomous Agents</span>, and 
+                <span className="text-white font-semibold"> Intelligent Systems</span>. My engineering background 
+                grounds my work in systems thinking, telemetry, and fault-tolerant architecture—qualities 
+                essential for production-grade AI that businesses can truly depend on.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
-                With expertise in <span className="text-cyan-400">Python</span>, <span className="text-cyan-400">Node.js / TypeScript</span>, 
-                and modern AI APIs, I specialize in building production-ready applications that solve 
-                real-world business problems through intelligent automation and custom AI systems.
+                With deep expertise in <span className="text-cyan-400">n8n Automation</span>, <span className="text-cyan-400">Python &amp; FastAPI</span>, 
+                <span className="text-cyan-400">TypeScript / Node.js</span>, and <span className="text-cyan-400">Google Gemini &amp; LLM APIs</span>, 
+                I design and deploy end-to-end automation pipelines that replace slow manual workflows with autonomous, 
+                self-healing software.
               </p>
               <p className="text-lg text-slate-400 leading-relaxed">
-                My goal is to bridge the gap between cutting-edge AI capabilities and practical business workflows, 
-                creating systems that are both intelligent and reliable.
+                My mission is straightforward: turn cutting-edge generative AI models into measurable business ROI—reducing 
+                operational overhead, slashing turnaround times, and giving teams valuable hours back every single week.
               </p>
             </div>
           </ScrollReveal>

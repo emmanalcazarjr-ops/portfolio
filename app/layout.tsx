@@ -3,9 +3,9 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://portfolio-elalcazarjr.vercel.app'),
-  title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
-  description: 'Licensed Electronics Engineer specializing in AI Automation, Intelligent Systems, and Software Engineering.',
-  keywords: ['Electronics Engineer', 'AI Automation', 'AI/ML Developer', 'Intelligent Systems', 'Python', 'TypeScript', 'Next.js', 'FastAPI', 'Portfolio'],
+  title: 'Emmanuel Alcazar Jr. | AI Automation & Solutions Specialist',
+  description: 'Licensed Electronics Engineer specializing in AI Automation, Autonomous Agents, and High-ROI Business Workflows with n8n, Python, TypeScript, and Google Gemini AI.',
+  keywords: ['AI Automation', 'AI Solutions Specialist', 'Autonomous Agents', 'n8n Automation', 'Electronics Engineer', 'AI/ML Developer', 'Intelligent Systems', 'Python', 'FastAPI', 'TypeScript', 'Next.js', 'Portfolio'],
   authors: [{ name: 'Emmanuel L. Alcazar Jr.' }],
   creator: 'Emmanuel L. Alcazar Jr.',
   openGraph: {
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://portfolio-elalcazarjr.vercel.app',
     siteName: 'Emmanuel Alcazar Jr. Portfolio',
-    title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
-    description: 'Licensed Electronics Engineer specializing in AI/ML Development, Machine Learning, and intelligent applications.',
+    title: 'Emmanuel Alcazar Jr. | AI Automation & Solutions Specialist',
+    description: 'Licensed Electronics Engineer building autonomous AI agents, n8n workflows, and intelligent applications that eliminate manual work.',
     images: [
       {
         url: '/PFP.jpg',
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Emmanuel Alcazar Jr. | Electronics Engineer & AI/ML Developer',
-    description: 'Licensed Electronics Engineer specializing in AI/ML Development, Machine Learning, and intelligent applications.',
+    title: 'Emmanuel Alcazar Jr. | AI Automation & Solutions Specialist',
+    description: 'Licensed Electronics Engineer building autonomous AI agents, n8n workflows, and intelligent applications that eliminate manual work.',
     images: ['/PFP.jpg'],
   },
   icons: {
