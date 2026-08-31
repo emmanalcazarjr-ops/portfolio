@@ -35,7 +35,7 @@ interface MealEntry {
   time: string
 }
 
-// In-memory daily ledger fallback (persisted across serverless warm invocations)
+// In-memory daily ledger fallback (persisted across warm serverless invocations)
 const memoryCalorieLedger: Record<string, MealEntry[]> = {}
 
 function getManilaDateKey(): string {
@@ -51,6 +51,15 @@ function getManilaTimeString(): string {
   }).format(new Date())
 }
 
+function isFoodLoggingInput(text: string): boolean {
+  const trimmed = text.trim()
+  if (trimmed.endsWith('?')) return false
+  if (/^(what|how|why|is|are|can|could|would|do|does|tell|explain|who|where|when)\b/i.test(trimmed)) return false
+
+  const foodPattern = /\b(ate|had|consumed|drank|eating|drinking|breakfast|lunch|dinner|snack|meal|log|logged|eggs?|rice|chicken|beef|pork|fish|salmon|tuna|salad|bread|toast|oats|oatmeal|protein|shake|whey|burger|pizza|pasta|noodles|soup|milk|coffee|banana|apple|fruit|steak|cal|kcal|calories|g\b|grams|cups?|slices?|pieces?|servings?|bowl|sandwich|wrap|chips|fries|yogurt|cheese|pancake|waffle|bacon|sausage|potato|turkey|avocado|smoothie)\b/i
+  return foodPattern.test(trimmed)
+}
+
 async function recordMealLog(entry: MealEntry): Promise<void> {
   const dateKey = entry.date
   if (!memoryCalorieLedger[dateKey]) {
@@ -58,20 +67,16 @@ async function recordMealLog(entry: MealEntry): Promise<void> {
   }
   memoryCalorieLedger[dateKey].push(entry)
 
-  // Persist to Supabase if available
+  // Persist to Supabase if configured
   if (isSupabaseConfigured()) {
     try {
       const client = getAdminClient()
       if (client) {
-        await client.from('calorie_logs').insert([
+        await client.from('chatbot_messages').insert([
           {
-            meal_name: entry.meal,
-            calories: entry.calories,
-            protein: entry.protein,
-            carbs: entry.carbs,
-            fat: entry.fat,
-            source: 'telegram_bot',
-            log_date: entry.date,
+            session_id: `calories_${dateKey}`,
+            role: 'user',
+            content: JSON.stringify(entry),
           },
         ])
       }
@@ -91,25 +96,31 @@ async function getDailyNutritionSummary(dateKey: string): Promise<{
 }> {
   const mealsMap = new Map<string, { meal: string; calories: number; protein: number; carbs: number; fat: number }>()
 
-  // 1. Fetch from Supabase
+  // 1. Fetch from Supabase memory
   if (isSupabaseConfigured()) {
     try {
       const client = getAdminClient()
       if (client) {
         const { data } = await client
-          .from('calorie_logs')
-          .select('meal_name, calories, protein, carbs, fat, id')
-          .eq('log_date', dateKey)
+          .from('chatbot_messages')
+          .select('content')
+          .eq('session_id', `calories_${dateKey}`)
+          .eq('role', 'user')
         if (data && Array.isArray(data)) {
-          for (const r of data) {
-            const key = (r.id || r.meal_name + '_' + r.calories).toString()
-            mealsMap.set(key, {
-              meal: r.meal_name || 'Meal',
-              calories: Number(r.calories) || 0,
-              protein: Number(r.protein) || 0,
-              carbs: Number(r.carbs) || 0,
-              fat: Number(r.fat) || 0,
-            })
+          for (let i = 0; i < data.length; i++) {
+            try {
+              const r = JSON.parse(data[i].content)
+              if (r.calories) {
+                const key = `db_${i}_${r.meal}_${r.calories}`
+                mealsMap.set(key, {
+                  meal: r.meal || 'Meal',
+                  calories: Number(r.calories) || 0,
+                  protein: Number(r.protein) || 0,
+                  carbs: Number(r.carbs) || 0,
+                  fat: Number(r.fat) || 0,
+                })
+              }
+            } catch {}
           }
         }
       }
@@ -175,7 +186,7 @@ function getButlerSystemPrompt(): string {
   }).format(now)
 
   return `You are Rush, the personal AI butler, chief of staff, and intelligent companion for Emmanuel Alcazar Jr. (always address him respectfully as "sir").
-You are powered directly by Google Gemini 3.7 Flash and connected 24/7 to his cloud backend and his Antigravity desktop engineering workspace.
+You are powered directly by Google Gemini AI (Gemini 3.7 Flash) and connected 24/7 to his cloud backend and his Antigravity desktop engineering workspace.
 
 Temporal Grounding (Real-World Current Date & Time):
 - Current Date Today: ${dateStr}
@@ -189,14 +200,16 @@ About Emmanuel Alcazar Jr. ("sir"):
 - Portfolio: https://portfolio-elalcazarjr.vercel.app
 - LinkedIn: https://www.linkedin.com/in/emmanalcazarjr/
 - Email: EmmanAlcazarJr@gmail.com
-- Stack: Python (FastAPI, pandas, NumPy, scikit-learn), TypeScript, Node.js, Next.js, grammY, Tailwind CSS, n8n, Supabase, PostgreSQL, Google Gemini AI (Gemini 3.7 Flash), Git, GitHub Actions, Vercel
+- Stack: Python (FastAPI, pandas, NumPy, scikit-learn), TypeScript, Node.js, Next.js, grammY, Tailwind CSS, n8n, Supabase, PostgreSQL, Google Gemini AI, Git, GitHub Actions, Vercel
 - Projects: Automated Report Generator, Water Station Telegram Bots, Rush Personal AI Assistant, AI Chatbot API, Shared Backend
 
 Personality & Rules:
 - Address Emman as "sir" naturally and with genuine loyalty (e.g. "Good day, sir", "Right away, sir", "Understood, sir").
 - Tone: Sharp, highly intelligent, proactive, polished yet casual, zero corporate fluff or robotic filler.
-- Model Identity: You are powered by Google Gemini 3.7 Flash. If asked about your model or version, state clearly that you are running on Gemini 3.7 Flash.
+- Model Identity: You are powered by Google Gemini AI (Gemini 3.7 Flash).
 - Conciseness: Keep responses crisp and punchy (1 to 3 short paragraphs max, or concise bullet points). If sir asks you to expound, elaborate, or explain something in detail, provide comprehensive and master-class depth.
+- Intellect: You are world-class at software architecture, Python, TypeScript, AI/ML engineering, n8n automation, nutrition science, and strategic decision making.
+- Be genuinely interactive and conversational: Answer any question, chat about ideas, brainstorm, solve coding problems, tell jokes, or offer advice when asked.
 - Always finish your sentences and complete all thoughts cleanly.`
 }
 
@@ -276,19 +289,17 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
     for (const model of GEMINI_MODELS) {
       try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`
+        const prompt = `Estimate the meal name, realistic calories (kcal), and macros (protein, carbs, fat in grams) for: "${description}".
+Output ONLY a JSON block like:
+{"meal": "2 Boiled Eggs & 1 Banana", "calories": 255, "protein": 14, "carbs": 28, "fat": 10}`
+
         const res = await fetch(url, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            system_instruction: {
-              parts: [{
-                text: 'You are an expert Clinical Nutritionist for Emmanuel Alcazar Jr. ("sir"). Analyze the meal or food items described. Estimate realistic portions, total calories (kcal), and macronutrients (Protein, Carbs, Fat in grams). Return ONLY a JSON object: {"meal": "Short Title (e.g. 2 Boiled Eggs & White Rice)", "calories": 345, "protein": 18, "carbs": 46, "fat": 11}'
-              }]
-            },
-            contents: [{ role: 'user', parts: [{ text: `Meal described by sir: "${description}"` }] }],
+            contents: [{ role: 'user', parts: [{ text: prompt }] }],
             generationConfig: {
-              response_mime_type: 'application/json',
-              temperature: 0.2,
+              temperature: 0.1,
               maxOutputTokens: 300,
             },
           }),
@@ -297,13 +308,16 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
         const data = await res.json()
         const raw = data?.candidates?.[0]?.content?.parts?.[0]?.text
         if (raw) {
-          const parsed = JSON.parse(raw)
-          return {
-            meal: parsed.meal || description.slice(0, 45),
-            calories: Number(parsed.calories) || 400,
-            protein: Number(parsed.protein) || 20,
-            carbs: Number(parsed.carbs) || 40,
-            fat: Number(parsed.fat) || 12,
+          const match = raw.match(/\{[\s\S]*\}/)
+          if (match) {
+            const parsed = JSON.parse(match[0])
+            return {
+              meal: parsed.meal || description.slice(0, 45),
+              calories: Number(parsed.calories) || 350,
+              protein: Number(parsed.protein) || 20,
+              carbs: Number(parsed.carbs) || 35,
+              fat: Number(parsed.fat) || 10,
+            }
           }
         }
       } catch {
@@ -314,9 +328,9 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
 
   // Clinical heuristic fallback
   const lower = description.toLowerCase()
-  let cal = 350
+  let cal = 320
   let p = 15
-  let c = 40
+  let c = 35
   let f = 10
 
   if (lower.includes('egg')) {
@@ -453,8 +467,9 @@ export async function POST(req: NextRequest) {
     }
     // 3. Calorie Queries (Explicit inquiry, NOT logging)
     else if (
-      /^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake|food\s+status)/i.test(text) ||
-      /^calories\??$/i.test(text)
+      /^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake|food\s+status|daily\s+calories)/i.test(text) ||
+      /^calories\??$/i.test(text) ||
+      /\b(how many calories left|calories remaining|calorie count)\b/i.test(text)
     ) {
       const daily = await getDailyNutritionSummary(todayStr)
       const remaining = Math.max(0, DEFAULT_CALORIE_CAP - daily.totalKcal)
@@ -481,11 +496,8 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 4. Food Text Logging (Explicit consumption or food portions)
-    else if (
-      /^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate|logged\s*:?|log\s*food\s*:?)\s+/i.test(text) ||
-      /^(\d+\s*(eggs?|boiled eggs?|fried eggs?|cups?\s+of\s+rice|bowls?\s+of\s+rice|g\s+|grams?\s+of|oz\s+|slices?\s+of|pieces?\s+of|tacos?|burgers?|bananas?|apples?))/i.test(text)
-    ) {
+    // 4. Food Text Logging (Natural meal input or food portions)
+    else if (isFoodLoggingInput(text)) {
       const estimated = await estimateMealNutrition(text)
       
       // Save entry to daily ledger
@@ -570,7 +582,7 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 7. Conversational Google Gemini 3.7 Flash AI Butler
+    // 7. Conversational Google Gemini AI Butler
     else {
       const geminiText = await callGemini([
         { role: 'user', content: text },
