@@ -23,7 +23,8 @@ You are directly connected to Emman's Antigravity desktop engineering workspace 
 CRITICAL RULE:
 Keep ALL responses as short, crisp, and direct as possible (1-3 sentences maximum).
 Never give lengthy explanations, boilerplate, or essays UNLESS sir explicitly asks you to expound, elaborate, or explain in detail.
-Tone: natural professional-casual (e.g. "Good day, sir", "Right away, sir", "Understood, sir"). Zero corporate fluff.`
+Tone: natural professional-casual (e.g. "Good day, sir", "Right away, sir", "Understood, sir"). Zero corporate fluff.
+Never pretend to log or save things unless sir explicitly asked to log a meal, take a note, or set a reminder.`
 
 function renderProgressBar(current: number, target = DEFAULT_CALORIE_CAP): string {
   const pct = Math.min(100, Math.round((current / target) * 100))
@@ -35,12 +36,23 @@ function renderProgressBar(current: number, target = DEFAULT_CALORIE_CAP): strin
 function getSmartButlerResponse(query: string): string {
   const q = query.toLowerCase().trim()
 
+  // Acknowledgments & quick replies
+  if (/^(ok|okay|alright|cool|nice|great|got it|sounds good|copy that|noted|thanks|thank you|ty|thx)\b/i.test(q)) {
+    const acks = [
+      "At your service, sir.",
+      "Glad to assist, sir.",
+      "Standing by whenever you need me, sir.",
+      "Ready for the next task, sir.",
+    ]
+    return acks[Math.floor(Math.random() * acks.length)]
+  }
+
   // Greetings
   if (/^(hi|hello|hey|good\s+morning|good\s+afternoon|good\s+evening|sup|yo|rush|hey\s+rush)\b/i.test(q)) {
     const greetings = [
-      "Good day, sir! At your service. What can I assist you with today?",
-      "Greetings, sir. All systems are operational. Ready whenever you are.",
-      "Hello, sir! Standing by for your food logs, queue items, or daily tasks.",
+      "Good day, sir! How can I assist you right now?",
+      "Greetings, sir. All systems running smooth. What's on your mind?",
+      "Hello, sir! Ready for food logging, links, or general assistance.",
     ]
     return greetings[Math.floor(Math.random() * greetings.length)]
   }
@@ -55,12 +67,12 @@ function getSmartButlerResponse(query: string): string {
     return [
       "🎩 *Rush AI Butler — Capabilities:*",
       "",
-      "• 🥗 *Food & Calories:* Type what you ate or send food photos (auto-tracked vs 1,850 kcal cap)",
-      "• 📊 *Calorie Check:* Ask _'How many calories left?'_ for today's live macros",
-      "• 📥 *Link Curation:* Share any link or repo to queue for Antigravity desktop",
-      "• 📝 *Quick Notes:* Type _'Note: [your thought]'_ to save with tags",
+      "• 🥗 *Food Logging:* Tell me what you ate (e.g. _'Ate 2 eggs and rice'_) or send a meal photo vs your 1,850 kcal daily cap",
+      "• 📊 *Calorie Status:* Ask _'How many calories left?'_ or _'What's my calorie intake?'_",
+      "• 📥 *Link Curation:* Share any link or GitHub repo to queue for Antigravity desktop",
+      "• 📝 *Quick Notes:* Type _'Note: [your idea]'_ to store a tagged thought",
       "• ⏰ *Reminders:* Type _'Remind me to [task] at [time]'_",
-      "• ☀️ *Briefings:* Ask for your morning or evening briefing anytime",
+      "• ☀️ *Briefings:* Ask _'Give me my briefing'_ anytime",
     ].join('\n')
   }
 
@@ -75,14 +87,14 @@ function getSmartButlerResponse(query: string): string {
   }
 
   // Notes
-  if (/^(note|take\s+a\s+note|save\s+note|remember\s+this)/i.test(q)) {
-    const content = query.replace(/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)\s*/i, '')
+  if (/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?|remember\s+this\s*:?)/i.test(q)) {
+    const content = query.replace(/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?|remember\s+this\s*:?)\s*/i, '').trim()
     return `📝 *Note Saved, Sir.*\n\n"${content || query}"\n\n_Indexed for your desktop workspace._`
   }
 
   // Reminders
-  if (/^(remind\s+me|set\s+a\s+reminder|don't\s+forget)/i.test(q)) {
-    return `⏰ *Reminder Recorded, Sir.*\n\nI'll ensure you stay on track for: "${query}".`
+  if (/^(remind\s+me(\s+to)?|set\s+a\s+reminder|don't\s+forget\s+to|dont\s+forget\s+to)/i.test(q)) {
+    return `⏰ *Reminder Recorded, Sir.*\n\nI'll keep you accountable for: "${query}".`
   }
 
   // Briefing
@@ -98,7 +110,12 @@ function getSmartButlerResponse(query: string): string {
     ].join('\n')
   }
 
-  return "Understood, sir. I have logged that and will keep it in context. What is our next objective?"
+  // General questions or conversation
+  if (/\b(why|how|what|when|where|who|can\s+you|could\s+you|should\s+i|advice|recommend|tell\s+me)\b/i.test(q)) {
+    return `I hear you, sir. I'm ready to assist with whatever you need regarding code, automation, nutrition, or your Antigravity queue.`
+  }
+
+  return "Understood, sir. What would you like to tackle next?"
 }
 
 async function callGemini(messages: Array<{ role: string; content: string }>): Promise<string> {
@@ -160,7 +177,7 @@ function estimateHeuristicNutrition(text: string): { meal: string; calories: num
     cal = 120; p = 2; c = 18; f = 4
   }
 
-  const cleanMeal = text.replace(/^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate)\s*/i, '').trim()
+  const cleanMeal = text.replace(/^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate|logged\s*:?|log\s*:?)\s*/i, '').trim()
   return {
     meal: cleanMeal.length > 0 ? cleanMeal.slice(0, 45) : 'Meal Entry',
     calories: cal,
@@ -236,7 +253,7 @@ export async function POST(req: NextRequest) {
 
     let replyText = ''
 
-    // 1. Photo handling (Meal Logging)
+    // 1. Photo handling (Meal Photo Logging)
     if (msg.photo && msg.photo.length > 0) {
       const caption = msg.caption || 'Meal Photo'
       const estimated = await estimateMealNutrition(caption)
@@ -259,15 +276,15 @@ export async function POST(req: NextRequest) {
         `Good day, sir! 👋 I am *Rush*, your personal AI assistant and butler.`,
         '',
         `Talk to me naturally:`,
-        `• 🥗 *Food & Calories:* Type meals or send photos for auto-tracking (1,850 kcal cap)`,
+        `• 🥗 *Food & Calories:* Type what you ate or send photos to track vs your 1,850 kcal cap`,
         `• 📥 *Links & Ideas:* Share links to queue for Antigravity desktop`,
         `• 💬 *Butler Chat:* Ask questions or request advice anytime`,
       ].join('\n')
     } else if (text === '/ping') {
       replyText = `🏓 Pong, sir! All systems operational.`
     }
-    // 3. Calorie Queries
-    else if (/calories|how many calories|calorie status|what did i eat|my kcal/i.test(text)) {
+    // 3. Calorie Queries (Explicit inquiry, NOT logging)
+    else if (/^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake)/i.test(text) || /^calories\??$/i.test(text)) {
       replyText = [
         `🥗 *Calorie Target Status, Sir:*`,
         '',
@@ -277,8 +294,10 @@ export async function POST(req: NextRequest) {
         `🎯 *Remaining Allowance:* \`1,400 kcal\` (from 1,850 kcal daily cap)`,
       ].join('\n')
     }
-    // 4. Food Text Logging
-    else if (/^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate)/i.test(text) || /(2\s+eggs|chicken\s+breast|white\s+rice|protein\s+shake|salad|burger|tacos|pizza)/i.test(text)) {
+    // 4. Food Text Logging (ONLY if explicitly logging food consumed)
+    else if (
+      /^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate|logged\s*:?|log\s*food\s*:?)\s+/i.test(text)
+    ) {
       const estimated = await estimateMealNutrition(text)
       const remaining = Math.max(0, DEFAULT_CALORIE_CAP - estimated.calories)
 
@@ -311,7 +330,7 @@ export async function POST(req: NextRequest) {
         `_Saved & ready for desktop Antigravity, sir!_`,
       ].join('\n')
     }
-    // 6. Conversational Butler Chat
+    // 6. Conversational Butler Chat & Q&A
     else {
       replyText = await callGemini([
         { role: 'user', content: text },
