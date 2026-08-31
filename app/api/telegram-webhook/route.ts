@@ -25,6 +25,133 @@ const GEMINI_MODELS = [
 
 const DEFAULT_CALORIE_CAP = 1850
 
+interface MealEntry {
+  meal: string
+  calories: number
+  protein: number
+  carbs: number
+  fat: number
+  date: string
+  time: string
+}
+
+// In-memory daily ledger fallback (persisted across serverless warm invocations)
+const memoryCalorieLedger: Record<string, MealEntry[]> = {}
+
+function getManilaDateKey(): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Manila' }).format(new Date())
+}
+
+function getManilaTimeString(): string {
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Manila',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+  }).format(new Date())
+}
+
+async function recordMealLog(entry: MealEntry): Promise<void> {
+  const dateKey = entry.date
+  if (!memoryCalorieLedger[dateKey]) {
+    memoryCalorieLedger[dateKey] = []
+  }
+  memoryCalorieLedger[dateKey].push(entry)
+
+  // Persist to Supabase if available
+  if (isSupabaseConfigured()) {
+    try {
+      const client = getAdminClient()
+      await client.from('calorie_logs').insert([
+        {
+          meal_name: entry.meal,
+          calories: entry.calories,
+          protein: entry.protein,
+          carbs: entry.carbs,
+          fat: entry.fat,
+          source: 'telegram_bot',
+          log_date: entry.date,
+        },
+      ])
+    } catch {
+      // Gracefully continue with in-memory ledger
+    }
+  }
+}
+
+async function getDailyNutritionSummary(dateKey: string): Promise<{
+  totalKcal: number
+  totalP: number
+  totalC: number
+  totalF: number
+  count: number
+  meals: Array<{ meal: string; calories: number }>
+}> {
+  const mealsMap = new Map<string, { meal: string; calories: number; protein: number; carbs: number; fat: number }>()
+
+  // 1. Fetch from Supabase
+  if (isSupabaseConfigured()) {
+    try {
+      const client = getAdminClient()
+      const { data } = await client
+        .from('calorie_logs')
+        .select('meal_name, calories, protein, carbs, fat, id')
+        .eq('log_date', dateKey)
+      if (data && Array.isArray(data)) {
+        for (const r of data) {
+          const key = (r.id || r.meal_name + '_' + r.calories).toString()
+          mealsMap.set(key, {
+            meal: r.meal_name || 'Meal',
+            calories: Number(r.calories) || 0,
+            protein: Number(r.protein) || 0,
+            carbs: Number(r.carbs) || 0,
+            fat: Number(r.fat) || 0,
+          })
+        }
+      }
+    } catch {}
+  }
+
+  // 2. Combine with memory ledger for today
+  const memLogs = memoryCalorieLedger[dateKey] || []
+  for (let i = 0; i < memLogs.length; i++) {
+    const r = memLogs[i]
+    const key = `mem_${i}_${r.meal}_${r.calories}`
+    if (!mealsMap.has(key)) {
+      mealsMap.set(key, {
+        meal: r.meal,
+        calories: r.calories,
+        protein: r.protein,
+        carbs: r.carbs,
+        fat: r.fat,
+      })
+    }
+  }
+
+  let totalKcal = 0
+  let totalP = 0
+  let totalC = 0
+  let totalF = 0
+  const mealsList: Array<{ meal: string; calories: number }> = []
+
+  for (const m of mealsMap.values()) {
+    totalKcal += m.calories
+    totalP += m.protein
+    totalC += m.carbs
+    totalF += m.fat
+    mealsList.push({ meal: m.meal, calories: m.calories })
+  }
+
+  return {
+    totalKcal,
+    totalP,
+    totalC,
+    totalF,
+    count: mealsList.length,
+    meals: mealsList,
+  }
+}
+
 function getButlerSystemPrompt(): string {
   const now = new Date()
   const dateStr = new Intl.DateTimeFormat('en-US', {
@@ -66,8 +193,6 @@ Personality & Rules:
 - Tone: Sharp, highly intelligent, proactive, polished yet casual, zero corporate fluff or robotic filler.
 - Model Identity: You are powered by Google Gemini 3.7 Flash. If asked about your model or version, state clearly that you are running on Gemini 3.7 Flash.
 - Conciseness: Keep responses crisp and punchy (1 to 3 short paragraphs max, or concise bullet points). If sir asks you to expound, elaborate, or explain something in detail, provide comprehensive and master-class depth.
-- Intellect: You are world-class at software architecture, Python, TypeScript, AI/ML engineering, n8n automation, nutrition science, and strategic decision making.
-- Be genuinely interactive and conversational: Answer any question, chat about ideas, brainstorm, solve coding problems, tell jokes, or offer advice when asked.
 - Always finish your sentences and complete all thoughts cleanly.`
 }
 
@@ -153,10 +278,10 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
           body: JSON.stringify({
             system_instruction: {
               parts: [{
-                text: 'You are an expert nutritionist. Estimate realistic calories and macronutrients for the meal description. Return ONLY valid JSON: {"meal": "...", "calories": 450, "protein": 25, "carbs": 45, "fat": 15}'
+                text: 'You are an expert Clinical Nutritionist for Emmanuel Alcazar Jr. ("sir"). Analyze the meal or food items described. Estimate realistic portions, total calories (kcal), and macronutrients (Protein, Carbs, Fat in grams). Return ONLY a JSON object: {"meal": "Short Title (e.g. 2 Boiled Eggs & White Rice)", "calories": 345, "protein": 18, "carbs": 46, "fat": 11}'
               }]
             },
-            contents: [{ role: 'user', parts: [{ text: description }] }],
+            contents: [{ role: 'user', parts: [{ text: `Meal described by sir: "${description}"` }] }],
             generationConfig: {
               response_mime_type: 'application/json',
               temperature: 0.2,
@@ -170,11 +295,11 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
         if (raw) {
           const parsed = JSON.parse(raw)
           return {
-            meal: parsed.meal || description.slice(0, 40),
-            calories: Number(parsed.calories) || 450,
+            meal: parsed.meal || description.slice(0, 45),
+            calories: Number(parsed.calories) || 400,
             protein: Number(parsed.protein) || 20,
             carbs: Number(parsed.carbs) || 40,
-            fat: Number(parsed.fat) || 15,
+            fat: Number(parsed.fat) || 12,
           }
         }
       } catch {
@@ -183,7 +308,24 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
     }
   }
 
-  return { meal: description.slice(0, 40), calories: 450, protein: 20, carbs: 40, fat: 15 }
+  // Clinical heuristic fallback
+  const lower = description.toLowerCase()
+  let cal = 350
+  let p = 15
+  let c = 40
+  let f = 10
+
+  if (lower.includes('egg')) {
+    cal = 160; p = 13; c = 1; f = 11
+  }
+  if (lower.includes('rice')) {
+    cal += 205; p += 4; c += 45; f += 0.5
+  }
+  if (lower.includes('chicken') || lower.includes('breast')) {
+    cal = 320; p = 40; c = 0; f = 6
+  }
+
+  return { meal: description.slice(0, 45), calories: cal, protein: p, carbs: c, fat: f }
 }
 
 async function sendTelegramDirect(chatId: number, textHtml: string): Promise<boolean> {
@@ -231,6 +373,7 @@ export async function POST(req: NextRequest) {
 
     const chatId = msg.chat.id
     const text = (msg.text || '').trim()
+    const todayStr = getManilaDateKey()
 
     let rawReply = ''
 
@@ -238,7 +381,21 @@ export async function POST(req: NextRequest) {
     if (msg.photo && msg.photo.length > 0) {
       const caption = msg.caption || 'Meal Photo'
       const estimated = await estimateMealNutrition(caption)
-      const remaining = Math.max(0, DEFAULT_CALORIE_CAP - estimated.calories)
+      
+      // Save entry to daily ledger
+      await recordMealLog({
+        meal: estimated.meal,
+        calories: estimated.calories,
+        protein: estimated.protein,
+        carbs: estimated.carbs,
+        fat: estimated.fat,
+        date: todayStr,
+        time: getManilaTimeString(),
+      })
+
+      // Fetch updated cumulative totals for today
+      const daily = await getDailyNutritionSummary(todayStr)
+      const remaining = Math.max(0, DEFAULT_CALORIE_CAP - daily.totalKcal)
 
       rawReply = [
         `🍽 <b>Meal Logged, Sir.</b>`,
@@ -246,8 +403,8 @@ export async function POST(req: NextRequest) {
         `📌 <b>${estimated.meal}</b>`,
         `➕ <b>+${estimated.calories} kcal</b> <i>(P: ${estimated.protein}g · C: ${estimated.carbs}g · F: ${estimated.fat}g)</i>`,
         '',
-        `📊 <b>Daily Progress:</b>`,
-        renderProgressBar(estimated.calories, DEFAULT_CALORIE_CAP),
+        `📊 <b>Today's Cumulative Progress (${daily.count} logged):</b>`,
+        renderProgressBar(daily.totalKcal, DEFAULT_CALORIE_CAP),
         `🟢 <b>${remaining.toLocaleString()} kcal remaining</b> for today.`,
       ].join('\n')
 
@@ -291,14 +448,25 @@ export async function POST(req: NextRequest) {
       })
     }
     // 3. Calorie Queries (Explicit inquiry, NOT logging)
-    else if (/^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake)/i.test(text) || /^calories\??$/i.test(text)) {
+    else if (
+      /^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake|food\s+status)/i.test(text) ||
+      /^calories\??$/i.test(text)
+    ) {
+      const daily = await getDailyNutritionSummary(todayStr)
+      const remaining = Math.max(0, DEFAULT_CALORIE_CAP - daily.totalKcal)
+
+      const mealsBreakdown = daily.meals.length > 0
+        ? `\n📝 <b>Logged Today (${daily.count}):</b>\n` + daily.meals.map((m) => `• ${m.meal} (+${m.calories} kcal)`).join('\n')
+        : '\n📝 <i>No meals logged yet today, sir.</i>'
+
       rawReply = [
-        `🥗 <b>Calorie Target Status, Sir:</b>`,
+        `🥗 <b>Today's Calorie Status, Sir:</b>`,
         '',
-        renderProgressBar(450, DEFAULT_CALORIE_CAP),
+        renderProgressBar(daily.totalKcal, DEFAULT_CALORIE_CAP),
         '',
-        `🥩 <b>Protein:</b> <code>25g</code>  ·  🍞 <b>Carbs:</b> <code>45g</code>  ·  🥑 <b>Fat:</b> <code>15g</code>`,
-        `🎯 <b>Remaining Allowance:</b> <code>1,400 kcal</code> (from 1,850 kcal daily cap)`,
+        `🥩 <b>Protein:</b> <code>${daily.totalP}g</code>  ·  🍞 <b>Carbs:</b> <code>${daily.totalC}g</code>  ·  🥑 <b>Fat:</b> <code>${daily.totalF}g</code>`,
+        `🎯 <b>Remaining Allowance:</b> <code>${remaining.toLocaleString()} kcal</code> (from 1,850 kcal daily cap)`,
+        mealsBreakdown,
       ].join('\n')
 
       void sendTelegramDirect(chatId, rawReply)
@@ -309,12 +477,27 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 4. Food Text Logging (ONLY if explicitly logging food consumed)
+    // 4. Food Text Logging (Explicit consumption or food portions)
     else if (
-      /^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate|logged\s*:?|log\s*food\s*:?)\s+/i.test(text)
+      /^(i\s+(just\s+)?(ate|had|consumed|drank)|ate\s+|had\s+|eating\s+|drinking\s+|for\s+(breakfast|lunch|dinner|snack)\s*(:|was|is)?|just\s+ate|logged\s*:?|log\s*food\s*:?)\s+/i.test(text) ||
+      /^(\d+\s*(eggs?|boiled eggs?|fried eggs?|cups?\s+of\s+rice|bowls?\s+of\s+rice|g\s+|grams?\s+of|oz\s+|slices?\s+of|pieces?\s+of|tacos?|burgers?|bananas?|apples?))/i.test(text)
     ) {
       const estimated = await estimateMealNutrition(text)
-      const remaining = Math.max(0, DEFAULT_CALORIE_CAP - estimated.calories)
+      
+      // Save entry to daily ledger
+      await recordMealLog({
+        meal: estimated.meal,
+        calories: estimated.calories,
+        protein: estimated.protein,
+        carbs: estimated.carbs,
+        fat: estimated.fat,
+        date: todayStr,
+        time: getManilaTimeString(),
+      })
+
+      // Fetch updated cumulative totals for today
+      const daily = await getDailyNutritionSummary(todayStr)
+      const remaining = Math.max(0, DEFAULT_CALORIE_CAP - daily.totalKcal)
 
       rawReply = [
         `🍽 <b>Meal Logged, Sir.</b>`,
@@ -322,8 +505,8 @@ export async function POST(req: NextRequest) {
         `📌 <b>${estimated.meal}</b>`,
         `➕ <b>+${estimated.calories} kcal</b> <i>(P: ${estimated.protein}g · C: ${estimated.carbs}g · F: ${estimated.fat}g)</i>`,
         '',
-        `📊 <b>Daily Progress:</b>`,
-        renderProgressBar(estimated.calories, DEFAULT_CALORIE_CAP),
+        `📊 <b>Today's Cumulative Progress (${daily.count} logged):</b>`,
+        renderProgressBar(daily.totalKcal, DEFAULT_CALORIE_CAP),
         `🟢 <b>${remaining.toLocaleString()} kcal remaining</b> for today.`,
       ].join('\n')
 
