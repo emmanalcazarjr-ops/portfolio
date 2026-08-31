@@ -29,13 +29,41 @@ Personality & Rules:
 - Tone: Sharp, highly intelligent, proactive, polished yet casual, zero corporate fluff or robotic filler.
 - Conciseness: Keep responses crisp and punchy (1 to 3 short paragraphs max, or concise bullet points). If sir asks you to expound, elaborate, or explain something in detail, provide comprehensive and master-class depth.
 - Intellect: You are world-class at software architecture, Python, TypeScript, AI/ML engineering, n8n automation, nutrition science, and strategic decision making.
-- Be genuinely interactive and conversational: Answer any question, chat about ideas, brainstorm, solve coding problems, tell jokes, or offer advice when asked.`
+- Be genuinely interactive and conversational: Answer any question, chat about ideas, brainstorm, solve coding problems, tell jokes, or offer advice when asked.
+- Always finish your sentences and complete all thoughts cleanly.`
+
+function markdownToTelegramHtml(md: string): string {
+  if (!md) return ''
+  let str = md
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+
+  // Code blocks
+  str = str.replace(/```(?:[a-zA-Z0-9_-]+)?\n([\s\S]*?)```/g, '<pre><code>$1</code></pre>')
+
+  // Inline code
+  str = str.replace(/`([^`]+)`/g, '<code>$1</code>')
+
+  // Bold
+  str = str.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+  str = str.replace(/__(.*?)__/g, '<b>$1</b>')
+
+  // Italic
+  str = str.replace(/(?<!\w)\*([^*\n]+)\*(?!\w)/g, '<i>$1</i>')
+  str = str.replace(/(?<!\w)_([^_\n]+)_(?!\w)/g, '<i>$1</i>')
+
+  // Links
+  str = str.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2">$1</a>')
+
+  return str
+}
 
 function renderProgressBar(current: number, target = DEFAULT_CALORIE_CAP): string {
   const pct = Math.min(100, Math.round((current / target) * 100))
   const filled = Math.round(pct / 10)
   const bar = '█'.repeat(filled) + '░'.repeat(10 - filled)
-  return `\`[${bar}]\` **${current.toLocaleString()} / ${target.toLocaleString()} kcal** (${pct}%)`
+  return `<code>[${bar}]</code> <b>${current.toLocaleString()} / ${target.toLocaleString()} kcal</b> (${pct}%)`
 }
 
 async function callGemini(messages: Array<{ role: string; content: string }>): Promise<string> {
@@ -56,7 +84,7 @@ async function callGemini(messages: Array<{ role: string; content: string }>): P
             contents,
             generationConfig: {
               temperature: 0.7,
-              maxOutputTokens: 600,
+              maxOutputTokens: 1000,
             },
           }),
         })
@@ -91,7 +119,7 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
             generationConfig: {
               response_mime_type: 'application/json',
               temperature: 0.2,
-              maxOutputTokens: 200,
+              maxOutputTokens: 300,
             },
           }),
         })
@@ -121,7 +149,7 @@ export async function GET() {
   return NextResponse.json({
     status: 'active',
     bot: '@RushDailyBot',
-    engine: 'interactive-gemini-ai-butler',
+    engine: 'robust-html-gemini-butler',
   })
 }
 
@@ -137,7 +165,7 @@ export async function POST(req: NextRequest) {
     const chatId = msg.chat.id
     const text = (msg.text || '').trim()
 
-    let replyText = ''
+    let rawReply = ''
 
     // 1. Photo handling (Meal Photo Logging)
     if (msg.photo && msg.photo.length > 0) {
@@ -145,43 +173,69 @@ export async function POST(req: NextRequest) {
       const estimated = await estimateMealNutrition(caption)
       const remaining = Math.max(0, DEFAULT_CALORIE_CAP - estimated.calories)
 
-      replyText = [
-        `🍽 *Meal Logged, Sir.*`,
+      rawReply = [
+        `🍽 <b>Meal Logged, Sir.</b>`,
         '',
-        `📌 *${estimated.meal}*`,
-        `➕ *+${estimated.calories} kcal* _(P: ${estimated.protein}g · C: ${estimated.carbs}g · F: ${estimated.fat}g)_`,
+        `📌 <b>${estimated.meal}</b>`,
+        `➕ <b>+${estimated.calories} kcal</b> <i>(P: ${estimated.protein}g · C: ${estimated.carbs}g · F: ${estimated.fat}g)</i>`,
         '',
-        `📊 *Daily Progress:*`,
+        `📊 <b>Daily Progress:</b>`,
         renderProgressBar(estimated.calories, DEFAULT_CALORIE_CAP),
-        `🟢 *${remaining.toLocaleString()} kcal remaining* for today.`,
+        `🟢 <b>${remaining.toLocaleString()} kcal remaining</b> for today.`,
       ].join('\n')
+
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     }
     // 2. Start / Ping / Help commands
     else if (text === '/start' || text === '/help') {
-      replyText = [
-        `Good day, sir! 👋 I am *Rush*, your personal AI butler and executive companion.`,
+      rawReply = [
+        `Good day, sir! 👋 I am <b>Rush</b>, your personal AI assistant and butler.`,
         '',
         `I am connected directly to Google Gemini AI to assist you with anything:`,
-        `• 💬 *Ask me anything:* Coding, architecture, ideas, strategy, or daily questions`,
-        `• 🥗 *Food & Calories:* Type what you ate or send photos to track vs your 1,850 kcal cap`,
-        `• 📥 *Link Curation:* Share links to queue for your Antigravity desktop`,
-        `• 📝 *Notes & Reminders:* Type _'Note: [text]'_ or _'Remind me to [task]'_`,
+        `• 💬 <b>Ask me anything:</b> Coding, architecture, ideas, strategy, or daily questions`,
+        `• 🥗 <b>Food &amp; Calories:</b> Type what you ate or send photos to track vs your 1,850 kcal cap`,
+        `• 📥 <b>Link Curation:</b> Share links to queue for your Antigravity desktop`,
+        `• 📝 <b>Notes &amp; Reminders:</b> Type <code>Note: [text]</code> or <code>Remind me to [task]</code>`,
         '',
-        `_At your command, sir._`,
+        `<i>At your command, sir.</i>`,
       ].join('\n')
+
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     } else if (text === '/ping') {
-      replyText = `🏓 Pong, sir! All systems operational with Google Gemini AI.`
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: `🏓 Pong, sir! All systems operational with Google Gemini AI.`,
+        parse_mode: 'HTML',
+      })
     }
     // 3. Calorie Queries (Explicit inquiry, NOT logging)
     else if (/^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake)/i.test(text) || /^calories\??$/i.test(text)) {
-      replyText = [
-        `🥗 *Calorie Target Status, Sir:*`,
+      rawReply = [
+        `🥗 <b>Calorie Target Status, Sir:</b>`,
         '',
         renderProgressBar(450, DEFAULT_CALORIE_CAP),
         '',
-        `🥩 *Protein:* \`25g\`  ·  🍞 *Carbs:* \`45g\`  ·  🥑 *Fat:* \`15g\``,
-        `🎯 *Remaining Allowance:* \`1,400 kcal\` (from 1,850 kcal daily cap)`,
+        `🥩 <b>Protein:</b> <code>25g</code>  ·  🍞 <b>Carbs:</b> <code>45g</code>  ·  🥑 <b>Fat:</b> <code>15g</code>`,
+        `🎯 <b>Remaining Allowance:</b> <code>1,400 kcal</code> (from 1,850 kcal daily cap)`,
       ].join('\n')
+
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     }
     // 4. Food Text Logging (ONLY if explicitly logging food consumed)
     else if (
@@ -190,57 +244,83 @@ export async function POST(req: NextRequest) {
       const estimated = await estimateMealNutrition(text)
       const remaining = Math.max(0, DEFAULT_CALORIE_CAP - estimated.calories)
 
-      replyText = [
-        `🍽 *Meal Logged, Sir.*`,
+      rawReply = [
+        `🍽 <b>Meal Logged, Sir.</b>`,
         '',
-        `📌 *${estimated.meal}*`,
-        `➕ *+${estimated.calories} kcal* _(P: ${estimated.protein}g · C: ${estimated.carbs}g · F: ${estimated.fat}g)_`,
+        `📌 <b>${estimated.meal}</b>`,
+        `➕ <b>+${estimated.calories} kcal</b> <i>(P: ${estimated.protein}g · C: ${estimated.carbs}g · F: ${estimated.fat}g)</i>`,
         '',
-        `📊 *Daily Progress:*`,
+        `📊 <b>Daily Progress:</b>`,
         renderProgressBar(estimated.calories, DEFAULT_CALORIE_CAP),
-        `🟢 *${remaining.toLocaleString()} kcal remaining* for today.`,
+        `🟢 <b>${remaining.toLocaleString()} kcal remaining</b> for today.`,
       ].join('\n')
+
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     }
     // 5. Notes & Reminders
     else if (/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)/i.test(text)) {
       const noteContent = text.replace(/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)\s*/i, '').trim()
-      replyText = `📝 *Note Recorded, Sir.*\n\n"${noteContent || text}"\n\n_Indexed for your desktop workspace._`
+      rawReply = `📝 <b>Note Recorded, Sir.</b>\n\n"${noteContent || text}"\n\n<i>Indexed for your desktop workspace.</i>`
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     }
     else if (/^(remind\s+me(\s+to)?|set\s+a\s+reminder|don't\s+forget\s+to|dont\s+forget\s+to)/i.test(text)) {
-      replyText = `⏰ *Reminder Noted, Sir.*\n\nI have set a reminder for: "${text}".`
+      rawReply = `⏰ <b>Reminder Noted, Sir.</b>\n\nI have set a reminder for: "${text}".`
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     }
     // 6. URL Curation (Links)
     else if (/(https?:\/\/[^\s]+)/gi.test(text)) {
       const url = text.match(/(https?:\/\/[^\s]+)/gi)?.[0] || text
       const shortId = 'Q-' + Date.now().toString().slice(-6)
 
-      replyText = [
-        `📥 *Queued for Antigravity* \`[#${shortId}]\``,
+      rawReply = [
+        `📥 <b>Queued for Antigravity</b> <code>[#${shortId}]</code>`,
         '',
-        `📌 *Saved Link:* ${url}`,
-        `📂 *Target:* 🚀 Active Project → \`general\``,
-        `⚡ *Priority:* 🟡 Medium`,
+        `📌 <b>Saved Link:</b> ${url}`,
+        `📂 <b>Target:</b> 🚀 Active Project → <code>general</code>`,
+        `⚡ <b>Priority:</b> 🟡 Medium`,
         '',
-        `🎯 *Why this matters:* Curated reference for your next Antigravity session.`,
-        `🛠 *Antigravity Action:* \`Review and integrate into workspace.\``,
+        `🎯 <b>Why this matters:</b> Curated reference for your next Antigravity session.`,
+        `🛠 <b>Antigravity Action:</b> <code>Review and integrate into workspace.</code>`,
         '',
-        `_Saved & ready for desktop Antigravity, sir!_`,
+        `<i>Saved &amp; ready for desktop Antigravity, sir!</i>`,
       ].join('\n')
+
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
     }
     // 7. Conversational Google Gemini AI Butler (Full Interactive AI Chat)
     else {
-      replyText = await callGemini([
+      const geminiText = await callGemini([
         { role: 'user', content: text },
       ])
-    }
+      const formattedHtml = markdownToTelegramHtml(geminiText)
 
-    // Return Telegram Webhook Inline Execution Payload
-    return NextResponse.json({
-      method: 'sendMessage',
-      chat_id: chatId,
-      text: replyText,
-      parse_mode: 'Markdown',
-    })
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: formattedHtml,
+        parse_mode: 'HTML',
+      })
+    }
   } catch (err) {
     return NextResponse.json({ ok: true })
   }
