@@ -13,10 +13,10 @@ const GEMINI_KEY =
   FALLBACK_KEY
 
 const GEMINI_MODELS = [
-  'gemini-3.7-flash',
   'gemini-3.6-flash',
   'gemini-3.5-flash-lite',
-  'gemini-2.5-flash-lite',
+  'gemini-3.5-pro',
+  'gemini-3.7-flash',
 ]
 
 const RUSH_SYSTEM_PROMPT = `You are Rush, Emmanuel Alcazar Jr.'s AI butler and portfolio assistant. You are professional, courteous, highly intelligent, and knowledgeable about Emmanuel's work as an AI Automation & ML Developer.

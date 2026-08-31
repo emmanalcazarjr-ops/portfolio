@@ -13,10 +13,10 @@ const GEMINI_KEY =
   FALLBACK_KEY
 
 const GEMINI_MODELS = [
-  'gemini-3.7-flash',
   'gemini-3.6-flash',
   'gemini-3.5-flash-lite',
-  'gemini-2.5-flash-lite',
+  'gemini-3.5-pro',
+  'gemini-3.7-flash',
 ]
 
 const DEFAULT_CALORIE_CAP = 1850
