@@ -62,17 +62,19 @@ async function recordMealLog(entry: MealEntry): Promise<void> {
   if (isSupabaseConfigured()) {
     try {
       const client = getAdminClient()
-      await client.from('calorie_logs').insert([
-        {
-          meal_name: entry.meal,
-          calories: entry.calories,
-          protein: entry.protein,
-          carbs: entry.carbs,
-          fat: entry.fat,
-          source: 'telegram_bot',
-          log_date: entry.date,
-        },
-      ])
+      if (client) {
+        await client.from('calorie_logs').insert([
+          {
+            meal_name: entry.meal,
+            calories: entry.calories,
+            protein: entry.protein,
+            carbs: entry.carbs,
+            fat: entry.fat,
+            source: 'telegram_bot',
+            log_date: entry.date,
+          },
+        ])
+      }
     } catch {
       // Gracefully continue with in-memory ledger
     }
@@ -93,20 +95,22 @@ async function getDailyNutritionSummary(dateKey: string): Promise<{
   if (isSupabaseConfigured()) {
     try {
       const client = getAdminClient()
-      const { data } = await client
-        .from('calorie_logs')
-        .select('meal_name, calories, protein, carbs, fat, id')
-        .eq('log_date', dateKey)
-      if (data && Array.isArray(data)) {
-        for (const r of data) {
-          const key = (r.id || r.meal_name + '_' + r.calories).toString()
-          mealsMap.set(key, {
-            meal: r.meal_name || 'Meal',
-            calories: Number(r.calories) || 0,
-            protein: Number(r.protein) || 0,
-            carbs: Number(r.carbs) || 0,
-            fat: Number(r.fat) || 0,
-          })
+      if (client) {
+        const { data } = await client
+          .from('calorie_logs')
+          .select('meal_name, calories, protein, carbs, fat, id')
+          .eq('log_date', dateKey)
+        if (data && Array.isArray(data)) {
+          for (const r of data) {
+            const key = (r.id || r.meal_name + '_' + r.calories).toString()
+            mealsMap.set(key, {
+              meal: r.meal_name || 'Meal',
+              calories: Number(r.calories) || 0,
+              protein: Number(r.protein) || 0,
+              carbs: Number(r.carbs) || 0,
+              fat: Number(r.fat) || 0,
+            })
+          }
         }
       }
     } catch {}
