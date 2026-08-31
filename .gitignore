@@ -35,7 +35,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-next-env.d.ts
-
-.vercel
+# Secrets and credentials
 .env*
+*.pem
+*.key
+*.token
+credentials.json
+id_rsa*
+*.secret

@@ -1,11 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAdminClient, isSupabaseConfigured } from '@/lib/supabase-admin'
 
-const FALLBACK_KEY = ['AQ', 'Ab8RN6Jzrbz-jZIk-xvtdca14Hd0HQZ46rnG15rmHo7VwCNs-A'].join('.')
-const GEMINI_KEY =
-  process.env.GEMINI_API_KEY ||
-  process.env.GOOGLE_API_KEY ||
-  FALLBACK_KEY
+const GEMINI_KEY = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || ''
 
 const GEMINI_MODELS = [
   'gemini-3.7-flash',
