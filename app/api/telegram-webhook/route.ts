@@ -138,13 +138,13 @@ async function getDailyNutritionSummary(dateKey: string): Promise<{
   let totalF = 0
   const mealsList: Array<{ meal: string; calories: number }> = []
 
-  for (const m of mealsMap.values()) {
+  mealsMap.forEach((m) => {
     totalKcal += m.calories
     totalP += m.protein
     totalC += m.carbs
     totalF += m.fat
     mealsList.push({ meal: m.meal, calories: m.calories })
-  }
+  })
 
   return {
     totalKcal,
