@@ -5,20 +5,12 @@ import { motion } from 'framer-motion'
 import { FaArrowLeft, FaCalendar, FaClock, FaTag } from 'react-icons/fa'
 import Link from 'next/link'
 import { marked } from 'marked'
-
-const blogPosts: Record<string, { title: string; date: string; readTime: string; tags: string[] }> = {
-  'rush-ai-butler': {
-    title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
-    date: 'August 2026',
-    readTime: '8 min read',
-    tags: ['Python', 'FastAPI', 'Gemini AI', 'AI'],
-  },
-}
+import { blogPosts } from '@/app/data'
 
 export default function BlogPost({ params }: { params: { slug: string } }) {
   const [content, setContent] = useState('')
   const [loading, setLoading] = useState(true)
-  const post = blogPosts[params.slug]
+  const post = blogPosts.find((p) => p.slug === params.slug)
 
   useEffect(() => {
     const fetchPost = async () => {

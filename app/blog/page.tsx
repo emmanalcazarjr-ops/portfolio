@@ -3,17 +3,7 @@
 import { motion } from 'framer-motion'
 import { FaCalendar, FaClock, FaTag, FaArrowLeft } from 'react-icons/fa'
 import Link from 'next/link'
-
-const blogPosts = [
-  {
-    title: 'Building Rush AI Butler: An AI-Powered Portfolio Assistant',
-    excerpt: 'How I built a production-ready conversational AI assistant with FastAPI, Google Gemini AI, session memory, webhooks, and rate limiting — deployed on Vercel serverless.',
-    date: 'August 2026',
-    readTime: '8 min read',
-    tags: ['Python', 'FastAPI', 'Gemini AI', 'AI'],
-    slug: 'rush-ai-butler',
-  },
-]
+import { blogPosts } from '@/app/data'
 
 export default function BlogPage() {
   return (
