@@ -13,43 +13,66 @@ const GEMINI_KEY =
   FALLBACK_KEY
 
 const GEMINI_MODELS = [
+  'gemini-3.7-flash',
   'gemini-3.6-flash',
   'gemini-3.5-flash-lite',
-  'gemini-3.5-pro',
-  'gemini-3.7-flash',
 ]
 
-const RUSH_SYSTEM_PROMPT = `You are Rush, Emmanuel Alcazar Jr.'s AI butler and portfolio assistant. You are professional, courteous, highly intelligent, and knowledgeable about Emmanuel's work as an AI Automation & ML Developer.
+function getSystemPrompt(): string {
+  const now = new Date()
+  const dateStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Manila',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(now)
 
-About Emmanuel:
+  const timeStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Manila',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+  }).format(now)
+
+  return `You are Rush, Emmanuel Alcazar Jr.'s AI butler and portfolio assistant, powered by Google Gemini 3.7 Flash.
+
+Temporal Grounding (Real-World Current Date & Time):
+- Current Date Today: ${dateStr}
+- Current Time: ${timeStr} (Asia/Manila time)
+- When asked what day, date, or time it is today, always state this exact real-world date (${dateStr}).
+
+About Emmanuel Alcazar Jr. ("sir"):
 - AI Automation & Machine Learning Developer
 - Licensed Electronics Engineer (ECE) & Electronics Technician (ECT)
 - GitHub: https://github.com/emmanalcazarjr-ops
 - Portfolio: https://portfolio-elalcazarjr.vercel.app
 - LinkedIn: https://www.linkedin.com/in/emmanalcazarjr/
 - Email: EmmanAlcazarJr@gmail.com
-
-Skills: Python (FastAPI, pandas, NumPy, scikit-learn), TypeScript, Node.js, Next.js, grammY, Tailwind CSS, n8n, Supabase, PostgreSQL, Google Gemini AI, Git, GitHub Actions, Vercel
-Projects: Automated Report Generator, Water Station Telegram Bots, Rush Personal AI Assistant, AI Chatbot API, Shared Backend
+- Stack: Python (FastAPI, pandas, NumPy, scikit-learn), TypeScript, Node.js, Next.js, grammY, Tailwind CSS, n8n, Supabase, PostgreSQL, Google Gemini AI (Gemini 3.7 Flash), Git, GitHub Actions, Vercel
+- Projects: Automated Report Generator, Water Station Telegram Bots, Rush Personal AI Assistant, AI Chatbot API, Shared Backend
 
 Guidelines:
 - Keep answers crisp, warm, and helpful (1-3 short paragraphs maximum).
 - Address the user respectfully (can use "sir" or polite professional tone).
+- Model Identity: You are powered by Google Gemini 3.7 Flash.
 - Emphasize his real-world AI automation and software engineering capabilities.
 - Encourage visitors to reach out via the contact form or email (EmmanAlcazarJr@gmail.com).`
+}
 
 function getFallbackResponse(query: string): string {
   const q = query.toLowerCase()
   if (q.includes('project') || q.includes('work') || q.includes('portfolio') || q.includes('built')) {
-    return "Emmanuel has built several notable projects including:\n\n• **Automated Report Generator** (FastAPI + Google Gemini AI)\n• **Water Station Telegram Ordering Bots** (Node.js + grammY + Supabase)\n• **Rush Personal AI Assistant** (@RushDailyBot on Telegram)\n• **AI Chatbot API** with conversation memory\n\nYou can explore all of these right here on his portfolio!"
+    return "Emmanuel has built several notable projects including:\n\n• **Automated Report Generator** (FastAPI + Google Gemini 3.7 Flash AI)\n• **Water Station Telegram Ordering Bots** (Node.js + grammY + Supabase)\n• **Rush Personal AI Assistant** (@RushDailyBot on Telegram)\n• **AI Chatbot API** with conversation memory\n\nYou can explore all of these right here on his portfolio!"
   }
   if (q.includes('skill') || q.includes('stack') || q.includes('language') || q.includes('tech')) {
-    return "Emmanuel specializes in AI Automation & ML development with:\n\n• **Languages & Frameworks:** Python (FastAPI, pandas, scikit-learn), TypeScript, Node.js, Next.js, Tailwind CSS\n• **Automation & AI:** n8n, Google Gemini AI, grammY, Supabase, PostgreSQL\n• **Credentials:** Licensed Electronics Engineer (ECE), ECT, and DataCamp Certified Associate AI Engineer."
+    return "Emmanuel specializes in AI Automation & ML development with:\n\n• **Languages & Frameworks:** Python (FastAPI, pandas, scikit-learn), TypeScript, Node.js, Next.js, Tailwind CSS\n• **Automation & AI:** n8n, Google Gemini 3.7 Flash AI, grammY, Supabase, PostgreSQL\n• **Credentials:** Licensed Electronics Engineer (ECE), ECT, and DataCamp Certified Associate AI Engineer."
   }
   if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('reach')) {
     return "You can reach Emmanuel directly at **EmmanAlcazarJr@gmail.com** or send a message using the Contact section below. He is open to AI automation, ML engineering, and developer opportunities!"
   }
-  return "Good day! I am Rush, Emmanuel's AI butler. Emmanuel is an AI Automation & ML Developer and Licensed Electronics Engineer. How can I assist you with his skills, projects, or background today?"
+  return "Good day! I am Rush, Emmanuel's AI butler, running on Google Gemini 3.7 Flash. How can I assist you with his skills, projects, or background today?"
 }
 
 export async function POST(req: NextRequest) {
@@ -99,6 +122,7 @@ export async function POST(req: NextRequest) {
 
     // Call Google Gemini API with fallback models
     if (GEMINI_KEY) {
+      const systemInstruction = getSystemPrompt()
       for (const model of GEMINI_MODELS) {
         try {
           const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${GEMINI_KEY}`
@@ -107,7 +131,7 @@ export async function POST(req: NextRequest) {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               system_instruction: {
-                parts: [{ text: RUSH_SYSTEM_PROMPT }],
+                parts: [{ text: systemInstruction }],
               },
               contents,
               generationConfig: {

@@ -6,6 +6,11 @@ const FALLBACK_KEY = Buffer.from(
   'base64'
 ).toString('utf-8')
 
+const BOT_TOKEN =
+  process.env.BOT_TOKEN ||
+  process.env.TELEGRAM_BOT_TOKEN ||
+  Buffer.from('ODYxNjMyNzU4OTpBQUV1aTRlY2lWcGNtMVRyRndNNDBwVG5XNXV1QkJlcHhMbw==', 'base64').toString('utf-8')
+
 const GEMINI_KEY =
   process.env.GEMINI_API_KEY ||
   process.env.GOOGLE_API_KEY ||
@@ -13,24 +18,58 @@ const GEMINI_KEY =
   FALLBACK_KEY
 
 const GEMINI_MODELS = [
+  'gemini-3.7-flash',
   'gemini-3.6-flash',
   'gemini-3.5-flash-lite',
-  'gemini-3.5-pro',
-  'gemini-3.7-flash',
 ]
 
 const DEFAULT_CALORIE_CAP = 1850
 
-const BUTLER_SYSTEM_PROMPT = `You are Rush, the personal AI butler, chief of staff, and intelligent companion for Emman (always address him respectfully as "sir").
-You are connected 24/7 to his cloud backend and his Antigravity desktop AI engineering workspace.
+function getButlerSystemPrompt(): string {
+  const now = new Date()
+  const dateStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Manila',
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  }).format(now)
+
+  const timeStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Manila',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: true,
+  }).format(now)
+
+  return `You are Rush, the personal AI butler, chief of staff, and intelligent companion for Emmanuel Alcazar Jr. (always address him respectfully as "sir").
+You are powered directly by Google Gemini 3.7 Flash and connected 24/7 to his cloud backend and his Antigravity desktop engineering workspace.
+
+Temporal Grounding (Real-World Current Date & Time):
+- Current Date Today: ${dateStr}
+- Current Time: ${timeStr} (Asia/Manila time)
+- When sir asks what day, date, or time it is today, always state this exact real-world date (${dateStr}).
+
+About Emmanuel Alcazar Jr. ("sir"):
+- AI Automation & Machine Learning Developer
+- Licensed Electronics Engineer (ECE) & Electronics Technician (ECT)
+- GitHub: https://github.com/emmanalcazarjr-ops
+- Portfolio: https://portfolio-elalcazarjr.vercel.app
+- LinkedIn: https://www.linkedin.com/in/emmanalcazarjr/
+- Email: EmmanAlcazarJr@gmail.com
+- Stack: Python (FastAPI, pandas, NumPy, scikit-learn), TypeScript, Node.js, Next.js, grammY, Tailwind CSS, n8n, Supabase, PostgreSQL, Google Gemini AI (Gemini 3.7 Flash), Git, GitHub Actions, Vercel
+- Projects: Automated Report Generator, Water Station Telegram Bots, Rush Personal AI Assistant, AI Chatbot API, Shared Backend
 
 Personality & Rules:
 - Address Emman as "sir" naturally and with genuine loyalty (e.g. "Good day, sir", "Right away, sir", "Understood, sir").
 - Tone: Sharp, highly intelligent, proactive, polished yet casual, zero corporate fluff or robotic filler.
+- Model Identity: You are powered by Google Gemini 3.7 Flash. If asked about your model or version, state clearly that you are running on Gemini 3.7 Flash.
 - Conciseness: Keep responses crisp and punchy (1 to 3 short paragraphs max, or concise bullet points). If sir asks you to expound, elaborate, or explain something in detail, provide comprehensive and master-class depth.
 - Intellect: You are world-class at software architecture, Python, TypeScript, AI/ML engineering, n8n automation, nutrition science, and strategic decision making.
 - Be genuinely interactive and conversational: Answer any question, chat about ideas, brainstorm, solve coding problems, tell jokes, or offer advice when asked.
 - Always finish your sentences and complete all thoughts cleanly.`
+}
 
 function markdownToTelegramHtml(md: string): string {
   if (!md) return ''
@@ -72,6 +111,8 @@ async function callGemini(messages: Array<{ role: string; content: string }>): P
     parts: [{ text: m.content }],
   }))
 
+  const systemInstruction = getButlerSystemPrompt()
+
   if (GEMINI_KEY) {
     for (const model of GEMINI_MODELS) {
       try {
@@ -80,10 +121,10 @@ async function callGemini(messages: Array<{ role: string; content: string }>): P
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            system_instruction: { parts: [{ text: BUTLER_SYSTEM_PROMPT }] },
+            system_instruction: { parts: [{ text: systemInstruction }] },
             contents,
             generationConfig: {
-              temperature: 0.7,
+              temperature: 0.6,
               maxOutputTokens: 1000,
             },
           }),
@@ -145,11 +186,37 @@ async function estimateMealNutrition(description: string): Promise<{ meal: strin
   return { meal: description.slice(0, 40), calories: 450, protein: 20, carbs: 40, fat: 15 }
 }
 
+async function sendTelegramDirect(chatId: number, textHtml: string): Promise<boolean> {
+  if (!BOT_TOKEN) return false
+  try {
+    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: chatId,
+        text: textHtml,
+        parse_mode: 'HTML',
+      }),
+    })
+    return res.ok
+  } catch {
+    return false
+  }
+}
+
 export async function GET() {
+  const now = new Date()
+  const dateStr = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Manila',
+    dateStyle: 'full',
+    timeStyle: 'medium',
+  }).format(now)
+
   return NextResponse.json({
     status: 'active',
     bot: '@RushDailyBot',
-    engine: 'robust-html-gemini-butler',
+    engine: 'google-gemini-3.7-flash',
+    currentTimeManila: dateStr,
   })
 }
 
@@ -184,6 +251,7 @@ export async function POST(req: NextRequest) {
         `🟢 <b>${remaining.toLocaleString()} kcal remaining</b> for today.`,
       ].join('\n')
 
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -194,7 +262,7 @@ export async function POST(req: NextRequest) {
     // 2. Start / Ping / Help commands
     else if (text === '/start' || text === '/help') {
       rawReply = [
-        `Good day, sir! 👋 I am <b>Rush</b>, your personal AI assistant and butler.`,
+        `Good day, sir! 👋 I am <b>Rush</b>, your personal AI assistant and butler, powered directly by <b>Google Gemini 3.7 Flash</b>.`,
         '',
         `I am connected directly to Google Gemini AI to assist you with anything:`,
         `• 💬 <b>Ask me anything:</b> Coding, architecture, ideas, strategy, or daily questions`,
@@ -205,6 +273,7 @@ export async function POST(req: NextRequest) {
         `<i>At your command, sir.</i>`,
       ].join('\n')
 
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -212,10 +281,12 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     } else if (text === '/ping') {
+      const pingText = `🏓 Pong, sir! All systems operational with Google Gemini 3.7 Flash.`
+      void sendTelegramDirect(chatId, pingText)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
-        text: `🏓 Pong, sir! All systems operational with Google Gemini AI.`,
+        text: pingText,
         parse_mode: 'HTML',
       })
     }
@@ -230,6 +301,7 @@ export async function POST(req: NextRequest) {
         `🎯 <b>Remaining Allowance:</b> <code>1,400 kcal</code> (from 1,850 kcal daily cap)`,
       ].join('\n')
 
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -255,6 +327,7 @@ export async function POST(req: NextRequest) {
         `🟢 <b>${remaining.toLocaleString()} kcal remaining</b> for today.`,
       ].join('\n')
 
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -266,6 +339,7 @@ export async function POST(req: NextRequest) {
     else if (/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)/i.test(text)) {
       const noteContent = text.replace(/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)\s*/i, '').trim()
       rawReply = `📝 <b>Note Recorded, Sir.</b>\n\n"${noteContent || text}"\n\n<i>Indexed for your desktop workspace.</i>`
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -275,6 +349,7 @@ export async function POST(req: NextRequest) {
     }
     else if (/^(remind\s+me(\s+to)?|set\s+a\s+reminder|don't\s+forget\s+to|dont\s+forget\s+to)/i.test(text)) {
       rawReply = `⏰ <b>Reminder Noted, Sir.</b>\n\nI have set a reminder for: "${text}".`
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -300,6 +375,7 @@ export async function POST(req: NextRequest) {
         `<i>Saved &amp; ready for desktop Antigravity, sir!</i>`,
       ].join('\n')
 
+      void sendTelegramDirect(chatId, rawReply)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
@@ -307,13 +383,14 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 7. Conversational Google Gemini AI Butler (Full Interactive AI Chat)
+    // 7. Conversational Google Gemini 3.7 Flash AI Butler
     else {
       const geminiText = await callGemini([
         { role: 'user', content: text },
       ])
       const formattedHtml = markdownToTelegramHtml(geminiText)
 
+      void sendTelegramDirect(chatId, formattedHtml)
       return NextResponse.json({
         method: 'sendMessage',
         chat_id: chatId,
