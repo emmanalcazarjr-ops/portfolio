@@ -55,8 +55,10 @@ function isFoodLoggingInput(text: string): boolean {
   const trimmed = text.trim()
   if (trimmed.endsWith('?')) return false
   if (/^(what|how|why|is|are|can|could|would|do|does|tell|explain|who|where|when)\b/i.test(trimmed)) return false
+  // Exclude clear/reset/delete commands
+  if (/^(clear|reset|delete|remove|erase|cancel)\b/i.test(trimmed)) return false
 
-  const foodPattern = /\b(ate|had|consumed|drank|eating|drinking|breakfast|lunch|dinner|snack|meal|log|logged|eggs?|rice|chicken|beef|pork|fish|salmon|tuna|salad|bread|toast|oats|oatmeal|protein|shake|whey|burger|pizza|pasta|noodles|soup|milk|coffee|banana|apple|fruit|steak|cal|kcal|calories|g\b|grams|cups?|slices?|pieces?|servings?|bowl|sandwich|wrap|chips|fries|yogurt|cheese|pancake|waffle|bacon|sausage|potato|turkey|avocado|smoothie)\b/i
+  const foodPattern = /\b(ate|had|consumed|drank|eating|drinking|breakfast|lunch|dinner|snack|meal|log\s+food|logged|eggs?|rice|chicken|beef|pork|fish|salmon|tuna|salad|bread|toast|oats|oatmeal|protein|shake|whey|burger|pizza|pasta|noodles|soup|milk|coffee|banana|apple|fruit|steak|cal|kcal|calories|g\b|grams|cups?|slices?|pieces?|servings?|bowl|sandwich|wrap|chips|fries|yogurt|cheese|pancake|waffle|bacon|sausage|potato|turkey|avocado|smoothie)\b/i
   return foodPattern.test(trimmed)
 }
 
@@ -83,6 +85,18 @@ async function recordMealLog(entry: MealEntry): Promise<void> {
     } catch {
       // Gracefully continue with in-memory ledger
     }
+  }
+}
+
+async function clearDailyCalorieLedger(dateKey: string): Promise<void> {
+  memoryCalorieLedger[dateKey] = []
+  if (isSupabaseConfigured()) {
+    try {
+      const client = getAdminClient()
+      if (client) {
+        await client.from('chatbot_messages').delete().eq('session_id', `calories_${dateKey}`)
+      }
+    } catch {}
   }
 }
 
@@ -442,6 +456,7 @@ export async function POST(req: NextRequest) {
         `I am connected directly to Google Gemini AI to assist you with anything:`,
         `• 💬 <b>Ask me anything:</b> Coding, architecture, ideas, strategy, or daily questions`,
         `• 🥗 <b>Food &amp; Calories:</b> Type what you ate or send photos to track vs your 1,850 kcal cap`,
+        `• 🔄 <b>Reset Calories:</b> Type <code>Clear calorie log</code> or <code>Reset calories</code> to start fresh`,
         `• 📥 <b>Link Curation:</b> Share links to queue for your Antigravity desktop`,
         `• 📝 <b>Notes &amp; Reminders:</b> Type <code>Note: [text]</code> or <code>Remind me to [task]</code>`,
         '',
@@ -465,7 +480,32 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 3. Calorie Queries (Explicit inquiry, NOT logging)
+    // 3. Reset / Clear Calorie Ledger Commands
+    else if (
+      /^(clear|reset|delete|erase)\s+(calorie\s+log|calories|meals?|daily\s+calories|today'?s?\s+calories)/i.test(text) ||
+      /^(\/reset_calories|\/clear_calories|\/reset_meals|\/clear_meals)$/i.test(text)
+    ) {
+      await clearDailyCalorieLedger(todayStr)
+
+      rawReply = [
+        `🔄 <b>Daily Calorie Ledger Reset, Sir.</b>`,
+        '',
+        `All meal logs for today have been cleared from memory and cloud backend.`,
+        '',
+        `📊 <b>Today's Fresh Allowance:</b>`,
+        renderProgressBar(0, DEFAULT_CALORIE_CAP),
+        `🟢 <b>${DEFAULT_CALORIE_CAP.toLocaleString()} kcal remaining</b> for today.`,
+      ].join('\n')
+
+      void sendTelegramDirect(chatId, rawReply)
+      return NextResponse.json({
+        method: 'sendMessage',
+        chat_id: chatId,
+        text: rawReply,
+        parse_mode: 'HTML',
+      })
+    }
+    // 4. Calorie Queries (Explicit inquiry, NOT logging)
     else if (
       /^(how\s+many\s+calories|show\s+calories|calories\s+left|my\s+calories|calorie\s+status|what\s+did\s+i\s+eat|my\s+intake|food\s+status|daily\s+calories)/i.test(text) ||
       /^calories\??$/i.test(text) ||
@@ -496,7 +536,7 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 4. Food Text Logging (Natural meal input or food portions)
+    // 5. Food Text Logging (Natural meal input or food portions)
     else if (isFoodLoggingInput(text)) {
       const estimated = await estimateMealNutrition(text)
       
@@ -534,7 +574,7 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 5. Notes & Reminders
+    // 6. Notes & Reminders
     else if (/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)/i.test(text)) {
       const noteContent = text.replace(/^(note(\s+down)?\s*:?|take\s+a\s+note\s*:?|save\s+note\s*:?)\s*/i, '').trim()
       rawReply = `📝 <b>Note Recorded, Sir.</b>\n\n"${noteContent || text}"\n\n<i>Indexed for your desktop workspace.</i>`
@@ -556,7 +596,7 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 6. URL Curation (Links)
+    // 7. URL Curation (Links)
     else if (/(https?:\/\/[^\s]+)/gi.test(text)) {
       const url = text.match(/(https?:\/\/[^\s]+)/gi)?.[0] || text
       const shortId = 'Q-' + Date.now().toString().slice(-6)
@@ -582,7 +622,7 @@ export async function POST(req: NextRequest) {
         parse_mode: 'HTML',
       })
     }
-    // 7. Conversational Google Gemini AI Butler
+    // 8. Conversational Google Gemini AI Butler
     else {
       const geminiText = await callGemini([
         { role: 'user', content: text },
