@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-02T10:44:25.366Z",
+  "updatedAt": "2026-09-03T10:44:54.336Z",
   "news": [
-    {
-      "title": "CEO fired developers to make room for AI. Developers create open source AI CEO",
-      "url": "https://github.com/SenteLabsAI/OpenExecutive",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-27",
-      "summary": "1031 points | 717 comments on Hacker News"
-    },
     {
       "title": "How accurate have Ed Zitron's AI skeptic predictions been?",
       "url": "https://danluu.com/zitron/",
       "source": "Hacker News",
       "publishedAt": "2026-09-01",
-      "summary": "721 points | 792 comments on Hacker News"
+      "summary": "846 points | 1019 comments on Hacker News"
     },
     {
       "title": "I trained a small transformer in 1.5hrs and it beats many LLMs",
       "url": "https://mvakde.github.io/blog/44-on-arc-1/",
       "source": "Hacker News",
       "publishedAt": "2026-09-01",
-      "summary": "622 points | 158 comments on Hacker News"
+      "summary": "657 points | 164 comments on Hacker News"
     },
     {
       "title": "Luanti removed from Google Play due to baseless AI copyright notice",
       "url": "https://blog.luanti.org/2026/08/27/luanti-dmca-tracer-ai/",
       "source": "Hacker News",
       "publishedAt": "2026-08-28",
-      "summary": "527 points | 158 comments on Hacker News"
+      "summary": "528 points | 159 comments on Hacker News"
     },
     {
       "title": "Debian votes to allow \"responsible use of generative AI\"",
       "url": "https://lwn.net/Articles/1091231/",
       "source": "Hacker News",
       "publishedAt": "2026-08-29",
-      "summary": "515 points | 485 comments on Hacker News"
+      "summary": "515 points | 486 comments on Hacker News"
+    },
+    {
+      "title": "Apple caught off guard by AI demand for Mac Mini and Mac Studio",
+      "url": "https://www.macrumors.com/2026/08/30/apple-unexpected-mac-mini-and-studio-demand/",
+      "source": "Hacker News",
+      "publishedAt": "2026-08-31",
+      "summary": "497 points | 591 comments on Hacker News"
     }
   ]
 }
