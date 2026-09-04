@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-03T10:44:54.336Z",
+  "updatedAt": "2026-09-04T10:42:17.441Z",
   "news": [
     {
       "title": "How accurate have Ed Zitron's AI skeptic predictions been?",
       "url": "https://danluu.com/zitron/",
       "source": "Hacker News",
       "publishedAt": "2026-09-01",
-      "summary": "846 points | 1019 comments on Hacker News"
+      "summary": "865 points | 1039 comments on Hacker News"
     },
     {
       "title": "I trained a small transformer in 1.5hrs and it beats many LLMs",
       "url": "https://mvakde.github.io/blog/44-on-arc-1/",
       "source": "Hacker News",
       "publishedAt": "2026-09-01",
-      "summary": "657 points | 164 comments on Hacker News"
-    },
-    {
-      "title": "Luanti removed from Google Play due to baseless AI copyright notice",
-      "url": "https://blog.luanti.org/2026/08/27/luanti-dmca-tracer-ai/",
-      "source": "Hacker News",
-      "publishedAt": "2026-08-28",
-      "summary": "528 points | 159 comments on Hacker News"
+      "summary": "664 points | 165 comments on Hacker News"
     },
     {
       "title": "Debian votes to allow \"responsible use of generative AI\"",
       "url": "https://lwn.net/Articles/1091231/",
       "source": "Hacker News",
       "publishedAt": "2026-08-29",
-      "summary": "515 points | 486 comments on Hacker News"
+      "summary": "516 points | 486 comments on Hacker News"
+    },
+    {
+      "title": "Three sites made 215,128 “best software” pages for AI. Perplexity cites them",
+      "url": "https://trellner.com/reports/manufactured-sources-behind-ai-recommendations/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-02",
+      "summary": "507 points | 250 comments on Hacker News"
     },
     {
       "title": "Apple caught off guard by AI demand for Mac Mini and Mac Studio",
       "url": "https://www.macrumors.com/2026/08/30/apple-unexpected-mac-mini-and-studio-demand/",
       "source": "Hacker News",
       "publishedAt": "2026-08-31",
-      "summary": "497 points | 591 comments on Hacker News"
+      "summary": "500 points | 594 comments on Hacker News"
     }
   ]
 }
