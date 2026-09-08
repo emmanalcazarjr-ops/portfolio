@@ -1,33 +1,26 @@
 {
-  "updatedAt": "2026-09-07T11:42:40.418Z",
+  "updatedAt": "2026-09-08T10:41:03.168Z",
   "news": [
     {
       "title": "Discovery of a new OpenAI agent message board",
       "url": "https://collusion.wiki/",
       "source": "Hacker News",
       "publishedAt": "2026-09-04",
-      "summary": "2277 points | 1584 comments on Hacker News"
+      "summary": "2288 points | 1594 comments on Hacker News"
     },
     {
       "title": "How accurate have Ed Zitron's AI skeptic predictions been?",
       "url": "https://danluu.com/zitron/",
       "source": "Hacker News",
       "publishedAt": "2026-09-01",
-      "summary": "875 points | 1054 comments on Hacker News"
-    },
-    {
-      "title": "I trained a small transformer in 1.5hrs and it beats many LLMs",
-      "url": "https://mvakde.github.io/blog/44-on-arc-1/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-01",
-      "summary": "668 points | 166 comments on Hacker News"
+      "summary": "876 points | 1055 comments on Hacker News"
     },
     {
       "title": "Your intellectual fly is open when you use an LLM to author a post (2025)",
       "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
       "source": "Hacker News",
       "publishedAt": "2026-09-06",
-      "summary": "660 points | 409 comments on Hacker News"
+      "summary": "722 points | 431 comments on Hacker News"
     },
     {
       "title": "Three sites made 215,128 “best software” pages for AI. Perplexity cites them",
@@ -35,6 +28,13 @@
       "source": "Hacker News",
       "publishedAt": "2026-09-02",
       "summary": "517 points | 250 comments on Hacker News"
+    },
+    {
+      "title": "The largest electric aircraft just flew [video]",
+      "url": "https://www.youtube.com/watch?v=nM86DBOqgPM",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-01",
+      "summary": "471 points | 374 comments on Hacker News"
     }
   ]
 }
