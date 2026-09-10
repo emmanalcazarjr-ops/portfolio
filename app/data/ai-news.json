@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-09T10:50:16.699Z",
+  "updatedAt": "2026-09-10T10:44:07.443Z",
   "news": [
     {
       "title": "Discovery of a new OpenAI agent message board",
       "url": "https://collusion.wiki/",
       "source": "Hacker News",
       "publishedAt": "2026-09-04",
-      "summary": "2293 points | 1598 comments on Hacker News"
+      "summary": "2298 points | 1599 comments on Hacker News"
     },
     {
       "title": "Your intellectual fly is open when you use an LLM to author a post (2025)",
       "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
       "source": "Hacker News",
       "publishedAt": "2026-09-06",
-      "summary": "727 points | 433 comments on Hacker News"
+      "summary": "728 points | 433 comments on Hacker News"
     },
     {
       "title": "LibreOffice breaks download records after declaring it has no AI features",
       "url": "https://manualdousuario.net/en/libreoffice-download-record-no-ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-08",
-      "summary": "681 points | 232 comments on Hacker News"
+      "summary": "710 points | 236 comments on Hacker News"
     },
     {
       "title": "Muse – Meta’s personal AI agent",
       "url": "https://ai.meta.com/muse/",
       "source": "Hacker News",
       "publishedAt": "2026-09-08",
-      "summary": "526 points | 566 comments on Hacker News"
+      "summary": "645 points | 722 comments on Hacker News"
     },
     {
-      "title": "Three sites made 215,128 “best software” pages for AI. Perplexity cites them",
-      "url": "https://trellner.com/reports/manufactured-sources-behind-ai-recommendations/",
+      "title": "Tao: Open math problems being non-renewably mined by AI",
+      "url": "https://mathstodon.xyz/@tao/117237320796901560",
       "source": "Hacker News",
-      "publishedAt": "2026-09-02",
-      "summary": "517 points | 250 comments on Hacker News"
+      "publishedAt": "2026-09-08",
+      "summary": "476 points | 410 comments on Hacker News"
     }
   ]
 }
