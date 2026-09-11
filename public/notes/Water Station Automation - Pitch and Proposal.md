@@ -120,3 +120,10 @@ When pitching in person, always pull out your phone and run this sequence:
 
 ## 📋 Next Step for the Client
 **"Let's set up a 7-day free trial on your business so you can test it with your top 10 repeat customers."**
+
+---
+
+## Related Notes
+- [[FIVERR_PORTFOLIO_AND_GIGS]]: Presents this automated ordering architecture as Project Case Study 3 for freelance business clients.
+- [[portfolio-tracker]]: Records the technical development trajectory, database schema design, and deployment logs for this bot.
+- [[n8n-curation-and-ai-news-guide]]: Outlines complementary webhook ingestion and alerting patterns used in messaging automation.

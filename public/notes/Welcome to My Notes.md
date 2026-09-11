@@ -21,3 +21,10 @@ These notes live in my Obsidian vault (my whole `AI` workspace). Every time I sa
 - Project notes and case studies
 - Automation workflows I'm building
 - Learnings from tools like n8n, Supabase, and AI APIs
+
+---
+
+## Related Notes
+- [[n8n-curation-and-ai-news-guide]]: Outlines the automated research curation pipeline and briefing schedule feeding these notes.
+- [[portfolio-tracker]]: Documents daily commits, feature upgrades, and Vercel dynamic slug build history.
+- [[README]]: Master index and directory roadmap for the entire unified Obsidian Second Brain vault.

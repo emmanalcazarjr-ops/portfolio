@@ -57,3 +57,11 @@ flowchart LR
   - Evening AI pulse & practical takeaways.
   - Review of completed items vs pending queue tasks for tomorrow's Antigravity session.
   - Portfolio stats & relaxing sign-off.
+
+---
+
+## Related Notes
+- [[AGENTS]]: Implements the core agent loop and memory architecture triggered by incoming n8n webhook notifications.
+- [[portfolio-tracker]]: Logs ongoing cron diagnosis, scheduled briefing runs, and portfolio view tracking.
+- [[Welcome to My Notes]]: Details how research notes processed through this curation pipeline are indexed and published.
+- [[FIVERR_PORTFOLIO_AND_GIGS]]: Serves as a reference design for custom client automation pipelines and scheduled alert bots.
