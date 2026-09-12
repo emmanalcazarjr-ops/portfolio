@@ -1,12 +1,26 @@
 {
-  "updatedAt": "2026-09-10T10:44:07.443Z",
+  "updatedAt": "2026-09-12T10:11:11.166Z",
   "news": [
     {
-      "title": "Discovery of a new OpenAI agent message board",
-      "url": "https://collusion.wiki/",
+      "title": "A misalignment of AI in mathematics",
+      "url": "https://mathandai.org/",
       "source": "Hacker News",
-      "publishedAt": "2026-09-04",
-      "summary": "2298 points | 1599 comments on Hacker News"
+      "publishedAt": "2026-09-11",
+      "summary": "935 points | 897 comments on Hacker News"
+    },
+    {
+      "title": "More questions about whether researchers can trust OpenAI with unpublished math",
+      "url": "https://mathstodon.xyz/@andreasthom/117240535270608201",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-10",
+      "summary": "861 points | 809 comments on Hacker News"
+    },
+    {
+      "title": "Ask HN: Can we please limit the AI news flood?",
+      "url": "https://news.ycombinator.com/item?id=49657850",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-11",
+      "summary": "790 points | 373 comments on Hacker News"
     },
     {
       "title": "Your intellectual fly is open when you use an LLM to author a post (2025)",
@@ -20,21 +34,7 @@
       "url": "https://manualdousuario.net/en/libreoffice-download-record-no-ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-08",
-      "summary": "710 points | 236 comments on Hacker News"
-    },
-    {
-      "title": "Muse – Meta’s personal AI agent",
-      "url": "https://ai.meta.com/muse/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-08",
-      "summary": "645 points | 722 comments on Hacker News"
-    },
-    {
-      "title": "Tao: Open math problems being non-renewably mined by AI",
-      "url": "https://mathstodon.xyz/@tao/117237320796901560",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-08",
-      "summary": "476 points | 410 comments on Hacker News"
+      "summary": "716 points | 237 comments on Hacker News"
     }
   ]
 }
