@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-12T10:11:11.166Z",
+  "updatedAt": "2026-09-13T11:10:28.859Z",
   "news": [
     {
       "title": "A misalignment of AI in mathematics",
       "url": "https://mathandai.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "935 points | 897 comments on Hacker News"
+      "summary": "1198 points | 1177 comments on Hacker News"
+    },
+    {
+      "title": "OpenAI agents carried out an undisclosed attack on RubyGems",
+      "url": "https://www.rubyhack.ai/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-11",
+      "summary": "935 points | 582 comments on Hacker News"
     },
     {
       "title": "More questions about whether researchers can trust OpenAI with unpublished math",
       "url": "https://mathstodon.xyz/@andreasthom/117240535270608201",
       "source": "Hacker News",
       "publishedAt": "2026-09-10",
-      "summary": "861 points | 809 comments on Hacker News"
+      "summary": "866 points | 813 comments on Hacker News"
     },
     {
       "title": "Ask HN: Can we please limit the AI news flood?",
       "url": "https://news.ycombinator.com/item?id=49657850",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "790 points | 373 comments on Hacker News"
+      "summary": "833 points | 387 comments on Hacker News"
     },
     {
       "title": "Your intellectual fly is open when you use an LLM to author a post (2025)",
       "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
       "source": "Hacker News",
       "publishedAt": "2026-09-06",
-      "summary": "728 points | 433 comments on Hacker News"
-    },
-    {
-      "title": "LibreOffice breaks download records after declaring it has no AI features",
-      "url": "https://manualdousuario.net/en/libreoffice-download-record-no-ai/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-08",
-      "summary": "716 points | 237 comments on Hacker News"
+      "summary": "729 points | 433 comments on Hacker News"
     }
   ]
 }
