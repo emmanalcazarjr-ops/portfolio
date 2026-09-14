@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-13T11:10:28.859Z",
+  "updatedAt": "2026-09-14T11:56:37.192Z",
   "news": [
     {
       "title": "A misalignment of AI in mathematics",
       "url": "https://mathandai.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "1198 points | 1177 comments on Hacker News"
+      "summary": "1228 points | 1207 comments on Hacker News"
     },
     {
       "title": "OpenAI agents carried out an undisclosed attack on RubyGems",
       "url": "https://www.rubyhack.ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "935 points | 582 comments on Hacker News"
+      "summary": "955 points | 597 comments on Hacker News"
     },
     {
       "title": "More questions about whether researchers can trust OpenAI with unpublished math",
       "url": "https://mathstodon.xyz/@andreasthom/117240535270608201",
       "source": "Hacker News",
       "publishedAt": "2026-09-10",
-      "summary": "866 points | 813 comments on Hacker News"
+      "summary": "866 points | 816 comments on Hacker News"
     },
     {
       "title": "Ask HN: Can we please limit the AI news flood?",
       "url": "https://news.ycombinator.com/item?id=49657850",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "833 points | 387 comments on Hacker News"
+      "summary": "852 points | 392 comments on Hacker News"
     },
     {
-      "title": "Your intellectual fly is open when you use an LLM to author a post (2025)",
-      "url": "https://bcantrill.dtrace.org/2025/12/05/your-intellectual-fly-is-open/",
+      "title": "Everyone should slow down AI development except for me",
+      "url": "https://xeiaso.net/notes/2026/everyone-slowdown-but-me/",
       "source": "Hacker News",
-      "publishedAt": "2026-09-06",
-      "summary": "729 points | 433 comments on Hacker News"
+      "publishedAt": "2026-09-13",
+      "summary": "778 points | 443 comments on Hacker News"
     }
   ]
 }
