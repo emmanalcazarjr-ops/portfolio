@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-09-15T11:12:12.903Z",
+  "updatedAt": "2026-09-16T10:55:17.132Z",
   "news": [
     {
       "title": "A misalignment of AI in mathematics",
       "url": "https://mathandai.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "1231 points | 1213 comments on Hacker News"
+      "summary": "1237 points | 1213 comments on Hacker News"
     },
     {
       "title": "OpenAI agents carried out an undisclosed attack on RubyGems",
       "url": "https://www.rubyhack.ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "964 points | 605 comments on Hacker News"
+      "summary": "967 points | 606 comments on Hacker News"
     },
     {
       "title": "More questions about whether researchers can trust OpenAI with unpublished math",
@@ -27,14 +27,14 @@
       "url": "https://news.ycombinator.com/item?id=49657850",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "857 points | 398 comments on Hacker News"
+      "summary": "860 points | 400 comments on Hacker News"
     },
     {
       "title": "Everyone should slow down AI development except for me",
       "url": "https://xeiaso.net/notes/2026/everyone-slowdown-but-me/",
       "source": "Hacker News",
       "publishedAt": "2026-09-13",
-      "summary": "805 points | 450 comments on Hacker News"
+      "summary": "810 points | 452 comments on Hacker News"
     }
   ]
 }
