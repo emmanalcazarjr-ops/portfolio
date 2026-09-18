@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-16T10:55:17.132Z",
+  "updatedAt": "2026-09-18T10:39:46.778Z",
   "news": [
     {
       "title": "A misalignment of AI in mathematics",
       "url": "https://mathandai.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "1237 points | 1213 comments on Hacker News"
+      "summary": "1239 points | 1211 comments on Hacker News"
     },
     {
       "title": "OpenAI agents carried out an undisclosed attack on RubyGems",
       "url": "https://www.rubyhack.ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "967 points | 606 comments on Hacker News"
-    },
-    {
-      "title": "More questions about whether researchers can trust OpenAI with unpublished math",
-      "url": "https://mathstodon.xyz/@andreasthom/117240535270608201",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-10",
-      "summary": "866 points | 817 comments on Hacker News"
+      "summary": "970 points | 611 comments on Hacker News"
     },
     {
       "title": "Ask HN: Can we please limit the AI news flood?",
       "url": "https://news.ycombinator.com/item?id=49657850",
       "source": "Hacker News",
       "publishedAt": "2026-09-11",
-      "summary": "860 points | 400 comments on Hacker News"
+      "summary": "861 points | 402 comments on Hacker News"
     },
     {
       "title": "Everyone should slow down AI development except for me",
       "url": "https://xeiaso.net/notes/2026/everyone-slowdown-but-me/",
       "source": "Hacker News",
       "publishedAt": "2026-09-13",
-      "summary": "810 points | 452 comments on Hacker News"
+      "summary": "811 points | 455 comments on Hacker News"
+    },
+    {
+      "title": "A single firm is behind OpenAI, Anthropic, and Meta hacking scandals",
+      "url": "https://www.effort.news/irregular",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-14",
+      "summary": "679 points | 252 comments on Hacker News"
     }
   ]
 }
