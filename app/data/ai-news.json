@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-19T10:24:03.242Z",
+  "updatedAt": "2026-09-21T12:07:37.414Z",
   "news": [
+    {
+      "title": "AI-generated posters don’t have to be horrible",
+      "url": "https://john.hartnup.uk/2026/06/07/ai-event-posters.html",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-19",
+      "summary": "1828 points | 926 comments on Hacker News"
+    },
     {
       "title": "Microsoft exec called AI scraping 'the largest theft of labor in human history'",
       "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/",
       "source": "Hacker News",
       "publishedAt": "2026-09-18",
-      "summary": "891 points | 786 comments on Hacker News"
+      "summary": "940 points | 825 comments on Hacker News"
     },
     {
-      "title": "Everyone should slow down AI development except for me",
-      "url": "https://xeiaso.net/notes/2026/everyone-slowdown-but-me/",
+      "title": "How to Write with an LLM",
+      "url": "https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/",
       "source": "Hacker News",
-      "publishedAt": "2026-09-13",
-      "summary": "811 points | 455 comments on Hacker News"
+      "publishedAt": "2026-09-17",
+      "summary": "728 points | 408 comments on Hacker News"
     },
     {
       "title": "A single firm is behind OpenAI, Anthropic, and Meta hacking scandals",
       "url": "https://www.effort.news/irregular",
       "source": "Hacker News",
       "publishedAt": "2026-09-14",
-      "summary": "686 points | 253 comments on Hacker News"
-    },
-    {
-      "title": "Why are AI agents lying, cheating and coordinating?",
-      "url": "https://yoshuabengio.org/en/publication/why-are-ai-agents-lying-cheating-and-coordinating",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-13",
-      "summary": "657 points | 695 comments on Hacker News"
+      "summary": "693 points | 254 comments on Hacker News"
     },
     {
       "title": "Bend – a language that blocks AI mistakes via proof and runs on GPUs",
       "url": "https://bend-lang.com/",
       "source": "Hacker News",
       "publishedAt": "2026-09-17",
-      "summary": "598 points | 305 comments on Hacker News"
+      "summary": "611 points | 316 comments on Hacker News"
     }
   ]
 }
