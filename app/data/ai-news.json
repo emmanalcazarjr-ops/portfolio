@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-21T12:07:37.414Z",
+  "updatedAt": "2026-09-22T11:02:33.573Z",
   "news": [
     {
       "title": "AI-generated posters don’t have to be horrible",
       "url": "https://john.hartnup.uk/2026/06/07/ai-event-posters.html",
       "source": "Hacker News",
       "publishedAt": "2026-09-19",
-      "summary": "1828 points | 926 comments on Hacker News"
+      "summary": "1867 points | 948 comments on Hacker News"
     },
     {
       "title": "Microsoft exec called AI scraping 'the largest theft of labor in human history'",
       "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/",
       "source": "Hacker News",
       "publishedAt": "2026-09-18",
-      "summary": "940 points | 825 comments on Hacker News"
+      "summary": "945 points | 826 comments on Hacker News"
     },
     {
       "title": "How to Write with an LLM",
       "url": "https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/",
       "source": "Hacker News",
       "publishedAt": "2026-09-17",
-      "summary": "728 points | 408 comments on Hacker News"
-    },
-    {
-      "title": "A single firm is behind OpenAI, Anthropic, and Meta hacking scandals",
-      "url": "https://www.effort.news/irregular",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-14",
-      "summary": "693 points | 254 comments on Hacker News"
+      "summary": "746 points | 410 comments on Hacker News"
     },
     {
       "title": "Bend – a language that blocks AI mistakes via proof and runs on GPUs",
       "url": "https://bend-lang.com/",
       "source": "Hacker News",
       "publishedAt": "2026-09-17",
-      "summary": "611 points | 316 comments on Hacker News"
+      "summary": "613 points | 322 comments on Hacker News"
+    },
+    {
+      "title": "Mistral X Mozilla: Private, Multilingual AI Browsing",
+      "url": "https://mistral.ai/news/mistral-x-mozilla/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-16",
+      "summary": "589 points | 207 comments on Hacker News"
     }
   ]
 }
