@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-24T11:11:39.278Z",
+  "updatedAt": "2026-09-25T11:16:39.194Z",
   "news": [
     {
       "title": "AI-generated posters don’t have to be horrible",
       "url": "https://john.hartnup.uk/2026/06/07/ai-event-posters.html",
       "source": "Hacker News",
       "publishedAt": "2026-09-19",
-      "summary": "1885 points | 955 comments on Hacker News"
-    },
-    {
-      "title": "Microsoft exec called AI scraping 'the largest theft of labor in human history'",
-      "url": "https://techcrunch.com/2026/09/17/microsoft-exec-called-ai-scraping-the-largest-theft-of-labor-in-human-history-new-unredacted-filings-reveal/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-18",
-      "summary": "952 points | 833 comments on Hacker News"
+      "summary": "1887 points | 955 comments on Hacker News"
     },
     {
       "title": "Pentagon says overreliance on AI contributed to missile strike on Iran school",
       "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack/",
       "source": "Hacker News",
       "publishedAt": "2026-09-22",
-      "summary": "916 points | 521 comments on Hacker News"
-    },
-    {
-      "title": "How to Write with an LLM",
-      "url": "https://sockpuppet.org/blog/2026/09/17/how-to-write-with-an-llm/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-17",
-      "summary": "762 points | 419 comments on Hacker News"
+      "summary": "952 points | 539 comments on Hacker News"
     },
     {
       "title": "OpenAI GPT–6 Astra breaks Enigma message that has resisted solution since 2005",
       "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
       "source": "Hacker News",
       "publishedAt": "2026-09-22",
-      "summary": "728 points | 440 comments on Hacker News"
+      "summary": "733 points | 442 comments on Hacker News"
+    },
+    {
+      "title": "Meta takes down a critical video about meta AI Glasses after filming at Meta",
+      "url": "https://www.reddit.com/r/facebook/comments/1wotwrk/meta_takes_down_a_critical_video_about_meta_ai/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-24",
+      "summary": "611 points | 367 comments on Hacker News"
+    },
+    {
+      "title": "Pirate Face Rescues LLM Models from Deletion",
+      "url": "https://pirateface.co/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-20",
+      "summary": "569 points | 148 comments on Hacker News"
     }
   ]
 }
