@@ -1,33 +1,26 @@
 {
-  "updatedAt": "2026-09-25T11:16:39.194Z",
+  "updatedAt": "2026-09-26T10:53:19.804Z",
   "news": [
-    {
-      "title": "AI-generated posters don’t have to be horrible",
-      "url": "https://john.hartnup.uk/2026/06/07/ai-event-posters.html",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-19",
-      "summary": "1887 points | 955 comments on Hacker News"
-    },
     {
       "title": "Pentagon says overreliance on AI contributed to missile strike on Iran school",
       "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack/",
       "source": "Hacker News",
       "publishedAt": "2026-09-22",
-      "summary": "952 points | 539 comments on Hacker News"
+      "summary": "960 points | 546 comments on Hacker News"
     },
     {
       "title": "OpenAI GPT–6 Astra breaks Enigma message that has resisted solution since 2005",
       "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
       "source": "Hacker News",
       "publishedAt": "2026-09-22",
-      "summary": "733 points | 442 comments on Hacker News"
+      "summary": "734 points | 444 comments on Hacker News"
     },
     {
       "title": "Meta takes down a critical video about meta AI Glasses after filming at Meta",
       "url": "https://www.reddit.com/r/facebook/comments/1wotwrk/meta_takes_down_a_critical_video_about_meta_ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-24",
-      "summary": "611 points | 367 comments on Hacker News"
+      "summary": "626 points | 382 comments on Hacker News"
     },
     {
       "title": "Pirate Face Rescues LLM Models from Deletion",
@@ -35,6 +28,13 @@
       "source": "Hacker News",
       "publishedAt": "2026-09-20",
       "summary": "569 points | 148 comments on Hacker News"
+    },
+    {
+      "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
+      "url": "https://swarmtraces.org/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-25",
+      "summary": "501 points | 308 comments on Hacker News"
     }
   ]
 }
