@@ -1,26 +1,26 @@
 {
-  "updatedAt": "2026-09-28T13:02:42.075Z",
+  "updatedAt": "2026-09-29T12:13:28.997Z",
   "news": [
     {
       "title": "Pentagon says overreliance on AI contributed to missile strike on Iran school",
       "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack/",
       "source": "Hacker News",
       "publishedAt": "2026-09-22",
-      "summary": "970 points | 551 comments on Hacker News"
+      "summary": "971 points | 552 comments on Hacker News"
     },
     {
       "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
       "url": "https://swarmtraces.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-25",
-      "summary": "745 points | 465 comments on Hacker News"
+      "summary": "751 points | 468 comments on Hacker News"
     },
     {
       "title": "OpenAI GPT–6 Astra breaks Enigma message that has resisted solution since 2005",
       "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
       "source": "Hacker News",
       "publishedAt": "2026-09-22",
-      "summary": "735 points | 447 comments on Hacker News"
+      "summary": "737 points | 447 comments on Hacker News"
     },
     {
       "title": "Meta takes down a critical video about meta AI Glasses after filming at Meta",
@@ -34,7 +34,7 @@
       "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
       "source": "Hacker News",
       "publishedAt": "2026-09-27",
-      "summary": "619 points | 606 comments on Hacker News"
+      "summary": "626 points | 614 comments on Hacker News"
     }
   ]
 }
