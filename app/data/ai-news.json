@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-09-29T12:13:28.997Z",
+  "updatedAt": "2026-09-30T11:59:42.219Z",
   "news": [
-    {
-      "title": "Pentagon says overreliance on AI contributed to missile strike on Iran school",
-      "url": "https://www.bloomberg.com/graphics/2026-iran-school-attack/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-22",
-      "summary": "971 points | 552 comments on Hacker News"
-    },
     {
       "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
       "url": "https://swarmtraces.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-25",
-      "summary": "751 points | 468 comments on Hacker News"
-    },
-    {
-      "title": "OpenAI GPT–6 Astra breaks Enigma message that has resisted solution since 2005",
-      "url": "https://www.cryptocellar.org/bgac/the-mvueh-break.html",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-22",
-      "summary": "737 points | 447 comments on Hacker News"
+      "summary": "753 points | 471 comments on Hacker News"
     },
     {
       "title": "Meta takes down a critical video about meta AI Glasses after filming at Meta",
       "url": "https://www.reddit.com/r/facebook/comments/1wotwrk/meta_takes_down_a_critical_video_about_meta_ai/",
       "source": "Hacker News",
       "publishedAt": "2026-09-24",
-      "summary": "631 points | 393 comments on Hacker News"
+      "summary": "631 points | 394 comments on Hacker News"
     },
     {
       "title": "Unsealed Briefs in Authors’ Case v. Microsoft/OpenAI",
       "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
       "source": "Hacker News",
       "publishedAt": "2026-09-27",
-      "summary": "626 points | 614 comments on Hacker News"
+      "summary": "627 points | 620 comments on Hacker News"
+    },
+    {
+      "title": "It's Time to Investigate the AI Labs",
+      "url": "https://calnewport.com/its-time-to-investigate-the-ai-labs/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-28",
+      "summary": "609 points | 270 comments on Hacker News"
+    },
+    {
+      "title": "Plan mode is dead",
+      "url": "https://www.aymannadeem.com/artificial/intelligence,/developer/tools/2026/09/24/plan-mode-is-dead.html",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-25",
+      "summary": "586 points | 509 comments on Hacker News"
     }
   ]
 }
