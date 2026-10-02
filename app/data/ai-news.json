@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-01T12:32:25.147Z",
+  "updatedAt": "2026-10-02T11:58:03.012Z",
   "news": [
     {
       "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
       "url": "https://swarmtraces.org/",
       "source": "Hacker News",
       "publishedAt": "2026-09-25",
-      "summary": "753 points | 472 comments on Hacker News"
+      "summary": "754 points | 472 comments on Hacker News"
     },
     {
       "title": "Unsealed Briefs in Authors’ Case v. Microsoft/OpenAI",
       "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
       "source": "Hacker News",
       "publishedAt": "2026-09-27",
-      "summary": "627 points | 622 comments on Hacker News"
+      "summary": "627 points | 623 comments on Hacker News"
     },
     {
       "title": "It's Time to Investigate the AI Labs",
       "url": "https://calnewport.com/its-time-to-investigate-the-ai-labs/",
       "source": "Hacker News",
       "publishedAt": "2026-09-28",
-      "summary": "621 points | 277 comments on Hacker News"
-    },
-    {
-      "title": "Plan mode is dead",
-      "url": "https://www.aymannadeem.com/artificial/intelligence,/developer/tools/2026/09/24/plan-mode-is-dead.html",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-25",
-      "summary": "586 points | 509 comments on Hacker News"
+      "summary": "626 points | 277 comments on Hacker News"
     },
     {
       "title": "DraftKings is using AI to behaviorally target chronic gamblers",
       "url": "https://www.eff.org/deeplinks/2026/09/draftkings-using-ai-supercharge-harms-online-behavioral-advertising",
       "source": "Hacker News",
       "publishedAt": "2026-09-29",
-      "summary": "564 points | 427 comments on Hacker News"
+      "summary": "567 points | 428 comments on Hacker News"
+    },
+    {
+      "title": "AI companies in race to demonstrate their model most threatening to humanity",
+      "url": "https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-28",
+      "summary": "440 points | 398 comments on Hacker News"
     }
   ]
 }
