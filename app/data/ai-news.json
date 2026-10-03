@@ -1,33 +1,26 @@
 {
-  "updatedAt": "2026-10-02T11:58:03.012Z",
+  "updatedAt": "2026-10-03T11:11:19.146Z",
   "news": [
-    {
-      "title": "Revealing the details of how OpenAI agents hacked Hugging Face",
-      "url": "https://swarmtraces.org/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-25",
-      "summary": "754 points | 472 comments on Hacker News"
-    },
     {
       "title": "Unsealed Briefs in Authors’ Case v. Microsoft/OpenAI",
       "url": "https://authorsguild.org/news/ag-v-openai-top-execs-knew-mass-book-piracy-was-illegal/",
       "source": "Hacker News",
       "publishedAt": "2026-09-27",
-      "summary": "627 points | 623 comments on Hacker News"
+      "summary": "630 points | 624 comments on Hacker News"
     },
     {
       "title": "It's Time to Investigate the AI Labs",
       "url": "https://calnewport.com/its-time-to-investigate-the-ai-labs/",
       "source": "Hacker News",
       "publishedAt": "2026-09-28",
-      "summary": "626 points | 277 comments on Hacker News"
+      "summary": "628 points | 277 comments on Hacker News"
     },
     {
       "title": "DraftKings is using AI to behaviorally target chronic gamblers",
       "url": "https://www.eff.org/deeplinks/2026/09/draftkings-using-ai-supercharge-harms-online-behavioral-advertising",
       "source": "Hacker News",
       "publishedAt": "2026-09-29",
-      "summary": "567 points | 428 comments on Hacker News"
+      "summary": "570 points | 429 comments on Hacker News"
     },
     {
       "title": "AI companies in race to demonstrate their model most threatening to humanity",
@@ -35,6 +28,13 @@
       "source": "Hacker News",
       "publishedAt": "2026-09-28",
       "summary": "440 points | 398 comments on Hacker News"
+    },
+    {
+      "title": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
+      "url": "https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-29",
+      "summary": "425 points | 140 comments on Hacker News"
     }
   ]
 }
