@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T11:51:10.274Z",
+  "updatedAt": "2026-10-05T13:45:03.646Z",
   "news": [
     {
       "title": "It's Time to Investigate the AI Labs",
@@ -13,14 +13,14 @@
       "url": "https://www.eff.org/deeplinks/2026/09/draftkings-using-ai-supercharge-harms-online-behavioral-advertising",
       "source": "Hacker News",
       "publishedAt": "2026-09-29",
-      "summary": "570 points | 431 comments on Hacker News"
+      "summary": "570 points | 432 comments on Hacker News"
     },
     {
-      "title": "AI companies in race to demonstrate their model most threatening to humanity",
-      "url": "https://thecivilian.co.nz/2026/09/27/ai-companies-in-fierce-arms-race-to-demonstrate-their-model-is-the-most-existentially-threatening-to-humanity/",
+      "title": "I quit OpenAI because its culture is broken",
+      "url": "https://www.theatlantic.com/technology/2026/10/openai-safety-team-resignation/688881/?gift=v5U_UzUTothfWXsPxtvNVAh7esWToMRD6XnbXmc5WgA",
       "source": "Hacker News",
-      "publishedAt": "2026-09-28",
-      "summary": "441 points | 399 comments on Hacker News"
+      "publishedAt": "2026-10-03",
+      "summary": "477 points | 797 comments on Hacker News"
     },
     {
       "title": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
@@ -34,7 +34,7 @@
       "url": "https://tej.as/blog/aleph-alpha-kolibri",
       "source": "Hacker News",
       "publishedAt": "2026-10-03",
-      "summary": "413 points | 12 comments on Hacker News"
+      "summary": "419 points | 12 comments on Hacker News"
     }
   ]
 }
