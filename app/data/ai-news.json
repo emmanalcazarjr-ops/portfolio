@@ -1,13 +1,6 @@
 {
-  "updatedAt": "2026-10-05T13:45:03.646Z",
+  "updatedAt": "2026-10-06T12:50:45.440Z",
   "news": [
-    {
-      "title": "It's Time to Investigate the AI Labs",
-      "url": "https://calnewport.com/its-time-to-investigate-the-ai-labs/",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-28",
-      "summary": "629 points | 277 comments on Hacker News"
-    },
     {
       "title": "DraftKings is using AI to behaviorally target chronic gamblers",
       "url": "https://www.eff.org/deeplinks/2026/09/draftkings-using-ai-supercharge-harms-online-behavioral-advertising",
@@ -20,21 +13,28 @@
       "url": "https://www.theatlantic.com/technology/2026/10/openai-safety-team-resignation/688881/?gift=v5U_UzUTothfWXsPxtvNVAh7esWToMRD6XnbXmc5WgA",
       "source": "Hacker News",
       "publishedAt": "2026-10-03",
-      "summary": "477 points | 797 comments on Hacker News"
-    },
-    {
-      "title": "A Privacy Analysis of Web and Mobile Conversational AI Agents [pdf]",
-      "url": "https://jorgegarciaherrero.com/wp-content/interactivos/20260916-Prompt-like-a-butterfly-sting-like-a-tracker-(clean).pdf",
-      "source": "Hacker News",
-      "publishedAt": "2026-09-29",
-      "summary": "425 points | 141 comments on Hacker News"
+      "summary": "487 points | 815 comments on Hacker News"
     },
     {
       "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
       "url": "https://tej.as/blog/aleph-alpha-kolibri",
       "source": "Hacker News",
       "publishedAt": "2026-10-03",
-      "summary": "419 points | 12 comments on Hacker News"
+      "summary": "420 points | 12 comments on Hacker News"
+    },
+    {
+      "title": "LeCun has \"zero concerns\" about AI wiping out humanity, recent \"rogue\" incidents",
+      "url": "https://fortune.com/2026/10/01/ai-godfather-yann-lecun-has-zero-concerns-about-human-extinction-says-anthropic-ceo-dario-amodei-is-deuded/",
+      "source": "Hacker News",
+      "publishedAt": "2026-10-03",
+      "summary": "412 points | 833 comments on Hacker News"
+    },
+    {
+      "title": "The AI Race Just Got Awkward",
+      "url": "https://insufferable.dev/posts/the-ai-race-just-got-awkward/",
+      "source": "Hacker News",
+      "publishedAt": "2026-09-30",
+      "summary": "412 points | 463 comments on Hacker News"
     }
   ]
 }
