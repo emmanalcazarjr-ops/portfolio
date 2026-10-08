@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-07T12:44:41.827Z",
+  "updatedAt": "2026-10-08T12:53:51.383Z",
   "news": [
     {
       "title": "Sharing AI progress in mathematics",
       "url": "https://openai.com/index/sharing-ai-progress-in-mathematics/",
       "source": "Hacker News",
       "publishedAt": "2026-10-06",
-      "summary": "1017 points | 993 comments on Hacker News"
+      "summary": "1288 points | 1461 comments on Hacker News"
     },
     {
       "title": "I quit OpenAI because its culture is broken",
       "url": "https://www.theatlantic.com/technology/2026/10/openai-safety-team-resignation/688881/?gift=v5U_UzUTothfWXsPxtvNVAh7esWToMRD6XnbXmc5WgA",
       "source": "Hacker News",
       "publishedAt": "2026-10-03",
-      "summary": "490 points | 817 comments on Hacker News"
-    },
-    {
-      "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
-      "url": "https://tej.as/blog/aleph-alpha-kolibri",
-      "source": "Hacker News",
-      "publishedAt": "2026-10-03",
-      "summary": "422 points | 12 comments on Hacker News"
+      "summary": "492 points | 817 comments on Hacker News"
     },
     {
       "title": "LeCun has \"zero concerns\" about AI wiping out humanity, recent \"rogue\" incidents",
       "url": "https://fortune.com/2026/10/01/ai-godfather-yann-lecun-has-zero-concerns-about-human-extinction-says-anthropic-ceo-dario-amodei-is-deuded/",
       "source": "Hacker News",
       "publishedAt": "2026-10-03",
-      "summary": "421 points | 843 comments on Hacker News"
+      "summary": "423 points | 845 comments on Hacker News"
     },
     {
-      "title": "The AI Race Just Got Awkward",
-      "url": "https://insufferable.dev/posts/the-ai-race-just-got-awkward/",
+      "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
+      "url": "https://tej.as/blog/aleph-alpha-kolibri",
       "source": "Hacker News",
-      "publishedAt": "2026-09-30",
-      "summary": "412 points | 463 comments on Hacker News"
+      "publishedAt": "2026-10-03",
+      "summary": "423 points | 12 comments on Hacker News"
+    },
+    {
+      "title": "From the creator of Redis; run LLM locally with ds4",
+      "url": "https://dwarfstar.sh/",
+      "source": "Hacker News",
+      "publishedAt": "2026-10-02",
+      "summary": "365 points | 107 comments on Hacker News"
     }
   ]
 }
