@@ -1,12 +1,12 @@
 {
-  "updatedAt": "2026-10-09T12:39:37.692Z",
+  "updatedAt": "2026-10-10T11:59:04.440Z",
   "news": [
     {
       "title": "Sharing AI progress in mathematics",
       "url": "https://openai.com/index/sharing-ai-progress-in-mathematics/",
       "source": "Hacker News",
       "publishedAt": "2026-10-06",
-      "summary": "1329 points | 1512 comments on Hacker News"
+      "summary": "1345 points | 1524 comments on Hacker News"
     },
     {
       "title": "I quit OpenAI because its culture is broken",
@@ -16,25 +16,25 @@
       "summary": "494 points | 817 comments on Hacker News"
     },
     {
-      "title": "Aleph Alpha Kolibri: How the sovereign German LLM works",
-      "url": "https://tej.as/blog/aleph-alpha-kolibri",
+      "title": "OpenAI annualised revenues $20B less than previously signalled",
+      "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html",
       "source": "Hacker News",
-      "publishedAt": "2026-10-03",
-      "summary": "424 points | 12 comments on Hacker News"
+      "publishedAt": "2026-10-08",
+      "summary": "424 points | 300 comments on Hacker News"
     },
     {
       "title": "LeCun has \"zero concerns\" about AI wiping out humanity, recent \"rogue\" incidents",
       "url": "https://fortune.com/2026/10/01/ai-godfather-yann-lecun-has-zero-concerns-about-human-extinction-says-anthropic-ceo-dario-amodei-is-deuded/",
       "source": "Hacker News",
       "publishedAt": "2026-10-03",
-      "summary": "423 points | 846 comments on Hacker News"
+      "summary": "423 points | 847 comments on Hacker News"
     },
     {
-      "title": "OpenAI annualised revenues $20B less than previously signalled",
-      "url": "https://www.cnbc.com/2026/10/08/open-ai-revenue-nvidia-oracle-coreweave.html",
+      "title": "Show HN: Let your AI agents paint big arrows, boxes and text on your screen",
+      "url": "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
       "source": "Hacker News",
-      "publishedAt": "2026-10-08",
-      "summary": "405 points | 276 comments on Hacker News"
+      "publishedAt": "2026-10-09",
+      "summary": "400 points | 177 comments on Hacker News"
     }
   ]
 }
