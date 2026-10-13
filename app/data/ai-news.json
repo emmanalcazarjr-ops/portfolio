@@ -1,26 +1,33 @@
 {
-  "updatedAt": "2026-10-12T14:33:37.774Z",
+  "updatedAt": "2026-10-13T13:39:23.657Z",
   "news": [
     {
       "title": "Sharing AI progress in mathematics",
       "url": "https://openai.com/index/sharing-ai-progress-in-mathematics/",
       "source": "Hacker News",
       "publishedAt": "2026-10-06",
-      "summary": "1356 points | 1533 comments on Hacker News"
+      "summary": "1359 points | 1538 comments on Hacker News"
     },
     {
       "title": "The gap in shared understanding of LLM capability is widening",
       "url": "https://twitter.com/karpathy/status/2109361546505966046",
       "source": "Hacker News",
       "publishedAt": "2026-10-11",
-      "summary": "555 points | 793 comments on Hacker News"
+      "summary": "705 points | 1028 comments on Hacker News"
+    },
+    {
+      "title": "AI is a tool and using it well takes skill",
+      "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
+      "source": "Hacker News",
+      "publishedAt": "2026-10-12",
+      "summary": "481 points | 390 comments on Hacker News"
     },
     {
       "title": "Typesafe AI raises $870M at $7.5B",
       "url": "https://typesafe.ai/blog/series-ai",
       "source": "Hacker News",
       "publishedAt": "2026-10-09",
-      "summary": "443 points | 356 comments on Hacker News"
+      "summary": "444 points | 356 comments on Hacker News"
     },
     {
       "title": "OpenAI annualised revenues $20B less than previously signalled",
@@ -28,13 +35,6 @@
       "source": "Hacker News",
       "publishedAt": "2026-10-08",
       "summary": "432 points | 301 comments on Hacker News"
-    },
-    {
-      "title": "Show HN: Let your AI agents paint big arrows, boxes and text on your screen",
-      "url": "https://github.com/franzenzenhofer/big-arrow-on-the-screen",
-      "source": "Hacker News",
-      "publishedAt": "2026-10-09",
-      "summary": "417 points | 196 comments on Hacker News"
     }
   ]
 }
