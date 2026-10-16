@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-15T10:56:12.123Z",
+  "updatedAt": "2026-10-16T10:48:13.455Z",
   "news": [
     {
       "title": "Containment and monitoring failures are to blame for AI hacking reports: experts",
       "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
       "source": "Hacker News",
       "publishedAt": "2026-10-14",
-      "summary": "908 points | 539 comments on Hacker News"
+      "summary": "942 points | 614 comments on Hacker News"
     },
     {
       "title": "AI is a tool and using it well takes skill",
       "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
       "source": "Hacker News",
       "publishedAt": "2026-10-12",
-      "summary": "776 points | 598 comments on Hacker News"
+      "summary": "789 points | 603 comments on Hacker News"
     },
     {
       "title": "The gap in shared understanding of LLM capability is widening",
       "url": "https://twitter.com/karpathy/status/2109361546505966046",
       "source": "Hacker News",
       "publishedAt": "2026-10-11",
-      "summary": "722 points | 1060 comments on Hacker News"
+      "summary": "725 points | 1069 comments on Hacker News"
     },
     {
       "title": "OpenAI engineer arrested in bugging of executive conference room",
       "url": "https://sfstandard.com/2026/10/13/openai-engineer-arrested-alleged-bugging-executive-conference-room/",
       "source": "Hacker News",
       "publishedAt": "2026-10-13",
-      "summary": "647 points | 536 comments on Hacker News"
+      "summary": "652 points | 541 comments on Hacker News"
     },
     {
       "title": "Typesafe AI raises $870M at $7.5B",
       "url": "https://typesafe.ai/blog/series-ai",
       "source": "Hacker News",
       "publishedAt": "2026-10-09",
-      "summary": "444 points | 356 comments on Hacker News"
+      "summary": "444 points | 357 comments on Hacker News"
     }
   ]
 }
