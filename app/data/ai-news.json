@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-16T10:48:13.455Z",
+  "updatedAt": "2026-10-17T10:13:42.684Z",
   "news": [
     {
       "title": "Containment and monitoring failures are to blame for AI hacking reports: experts",
       "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
       "source": "Hacker News",
       "publishedAt": "2026-10-14",
-      "summary": "942 points | 614 comments on Hacker News"
+      "summary": "946 points | 619 comments on Hacker News"
     },
     {
       "title": "AI is a tool and using it well takes skill",
       "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
       "source": "Hacker News",
       "publishedAt": "2026-10-12",
-      "summary": "789 points | 603 comments on Hacker News"
+      "summary": "802 points | 607 comments on Hacker News"
     },
     {
       "title": "The gap in shared understanding of LLM capability is widening",
       "url": "https://twitter.com/karpathy/status/2109361546505966046",
       "source": "Hacker News",
       "publishedAt": "2026-10-11",
-      "summary": "725 points | 1069 comments on Hacker News"
+      "summary": "727 points | 1072 comments on Hacker News"
     },
     {
       "title": "OpenAI engineer arrested in bugging of executive conference room",
       "url": "https://sfstandard.com/2026/10/13/openai-engineer-arrested-alleged-bugging-executive-conference-room/",
       "source": "Hacker News",
       "publishedAt": "2026-10-13",
-      "summary": "652 points | 541 comments on Hacker News"
+      "summary": "653 points | 543 comments on Hacker News"
     },
     {
-      "title": "Typesafe AI raises $870M at $7.5B",
-      "url": "https://typesafe.ai/blog/series-ai",
+      "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
+      "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
       "source": "Hacker News",
-      "publishedAt": "2026-10-09",
-      "summary": "444 points | 357 comments on Hacker News"
+      "publishedAt": "2026-10-16",
+      "summary": "503 points | 427 comments on Hacker News"
     }
   ]
 }
