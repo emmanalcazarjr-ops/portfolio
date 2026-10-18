@@ -1,19 +1,19 @@
 {
-  "updatedAt": "2026-10-17T10:13:42.684Z",
+  "updatedAt": "2026-10-18T10:28:55.388Z",
   "news": [
     {
       "title": "Containment and monitoring failures are to blame for AI hacking reports: experts",
       "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
       "source": "Hacker News",
       "publishedAt": "2026-10-14",
-      "summary": "946 points | 619 comments on Hacker News"
+      "summary": "948 points | 620 comments on Hacker News"
     },
     {
       "title": "AI is a tool and using it well takes skill",
       "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
       "source": "Hacker News",
       "publishedAt": "2026-10-12",
-      "summary": "802 points | 607 comments on Hacker News"
+      "summary": "803 points | 607 comments on Hacker News"
     },
     {
       "title": "The gap in shared understanding of LLM capability is widening",
@@ -27,14 +27,14 @@
       "url": "https://sfstandard.com/2026/10/13/openai-engineer-arrested-alleged-bugging-executive-conference-room/",
       "source": "Hacker News",
       "publishedAt": "2026-10-13",
-      "summary": "653 points | 543 comments on Hacker News"
+      "summary": "655 points | 543 comments on Hacker News"
     },
     {
       "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
       "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
       "source": "Hacker News",
       "publishedAt": "2026-10-16",
-      "summary": "503 points | 427 comments on Hacker News"
+      "summary": "610 points | 552 comments on Hacker News"
     }
   ]
 }
