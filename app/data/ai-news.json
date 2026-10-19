@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-18T10:28:55.388Z",
+  "updatedAt": "2026-10-19T12:17:09.512Z",
   "news": [
     {
       "title": "Containment and monitoring failures are to blame for AI hacking reports: experts",
       "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
       "source": "Hacker News",
       "publishedAt": "2026-10-14",
-      "summary": "948 points | 620 comments on Hacker News"
+      "summary": "950 points | 621 comments on Hacker News"
     },
     {
       "title": "AI is a tool and using it well takes skill",
       "url": "https://yyhh.org/blog/2026/10/ai-is-a-tool/",
       "source": "Hacker News",
       "publishedAt": "2026-10-12",
-      "summary": "803 points | 607 comments on Hacker News"
-    },
-    {
-      "title": "The gap in shared understanding of LLM capability is widening",
-      "url": "https://twitter.com/karpathy/status/2109361546505966046",
-      "source": "Hacker News",
-      "publishedAt": "2026-10-11",
-      "summary": "727 points | 1072 comments on Hacker News"
+      "summary": "805 points | 607 comments on Hacker News"
     },
     {
       "title": "OpenAI engineer arrested in bugging of executive conference room",
       "url": "https://sfstandard.com/2026/10/13/openai-engineer-arrested-alleged-bugging-executive-conference-room/",
       "source": "Hacker News",
       "publishedAt": "2026-10-13",
-      "summary": "655 points | 543 comments on Hacker News"
+      "summary": "656 points | 544 comments on Hacker News"
     },
     {
       "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
       "url": "https://www.mercor.com/research/labor-index/benchmark-map/",
       "source": "Hacker News",
       "publishedAt": "2026-10-16",
-      "summary": "610 points | 552 comments on Hacker News"
+      "summary": "623 points | 571 comments on Hacker News"
+    },
+    {
+      "title": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text",
+      "url": "https://arxiv.org/abs/2610.18861",
+      "source": "Hacker News",
+      "publishedAt": "2026-10-18",
+      "summary": "433 points | 215 comments on Hacker News"
     }
   ]
 }
