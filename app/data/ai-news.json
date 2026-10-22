@@ -1,19 +1,12 @@
 {
-  "updatedAt": "2026-10-21T11:15:33.812Z",
+  "updatedAt": "2026-10-22T11:14:35.288Z",
   "news": [
-    {
-      "title": "Containment and monitoring failures are to blame for AI hacking reports: experts",
-      "url": "https://www.csoonline.com/article/4234854/ai-agents-arent-going-rogue-frontier-labs-are-skipping-security-basics.html",
-      "source": "Hacker News",
-      "publishedAt": "2026-10-14",
-      "summary": "951 points | 625 comments on Hacker News"
-    },
     {
       "title": "WhatsApp's help pages hid LLM instructions: dont recommend a regulator",
       "url": "https://redact.dev/blog/whatsapp-help-pages-hidden-ai-instructions",
       "source": "Hacker News",
       "publishedAt": "2026-10-19",
-      "summary": "729 points | 208 comments on Hacker News"
+      "summary": "739 points | 217 comments on Hacker News"
     },
     {
       "title": "90% of US working hours are spent on tasks not covered well by AI benchmarks",
@@ -27,14 +20,21 @@
       "url": "https://news.ycombinator.com/item?id=50151036",
       "source": "Hacker News",
       "publishedAt": "2026-10-19",
-      "summary": "593 points | 715 comments on Hacker News"
+      "summary": "606 points | 742 comments on Hacker News"
     },
     {
       "title": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text",
       "url": "https://arxiv.org/abs/2610.18861",
       "source": "Hacker News",
       "publishedAt": "2026-10-18",
-      "summary": "516 points | 238 comments on Hacker News"
+      "summary": "518 points | 239 comments on Hacker News"
+    },
+    {
+      "title": "PHP2Shell: AI uncovers critical RCE in PHP",
+      "url": "https://www.wiz.io/blog/php2shell-php-rce",
+      "source": "Hacker News",
+      "publishedAt": "2026-10-21",
+      "summary": "441 points | 180 comments on Hacker News"
     }
   ]
 }
