@@ -1,40 +1,40 @@
 {
-  "updatedAt": "2026-10-24T10:22:19.618Z",
+  "updatedAt": "2026-10-25T10:49:57.988Z",
   "news": [
     {
       "title": "WhatsApp's help pages hid LLM instructions: dont recommend a regulator",
       "url": "https://redact.dev/blog/whatsapp-help-pages-hidden-ai-instructions",
       "source": "Hacker News",
       "publishedAt": "2026-10-19",
-      "summary": "742 points | 220 comments on Hacker News"
-    },
-    {
-      "title": "Every AI model has the same \"controversial\" take on humans",
-      "url": "https://www.modelcompare.ai/blog/ai-models-controversial-take-on-humans",
-      "source": "Hacker News",
-      "publishedAt": "2026-10-22",
-      "summary": "632 points | 603 comments on Hacker News"
+      "summary": "743 points | 221 comments on Hacker News"
     },
     {
       "title": "Ask HN: If the models are so good, why doesn't OpenAI just start 100 companies?",
       "url": "https://news.ycombinator.com/item?id=50200997",
       "source": "Hacker News",
       "publishedAt": "2026-10-22",
-      "summary": "620 points | 692 comments on Hacker News"
+      "summary": "654 points | 738 comments on Hacker News"
+    },
+    {
+      "title": "Every AI model has the same \"controversial\" take on humans",
+      "url": "https://www.modelcompare.ai/blog/ai-models-controversial-take-on-humans",
+      "source": "Hacker News",
+      "publishedAt": "2026-10-22",
+      "summary": "650 points | 623 comments on Hacker News"
     },
     {
       "title": "Ask HN: How to deal with shipping AI-written code you don't understand?",
       "url": "https://news.ycombinator.com/item?id=50151036",
       "source": "Hacker News",
       "publishedAt": "2026-10-19",
-      "summary": "618 points | 751 comments on Hacker News"
+      "summary": "619 points | 757 comments on Hacker News"
     },
     {
-      "title": "Hybrid Reasoning Agents: LLM agents that think in latent space, act through text",
-      "url": "https://arxiv.org/abs/2610.18861",
+      "title": "No signs of AI payoff outside the tech sector",
+      "url": "https://www.apollo.com/wealth/insights-news/insights/daily-spark/no-signs-of-ai-payoff-outside-the-tech-sector",
       "source": "Hacker News",
-      "publishedAt": "2026-10-18",
-      "summary": "520 points | 239 comments on Hacker News"
+      "publishedAt": "2026-10-24",
+      "summary": "558 points | 583 comments on Hacker News"
     }
   ]
 }
