@@ -219,5 +219,12 @@ foreach ($path in $pages.Keys) {
 }
 if ($problems) { $problems | ForEach-Object { Write-Host "  x $_" -ForegroundColor Red }; throw "Build checks failed ($($problems.Count))" }
 
+# Placeholder text like "[test set / conditions]" is fine to build but should not ship.
+foreach ($path in $pages.Keys) {
+  foreach ($m in [regex]::Matches($pages[$path], '>\s*(\[[^\]<]+\])\s*<')) {
+    Write-Host "  ! $path still has placeholder $($m.Groups[1].Value)" -ForegroundColor Yellow
+  }
+}
+
 $files = Get-ChildItem $Out -Recurse -File
 Write-Host ("Built {0} pages, {1} files, {2:N2} MB -> {3}" -f $pages.Count, $files.Count, (($files | Measure-Object Length -Sum).Sum / 1MB), (Resolve-Path $Out))

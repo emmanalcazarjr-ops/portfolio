@@ -869,6 +869,15 @@ a,button,[role=button] {
   font-weight: 500;
 }
 
+/* One line of context under each benchmark: test set, conditions, scope */
+.bento-metric-box .metric-caption {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--bn-ink-faint);
+  margin-top: 2px;
+}
+
 .bento-stack-chips {
   display: flex;
   flex-wrap: wrap;
