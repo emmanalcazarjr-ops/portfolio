@@ -153,6 +153,41 @@ a,button,[role=button] {
   display: flex;
   flex-direction: column;
   z-index: 20;
+  /* Fixed panel: scroll rather than clip if a short window can't fit it */
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+}
+
+/* Short desktop windows (e.g. 1366x768 laptops): tighten spacing so the
+   buttons, including "Get in touch", stay on screen without scrolling. */
+@media (min-width: 901px) and (max-height: 760px) {
+  .sidebar {
+    padding-top: calc(20px + var(--safe-top));
+    padding-bottom: calc(20px + var(--safe-bottom));
+  }
+  .sidebar-top {
+    gap: 6px;
+  }
+  .sidebar-headline {
+    margin-top: 6px;
+  }
+  .sidebar-nav {
+    margin-top: 18px;
+    gap: 8px;
+  }
+  .sidebar-about-btn {
+    min-height: 44px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+  }
+  .sidebar-social {
+    padding-top: 14px;
+  }
+  .sidebar-social a {
+    width: 44px;
+    height: 44px;
+  }
 }
 
 .sidebar-top {
@@ -257,12 +292,25 @@ a,button,[role=button] {
   color: var(--orange);
 }
 
+/* Primary call to action: same orange fill as the manifesto "Get in touch" button */
+.sidebar-about-btn.contact-btn {
+  background: var(--orange);
+  border-color: var(--orange);
+  color: var(--ground);
+  font-weight: 700;
+}
+
+.sidebar-about-btn.contact-btn .btn-arrow {
+  color: var(--ground);
+}
+
 .sidebar-about-btn:active {
   transform: scale(.98);
 }
 
 .sidebar-social {
   margin-top: auto;
+  padding-top: 24px;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1531,6 +1579,11 @@ a,button,[role=button] {
     background: var(--bn-surface-hover);
     border-color: var(--orange);
     color: var(--orange);
+  }
+  .sidebar-about-btn.contact-btn:hover {
+    background: #ff7f2e;
+    border-color: #ff7f2e;
+    color: var(--ground);
   }
   .sidebar-about-btn.resume-btn:hover {
     background: #f3701e29;
