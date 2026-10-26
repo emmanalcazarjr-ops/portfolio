@@ -1,0 +1,37 @@
+WEBVTT
+
+1
+00:00:00.450 --> 00:00:05.900
+Here's my progress on DataCamp's Intermediate Workflow Automation with n8n course.
+
+2
+00:00:07.050 --> 00:00:12.400
+First, I built a webhook workflow that receives a request and sends back a reply.
+
+3
+00:00:13.650 --> 00:00:19.400
+Next, I added an If node, so requests missing an email get an error instead.
+
+4
+00:00:20.600 --> 00:00:25.550
+Then I flattened nested order data into simple fields using dot notation.
+
+5
+00:00:26.800 --> 00:00:32.800
+I made one workflow call another with an HTTP Request: the producer-consumer pattern.
+
+6
+00:00:34.050 --> 00:00:39.100
+Then I checked that reply, sending success and failure down separate paths.
+
+7
+00:00:40.200 --> 00:00:44.850
+I scheduled a workflow to run every thirty minutes, with a business-hours check.
+
+8
+00:00:46.100 --> 00:00:50.950
+Finally, I connected that schedule to the consumer workflow, as a test run.
+
+9
+00:00:52.200 --> 00:00:59.200
+That's Chapter One: seven practice exercises done, a quarter of the way through. Still learning.
