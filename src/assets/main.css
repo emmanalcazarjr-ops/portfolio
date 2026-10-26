@@ -161,6 +161,12 @@ a,button,[role=button] {
   gap: 8px;
 }
 
+.sidebar-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .sidebar-status-chip {
   display: inline-flex;
   align-items: center;
@@ -192,6 +198,7 @@ a,button,[role=button] {
   font-weight: 600;
   color: var(--orange);
   letter-spacing: .01em;
+  text-wrap: balance;
 }
 
 .sidebar-headline {
