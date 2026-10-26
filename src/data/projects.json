@@ -44,6 +44,47 @@
     "live": "https://specula.emmanalcazarjr.com"
   },
   {
+    "id": "reybineye",
+    "name": "ReybinEye PM",
+    "category": "CCTV Infrastructure",
+    "meta": "CCTV Infrastructure · 2026",
+    "cardMetric": "40%+ inspection time cut · 28 nodes",
+    "impactSummary": "Reduced site inspection and diagnostic overhead by over 40% across 28 live surveillance camera nodes with automated checklist verification, BOM inventory tracking, and simulated device RTSP telemetry.",
+    "desc": "Systems integration and project management platform for mission-critical CCTV deployments: milestone tracking, automated site inspection checklists, BOM inventory allocation, and simulated device telemetry (FPS, bitrate, RTSP health). Demo sanitized for confidentiality.",
+    "metric": "40%+ inspection time cut · 28 nodes tracked · 100% synthetic demo · NDA compliant",
+    "metricsList": [
+      {
+        "val": "40%+",
+        "label": "Inspection time cut"
+      },
+      {
+        "val": "28",
+        "label": "Live CCTV nodes online"
+      },
+      {
+        "val": "30 FPS",
+        "label": "RTSP real-time stream"
+      },
+      {
+        "val": "100%",
+        "label": "Confidential synthetic demo"
+      }
+    ],
+    "tags": [
+      "React",
+      "TypeScript",
+      "Systems Integration",
+      "RTSP / ONVIF",
+      "Remotion"
+    ],
+    "image": "/img/reybineye-telemetry.jpg",
+    "video": "/vids/reybineye-demo.mp4",
+    "poster": "/vids/posters/reybineye-demo.jpg",
+    "scene": "/img/scenes/reybineye.webp",
+    "sceneAlt": "Technician in a reflective vest checking an inspection list on a tablet in front of an apron CCTV wall at night",
+    "live": "https://emmanalcazarjr.com/reybineye"
+  },
+  {
     "id": "rag",
     "name": "RAG Knowledge Assistant",
     "category": "Applied GenAI",
@@ -126,47 +167,6 @@
     "sceneAlt": "Phone showing the morning brief on a kitchen counter beside a steaming cup of coffee at sunrise",
     "live": "https://t.me/RushDailyBot",
     "repo": "https://github.com/emmanalcazarjr-ops/personal-assistant-bot"
-  },
-  {
-    "id": "reybineye",
-    "name": "ReybinEye PM",
-    "category": "CCTV Infrastructure",
-    "meta": "CCTV Infrastructure · 2026",
-    "cardMetric": "40%+ inspection time cut · 28 nodes",
-    "impactSummary": "Reduced site inspection and diagnostic overhead by over 40% across 28 live surveillance camera nodes with automated checklist verification, BOM inventory tracking, and simulated device RTSP telemetry.",
-    "desc": "Systems integration and project management platform for mission-critical CCTV deployments: milestone tracking, automated site inspection checklists, BOM inventory allocation, and simulated device telemetry (FPS, bitrate, RTSP health). Demo sanitized for confidentiality.",
-    "metric": "40%+ inspection time cut · 28 nodes tracked · 100% synthetic demo · NDA compliant",
-    "metricsList": [
-      {
-        "val": "40%+",
-        "label": "Inspection time cut"
-      },
-      {
-        "val": "28",
-        "label": "Live CCTV nodes online"
-      },
-      {
-        "val": "30 FPS",
-        "label": "RTSP real-time stream"
-      },
-      {
-        "val": "100%",
-        "label": "Confidential synthetic demo"
-      }
-    ],
-    "tags": [
-      "React",
-      "TypeScript",
-      "Systems Integration",
-      "RTSP / ONVIF",
-      "Remotion"
-    ],
-    "image": "/img/reybineye-telemetry.jpg",
-    "video": "/vids/reybineye-demo.mp4",
-    "poster": "/vids/posters/reybineye-demo.jpg",
-    "scene": "/img/scenes/reybineye.webp",
-    "sceneAlt": "Technician in a reflective vest checking an inspection list on a tablet in front of an apron CCTV wall at night",
-    "live": "https://emmanalcazarjr.com/reybineye"
   },
   {
     "id": "rush-voice",

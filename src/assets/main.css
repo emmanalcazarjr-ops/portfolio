@@ -744,6 +744,49 @@ a,button,[role=button] {
   letter-spacing: .04em;
 }
 
+/* "Currently learning": the highlight card shrunk to one grid cell lower on the page */
+.card.highlight-card.learning-card {
+  grid-column: auto;
+  padding: 12px;
+  gap: 14px;
+}
+
+.learning-card .highlight-body {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  padding: 2px 14px 14px;
+}
+
+.learning-card .highlight-title {
+  font-size: 20px;
+}
+
+.learning-card .highlight-copy {
+  gap: 10px;
+}
+
+.learning-card .highlight-copy p {
+  font-size: 14px;
+}
+
+.learning-card .highlight-sound {
+  top: 10px;
+  right: 10px;
+  padding: 8px 12px;
+  font-size: 11px;
+}
+
+.learning-card .highlight-captions {
+  bottom: 8px;
+  max-width: calc(100% - 20px);
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+.learning-card .highlight-media.is-engaged .highlight-captions {
+  bottom: 52px;
+}
+
 .card.bento-widget {
   overflow: visible;
   padding: 30px 30px 28px;

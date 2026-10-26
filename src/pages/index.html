@@ -18,8 +18,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
-  <!-- Highlight tile poster is the desktop LCP; on phones it sits below the sidebar -->
-  <link rel="preload" as="image" type="image/webp" href="/vids/posters/n8n-progress.webp" fetchpriority="high" media="(min-width: 901px)" />
   <link rel="stylesheet" href="{{css}}" />
   <script type="module" src="{{js}}"></script>
 </head>
@@ -59,33 +57,6 @@
 
   <!-- Bento grid -->
   <main class="bn-grid grid" id="main-grid" aria-label="Projects and impact">
-    <section class="card highlight-card" aria-labelledby="highlightTitle" style="--o:-1; --i:0">
-      <div class="highlight-media">
-        <video class="highlight-video" data-src="/vids/n8n-progress.mp4" poster="/vids/posters/n8n-progress.webp" muted loop playsinline preload="metadata" width="1920" height="1080" aria-label="Narrated screen recording, about one minute: seven n8n practice exercises from webhooks to scheduled workflows. English captions available.">
-          <track kind="captions" src="/vids/n8n-progress.en.vtt" srclang="en" label="English" default />
-        </video>
-        <p class="highlight-captions" aria-hidden="true" hidden></p>
-        <div class="video-fallback">
-          {{icon settings-sliders icon-xl}}
-          <span>Video unavailable</span>
-        </div>
-        <button class="highlight-sound" type="button" aria-label="Play the video from the start with sound">
-          {{icon play icon-xs}}
-          <span>Play with sound</span>
-        </button>
-      </div>
-      <div class="highlight-body">
-        <div class="highlight-head">
-          <span class="widget-kicker">Learning in public · <span class="kicker-keep-case">n8n</span></span>
-          <h2 class="highlight-title" id="highlightTitle">Workflow automation practice log</h2>
-        </div>
-        <div class="highlight-copy">
-          <p>Chapter 1 of DataCamp's Intermediate Workflow Automation with n8n: webhooks, validation, workflow-to-workflow calls and schedules. 7 of 7 practice exercises passed, 25% of the course.</p>
-          <span class="highlight-pill">Practice exercises · Oct 2026</span>
-        </div>
-      </div>
-    </section>
-
     <h2 class="sr-only">Selected projects</h2>
     <!-- build:project-tiles -->
 
@@ -164,6 +135,33 @@
       </ul>
       <div class="bento-widget-footer">
         <span>Public verified builds</span>
+      </div>
+    </section>
+
+    <section class="card highlight-card learning-card" aria-labelledby="highlightTitle">
+      <div class="highlight-media">
+        <video class="highlight-video" data-src="/vids/n8n-progress.mp4" poster="/vids/posters/n8n-progress.webp" muted loop playsinline preload="metadata" width="1920" height="1080" aria-label="Narrated screen recording, about one minute: seven n8n practice exercises from webhooks to scheduled workflows. English captions available.">
+          <track kind="captions" src="/vids/n8n-progress.en.vtt" srclang="en" label="English" default />
+        </video>
+        <p class="highlight-captions" aria-hidden="true" hidden></p>
+        <div class="video-fallback">
+          {{icon settings-sliders icon-xl}}
+          <span>Video unavailable</span>
+        </div>
+        <button class="highlight-sound" type="button" aria-label="Play the video from the start with sound">
+          {{icon play icon-xs}}
+          <span>Play with sound</span>
+        </button>
+      </div>
+      <div class="highlight-body">
+        <div class="highlight-head">
+          <span class="widget-kicker">Currently learning · <span class="kicker-keep-case">n8n</span></span>
+          <h3 class="highlight-title" id="highlightTitle">Workflow automation practice log</h3>
+        </div>
+        <div class="highlight-copy">
+          <p>Chapter 1 of DataCamp's Intermediate Workflow Automation with n8n: webhooks, validation, workflow-to-workflow calls and schedules. 7 of 7 practice exercises passed, 25% of the course.</p>
+          <span class="highlight-pill">Practice exercises · Oct 2026</span>
+        </div>
       </div>
     </section>
 
