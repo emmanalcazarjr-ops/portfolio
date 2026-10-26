@@ -124,9 +124,11 @@ try {
 
   # Close-up screenshots of specific elements, e.g. -Elements '.learning-card','.sidebar'
   foreach ($selector in $Elements) {
-    $rect = Js "(() => { const el = document.querySelector('$selector'); if (!el) return null; el.scrollIntoView({ block: 'center', behavior: 'instant' }); const r = el.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height }; })()"
-    if (-not $rect) { Write-Warning "No element for $selector"; continue }
-    Start-Sleep -Milliseconds 600
+    $found = Js "(() => { const el = document.querySelector('$selector'); if (!el) return false; el.scrollIntoView({ block: 'center', behavior: 'instant' }); return true; })()"
+    if (-not $found) { Write-Warning "No element for $selector"; continue }
+    Start-Sleep -Milliseconds 800
+    # Read the position after scrolling has settled (the page uses smooth scrolling).
+    $rect = Js "(() => { const r = document.querySelector('$selector').getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height }; })()"
     if ($Shots) {
       $clip = @{ x = [Math]::Max(0, $rect.x - 12); y = [Math]::Max(0, $rect.y - 12); width = $rect.w + 24; height = [Math]::Min($rect.h + 24, 4000); scale = 1 }
       $data = (Cdp 'Page.captureScreenshot' @{ format = 'png'; captureBeyondViewport = $true; clip = $clip }).data
