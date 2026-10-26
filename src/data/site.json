@@ -1,0 +1,32 @@
+{
+  "name": "Emmanuel Alcazar Jr.",
+  "jobTitle": "Software Engineer & AI Solutions Developer",
+  "origin": "https://www.emmanalcazarjr.com",
+  "email": "emmanalcazarjr@gmail.com",
+  "cv": "/Emmanuel_Alcazar_Resume.pdf",
+  "linkedin": "https://www.linkedin.com/in/emmanalcazarjr/",
+  "github": "https://github.com/emmanalcazarjr-ops",
+  "x": "https://x.com/emmanalcazarjr",
+  "openRepos": [
+    {
+      "name": "Automated Report Generator",
+      "impact": "Automated generation and compilation of engineering & telemetry inspection reports.",
+      "url": "https://github.com/emmanalcazarjr-ops/automated-report-generator"
+    },
+    {
+      "name": "Water Order Automation SaaS",
+      "impact": "SMS & PIN ordering for condo refilling stations with Claude API entity parsing.",
+      "url": "https://water.emmanalcazarjr.com"
+    },
+    {
+      "name": "Sure Win Board Reviewer",
+      "impact": "Responsive web & Android study app covering 127 official PRC board syllabus topics with KaTeX.",
+      "url": "https://www.emmanalcazarjr.com/boardkid/"
+    },
+    {
+      "name": "AI Chatbot API",
+      "impact": "Stateful support agent with Supabase-backed conversation memory.",
+      "url": "https://github.com/emmanalcazarjr-ops/chatbot-api"
+    }
+  ]
+}

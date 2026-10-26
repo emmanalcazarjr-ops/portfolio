@@ -1,0 +1,73 @@
+<!doctype html>
+<!-- Source for public/img/og-card.png (1200x630 link preview). Re-render with .\make-og-card.ps1 -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=JetBrains+Mono:wght@600;700&display=block" rel="stylesheet" />
+  <style>
+    :root {
+      --ground: #171716;
+      --surface: #292621;
+      --ink: #f7f3ee;
+      --ink-muted: #c2b8ad;
+      --cream: #e8d8c9;
+      --orange: #f3701e;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 1200px; height: 630px; background: var(--ground); overflow: hidden; }
+    body { padding: 40px; font-family: "Josefin Sans", system-ui, sans-serif; color: var(--ink); }
+    .card {
+      position: relative;
+      height: 100%;
+      border-radius: 28px;
+      border: 1px solid rgba(232, 216, 201, .1);
+      background:
+        radial-gradient(640px 420px at 100% 0%, rgba(243, 112, 30, .16), transparent 70%),
+        var(--surface);
+      padding: 56px 64px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .chips { display: flex; gap: 12px; }
+    .chip {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--cream);
+      background: rgba(232, 216, 201, .08);
+      border: 1px solid rgba(232, 216, 201, .24);
+      padding: 8px 18px;
+      border-radius: 999px;
+    }
+    h1 { margin-top: 44px; font-size: 86px; line-height: 1.05; font-weight: 700; letter-spacing: -.01em; }
+    .role { margin-top: 18px; font-size: 42px; font-weight: 600; color: var(--orange); }
+    .tagline { margin-top: 22px; max-width: 860px; font-size: 27px; line-height: 1.4; color: var(--ink-muted); }
+    .footer {
+      margin-top: auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: var(--cream);
+    }
+    .footer::before { content: ""; width: 40px; height: 4px; border-radius: 2px; background: var(--orange); }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="chips">
+      <span class="chip">PRC Licensed ECE &amp; ECT</span>
+      <span class="chip">DOLE Safety Officer 2</span>
+    </div>
+    <h1>Emmanuel Alcazar Jr.</h1>
+    <p class="role">Software Engineer &amp; AI Solutions Developer</p>
+    <p class="tagline">Autonomous AI agents and automated pipelines built for end-to-end operational efficiency.</p>
+    <div class="footer">www.emmanalcazarjr.com</div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,246 @@
+﻿<#
+  Builds the site into dist/ (the folder to deploy).
+
+    .\build.ps1
+
+  src/pages/*.html   page templates
+  src/data/*.json    projects and site settings (edit these to change content)
+  src/assets/        CSS, JS and the icon sprite; copied with a content hash in the name
+  public/            copied to dist/ as-is (images, videos, PDF, favicons)
+
+  Template syntax:
+    {{css}} {{js}}               hashed asset URLs
+    {{site.key}}                 value from src/data/site.json
+    {{icon name extra-classes}}  <svg> that uses the icon sprite
+    <!-- build:name -->          replaced by a generated block (see $blocks below)
+#>
+param([string]$Out = 'dist')
+$ErrorActionPreference = 'Stop'
+Set-Location $PSScriptRoot
+$utf8 = [Text.UTF8Encoding]::new($false)
+
+function Read-Text($path) { [IO.File]::ReadAllText((Resolve-Path $path), $utf8).TrimStart([char]0xFEFF) }
+function Write-Text($path, $text) {
+  New-Item -ItemType Directory -Force (Split-Path $path) | Out-Null
+  [IO.File]::WriteAllText($path, $text, $utf8)
+}
+function Esc($s) { ([string]$s).Replace('&', '&amp;').Replace('<', '&lt;').Replace('>', '&gt;').Replace('"', '&quot;').Replace("'", '&#39;') }
+function Fill($template, $values) {
+  foreach ($k in $values.Keys) { $template = $template.Replace("{{$k}}", [string]$values[$k]) }
+  $template
+}
+
+$site = Read-Text 'src/data/site.json' | ConvertFrom-Json
+$projects = Read-Text 'src/data/projects.json' | ConvertFrom-Json   # no @(): PS 5.1 would nest the array
+
+# ---- Clean output, copy public/ ----
+if (Test-Path $Out) { Remove-Item $Out -Recurse -Force }
+New-Item -ItemType Directory $Out | Out-Null
+Copy-Item 'public/*' $Out -Recurse
+
+# ---- Fingerprinted assets ----
+$assetUrl = @{}
+New-Item -ItemType Directory (Join-Path $Out 'assets') | Out-Null
+foreach ($file in Get-ChildItem 'src/assets' -File) {
+  $hash = (Get-FileHash $file.FullName -Algorithm SHA256).Hash.Substring(0, 8).ToLower()
+  $name = "$($file.BaseName).$hash$($file.Extension)"
+  Copy-Item $file.FullName (Join-Path $Out "assets/$name")
+  $assetUrl[$file.Name] = "/assets/$name"
+}
+
+function Icon($name, $classes = '') {
+  $class = "bn-icon $classes".Trim()
+  "<svg class=`"$class`" aria-hidden=`"true`"><use href=`"$($assetUrl['icons.svg'])#$name`"></use></svg>"
+}
+
+# Icon used in the fallback panel and dialog badge for each project.
+$projectIcon = @{
+  'specula' = 'eye'; 'rag' = 'layers-triple'; 'rushdailybot' = 'telegram'; 'reybineye' = 'camcorder-handheld'
+  'rush-voice' = 'microphone'; 'emmanpi' = 'raspberry-pi'; 'bridgely' = 'server-network'
+}
+function ProjectIcon($p) { if ($projectIcon.ContainsKey($p.id)) { $projectIcon[$p.id] } else { 'command' } }
+function Poster($p) { if ($p.poster) { $p.poster } else { $p.image } }
+
+# ---- Generated blocks ----
+function Render-ProjectTiles {
+  $html = New-Object System.Collections.Generic.List[string]
+  for ($i = 0; $i -lt $projects.Count; $i++) {
+    $p = $projects[$i]
+    # Only the first row is on the first screen. Everything below it waits: images use
+    # loading="lazy", posters use data-poster, and videos use data-src (main.js attaches
+    # them as they come into view).
+    $firstRow = $i -eq 0
+    $posterAttr = if ($firstRow) { "poster=`"$(Esc (Poster $p))`"" } else { "data-poster=`"$(Esc (Poster $p))`"" }
+    $video = Fill @'
+
+    <div class="card project-video-card" data-project-id="{{id}}" aria-hidden="true" style="--o:{{o}}; --i:{{o}}">
+      <div class="project-video-frame">
+        <video data-src="{{video}}" muted loop playsinline preload="none" {{posterAttr}}></video>
+        <div class="video-fallback">
+          {{fallbackIcon}}
+          <span>Demo video unavailable</span>
+        </div>
+        <div class="project-video-badge">
+          {{playIcon}}
+          <span>Demo</span>
+        </div>
+      </div>
+    </div>
+'@ @{ id = Esc $p.id; o = $i * 2; video = Esc $p.video; posterAttr = $posterAttr; fallbackIcon = Icon (ProjectIcon $p) 'icon-xl'; playIcon = Icon 'play' 'icon-xs' }
+
+    # Scene image: a 640px copy (made by optimize-images.ps1 -Width 640) for 1x screens, 1024px otherwise.
+    $scene = if ($p.scene) { $p.scene } else { $p.image }
+    $small = $scene -replace '\.webp$', '-640.webp'
+    $srcset = if ($small -ne $scene -and (Test-Path (Join-Path 'public' $small.TrimStart('/')))) {
+      "srcset=`"$(Esc $small) 640w, $(Esc $scene) 1024w`" sizes=`"(max-width: 900px) calc(100vw - 32px), 540px`""
+    } else { '' }
+    $loading = if ($firstRow) { 'loading="eager" fetchpriority="high"' } else { 'loading="lazy"' }
+
+    $live = if ($p.live) { "<a class=`"action-pill primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`" aria-label=`"$(Esc $p.name) live demo (opens in new tab)`">$(Icon 'arrow-up-right' 'icon-sm')<span>Live demo</span></a>" } else { '' }
+    $repo = if ($p.repo) { "<a class=`"action-pill`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`" aria-label=`"$(Esc $p.name) source on GitHub (opens in new tab)`">$(Icon 'github' 'icon-sm')<span>GitHub</span></a>" } else { '' }
+    $photo = Fill @'
+
+    <div class="card project-photo-card is-interactive" data-project-id="{{id}}" style="--o:{{o}}; --i:{{o}}">
+      <img class="project-photo" src="{{scene}}" {{srcset}} alt="{{alt}}" width="1024" height="1024" {{loading}} decoding="async" />
+      <div class="photo-scrim" aria-hidden="true"></div>
+      <div class="photo-caption">
+        <span class="photo-kicker">{{category}}</span>
+        <h3 class="photo-name">{{name}}</h3>
+      </div>
+      <div class="photo-actions">
+        {{live}}
+        {{repo}}
+        <a class="action-pill" href="/projects/{{id}}" aria-label="{{name}} case study">{{caseIcon}}<span>Case study</span></a>
+      </div>
+    </div>
+'@ @{ id = Esc $p.id; o = $i * 2 + 1; scene = Esc $scene; srcset = $srcset; loading = $loading; alt = Esc $(if ($p.sceneAlt) { $p.sceneAlt } else { "$($p.name) in use" }); category = Esc $p.category; name = Esc $p.name; live = $live; repo = $repo; caseIcon = Icon 'layers-triple' 'icon-sm' }
+
+    # Alternate the video/photo order per row so the two columns form a checkerboard.
+    if ($i % 2 -eq 0) { $html.Add($video); $html.Add($photo) } else { $html.Add($photo); $html.Add($video) }
+  }
+  ($html -join '').Trim()
+}
+
+# Meta description: the project's own metaDescription if set, else its impact summary cut to ~155 chars.
+function Get-Description($p) {
+  $text = if ($p.metaDescription) { $p.metaDescription } else { $p.impactSummary }
+  if ($text.Length -le 155) { return $text }
+  $cut = $text.Substring(0, 154)
+  $cut.Substring(0, $cut.LastIndexOf(' ')).TrimEnd(',', ';', ':') + '…'
+}
+
+# Values for src/pages/project.html ({{p.*}} and {{next.*}} tokens).
+function Get-ProjectTokens($p, $next) {
+  $year = if ($p.meta -match '·\s*(.+)$') { $Matches[1].Trim() } else { '' }
+  $actions = @()
+  if ($p.live) { $actions += "<a class=`"dialog-btn primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`">$(Icon 'globe' 'icon-sm') <span>Live Demo ↗</span></a>" }
+  if ($p.repo) { $actions += "<a class=`"dialog-btn secondary`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`">$(Icon 'github' 'icon-sm') <span>Code Repository ↗</span></a>" }
+  if (-not $p.live -and -not $p.repo) { $actions += "<a class=`"dialog-btn primary`" href=`"mailto:$(Esc $site.email)?subject=Inquiry%20regarding%20$([Uri]::EscapeDataString($p.name))`">$(Icon 'envelope' 'icon-sm') <span>Request Technical Walkthrough ↗</span></a>" }
+  $image = if ($p.scene) { $p.scene } else { Poster $p }
+  @{
+    'p.name' = Esc $p.name; 'p.category' = Esc $p.category; 'p.icon' = ProjectIcon $p
+    'p.yearBadge' = $(if ($year) { "<span class=`"dialog-meta`">$(Esc $year)</span>" } else { '' })
+    'p.cardMetric' = Esc $p.cardMetric; 'p.description' = Esc (Get-Description $p)
+    'p.url' = "$($site.origin)/projects/$($p.id)"; 'p.ogImage' = "$($site.origin)$image"
+    'p.video' = Esc $p.video; 'p.poster' = Esc (Poster $p)
+    'p.problem' = Esc $p.problem; 'p.desc' = Esc $p.desc; 'p.impactSummary' = Esc $p.impactSummary; 'p.metric' = Esc $p.metric
+    'p.tags' = (($p.tags | ForEach-Object { "<li>$(Esc $_)</li>" }) -join '')
+    'p.metrics' = $(if ($p.metricsList) { '<ul class="dialog-metrics" aria-label="Key metrics">' + (($p.metricsList | ForEach-Object { "<li><b>$(Esc $_.val)</b><span>$(Esc $_.label)</span></li>" }) -join '') + '</ul>' } else { '' })
+    'p.actions' = ($actions -join "`n      ")
+    'next.id' = Esc $next.id; 'next.name' = Esc $next.name
+  }
+}
+
+function Render-OpenRepos($style) {
+  ($site.openRepos | ForEach-Object {
+    if ($style -eq 'tools') {
+      "<li><a href=`"$(Esc $_.url)`" target=`"_blank`" rel=`"noopener`"><span class=`"t-name`">$(Esc $_.name) ↗</span><span class=`"t-desc`">$(Esc $_.impact)</span></a></li>"
+    } else {
+      "<li><a href=`"$(Esc $_.url)`" target=`"_blank`" rel=`"noopener`" class=`"build-link-item`"><b>$(Esc $_.name) ↗</b><span>$(Esc $_.impact)</span></a></li>"
+    }
+  }) -join "`n          "
+}
+
+# schema.org Person for the homepage; profile links come from site.json (same values as the sidebar).
+function Render-PersonJsonLd {
+  $person = [ordered]@{
+    '@context' = 'https://schema.org'
+    '@type'    = 'Person'
+    name       = $site.name
+    jobTitle   = $site.jobTitle
+    url        = "$($site.origin)/"
+    sameAs     = @($site.linkedin, $site.github, $site.x)
+  }
+  "<script type=`"application/ld+json`">$(ConvertTo-Json $person -Depth 4 -Compress)</script>"
+}
+
+$blocks = @{
+  'person-jsonld'         = { Render-PersonJsonLd }
+  'project-tiles'         = { Render-ProjectTiles }
+  'open-repos-tools'      = { Render-OpenRepos 'tools' }
+  'open-repos-builds'     = { Render-OpenRepos 'builds' }
+}
+
+function Render-Page($template) {
+  $html = $template
+  foreach ($name in $blocks.Keys) {
+    if ($html.Contains("<!-- build:$name -->")) { $html = $html.Replace("<!-- build:$name -->", (& $blocks[$name])) }
+  }
+  $html = $html.Replace('{{css}}', $assetUrl['main.css']).Replace('{{js}}', $assetUrl['main.js']).Replace('{{projectJs}}', $assetUrl['project.js'])
+  foreach ($prop in $site.PSObject.Properties) { if ($prop.Value -is [string]) { $html = $html.Replace("{{site.$($prop.Name)}}", (Esc $prop.Value)) } }
+  $html = [regex]::Replace($html, '\{\{icon ([\w-]+)\s*([^}]*)\}\}', { param($m) Icon $m.Groups[1].Value $m.Groups[2].Value.Trim() })
+  if ($html -match '\{\{[^}]+\}\}') { throw "Unfilled template token: $($Matches[0])" }
+  $html
+}
+
+# ---- Pages ----
+$pages = [ordered]@{}
+$pages['index.html'] = Render-Page (Read-Text 'src/pages/index.html')
+# One case-study page per project at /projects/<id> (Cloudflare serves projects/<id>.html there).
+$projectTemplate = Read-Text 'src/pages/project.html'
+for ($i = 0; $i -lt $projects.Count; $i++) {
+  $p = $projects[$i]; $next = $projects[($i + 1) % $projects.Count]
+  $pages["projects/$($p.id).html"] = Render-Page (Fill $projectTemplate (Get-ProjectTokens $p $next))
+}
+foreach ($path in $pages.Keys) { Write-Text (Join-Path $Out $path) $pages[$path] }
+
+# ---- sitemap.xml and robots.txt (every built page, at its clean URL) ----
+$pageUrls = foreach ($path in $pages.Keys) {
+  if ($path -eq 'index.html') { "$($site.origin)/" } else { "$($site.origin)/$($path -replace '\.html$', '')" }
+}
+$sitemap = "<?xml version=`"1.0`" encoding=`"UTF-8`"?>`n<urlset xmlns=`"http://www.sitemaps.org/schemas/sitemap/0.9`">`n" +
+  (($pageUrls | ForEach-Object { "  <url><loc>$(Esc $_)</loc></url>" }) -join "`n") + "`n</urlset>`n"
+Write-Text (Join-Path $Out 'sitemap.xml') $sitemap
+Write-Text (Join-Path $Out 'robots.txt') "User-agent: *`nAllow: /`n`nSitemap: $($site.origin)/sitemap.xml`n"
+
+# ---- Checks ----
+$problems = @()
+foreach ($path in $pages.Keys) {
+  $html = $pages[$path]
+  foreach ($required in '<title>', 'name="description"', 'rel="canonical"') {
+    if (-not $html.Contains($required)) { $problems += "$path is missing $required" }
+  }
+  $canonical = [regex]::Match($html, '<link rel="canonical" href="([^"]+)"').Groups[1].Value
+  if ($canonical -and -not $canonical.StartsWith("$($site.origin)/")) { $problems += "$path canonical $canonical is not on $($site.origin)" }
+  # Root-relative links, plus absolute ones on our own origin (og:image, canonical, ...).
+  # The separate apps deployed under the same domain are not in dist/, so they are skipped.
+  $origin = [regex]::Escape($site.origin)
+  foreach ($m in [regex]::Matches($html, "(?:href|src|poster|data-src|content)=`"(?:$origin)?(/[^`"#?]*)")) {
+    $url = $m.Groups[1].Value
+    if ($url -match '^/(reybineye|evalgate|boardkid)(/|$)' -or $url.StartsWith('//')) { continue }
+    $file = Join-Path $Out ($url.TrimStart('/') -replace '/', '\')
+    $exists = (Test-Path $file -PathType Leaf) -or (Test-Path "$file.html") -or (Test-Path (Join-Path $file 'index.html'))
+    if (-not $exists) { $problems += "$path links to missing $url" }
+  }
+}
+if ($problems) { $problems | ForEach-Object { Write-Host "  x $_" -ForegroundColor Red }; throw "Build checks failed ($($problems.Count))" }
+
+# Placeholder text like "[test set / conditions]" is fine to build but should not ship.
+foreach ($path in $pages.Keys) {
+  foreach ($m in [regex]::Matches($pages[$path], '>\s*(\[[^\]<]+\])\s*<')) {
+    Write-Host "  ! $path still has placeholder $($m.Groups[1].Value)" -ForegroundColor Yellow
+  }
+}
+
+$files = Get-ChildItem $Out -Recurse -File
+Write-Host ("Built {0} pages, {1} files, {2:N2} MB -> {3}" -f $pages.Count, $files.Count, (($files | Measure-Object Length -Sum).Sum / 1MB), (Resolve-Path $Out))

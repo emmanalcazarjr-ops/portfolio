@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>{{p.name}} case study — {{site.name}}</title>
+  <meta name="description" content="{{p.description}}" />
+  <meta property="og:title" content="{{p.name}} case study — {{site.name}}" />
+  <meta property="og:description" content="{{p.description}}" />
+  <link rel="canonical" href="{{p.url}}" />
+  <meta property="og:url" content="{{p.url}}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="{{p.ogImage}}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#171716" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="{{css}}" />
+  <script type="module" src="{{projectJs}}"></script>
+</head>
+<body class="case-page">
+  <a class="skip-link" href="#case">Skip to content</a>
+
+  <header class="case-topbar">
+    <a class="case-back" href="/#projects">
+      {{icon arrow-left icon-sm}}
+      <span>All projects</span>
+    </a>
+    <a class="case-home" href="/">{{site.name}}</a>
+  </header>
+
+  <main class="case" id="case">
+    <div class="case-header">
+      <div class="dialog-header-row">
+        <span class="dialog-category-badge">
+          {{icon {{p.icon}} icon-xs}}
+          {{p.category}}
+        </span>
+        {{p.yearBadge}}
+      </div>
+      <h1 class="case-title">{{p.name}}</h1>
+      <p class="case-lede">{{p.cardMetric}}</p>
+    </div>
+
+    <div class="case-media dialog-media">
+      <video data-src="{{p.video}}" poster="{{p.poster}}" muted loop playsinline controls preload="none" width="1280" height="800" aria-label="{{p.name}} demo video"></video>
+      <div class="video-fallback">
+        {{icon {{p.icon}} icon-xl}}
+        <span>Demo video unavailable</span>
+      </div>
+    </div>
+
+    <section class="case-section" aria-labelledby="problem-heading">
+      <h2 class="case-step" id="problem-heading"><span class="case-step-num">01</span> Problem</h2>
+      <p class="case-text">{{p.problem}}</p>
+    </section>
+
+    <section class="case-section" aria-labelledby="approach-heading">
+      <h2 class="case-step" id="approach-heading"><span class="case-step-num">02</span> Approach</h2>
+      <p class="case-text">{{p.desc}}</p>
+      <ul class="dialog-tags" aria-label="Technologies">{{p.tags}}</ul>
+    </section>
+
+    <section class="case-section" aria-labelledby="result-heading">
+      <h2 class="case-step" id="result-heading"><span class="case-step-num">03</span> Result</h2>
+      <div class="dialog-impact-box">
+        <p class="impact-summary-text">{{p.impactSummary}}</p>
+        <div class="impact-metric-pill">{{p.metric}}</div>
+      </div>
+      {{p.metrics}}
+    </section>
+
+    <div class="dialog-actions">{{p.actions}}</div>
+
+    <nav class="case-footer" aria-label="Case study navigation">
+      <a class="case-back" href="/#projects">
+        {{icon arrow-left icon-sm}}
+        <span>Back to all projects</span>
+      </a>
+      <a class="case-next" href="/projects/{{next.id}}">
+        <span>Next: {{next.name}}</span>
+        <span aria-hidden="true">→</span>
+      </a>
+    </nav>
+  </main>
+</body>
+</html>
