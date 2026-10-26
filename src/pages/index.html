@@ -145,7 +145,7 @@
 
     <section class="card highlight-card learning-card" aria-labelledby="highlightTitle">
       <div class="highlight-media">
-        <video class="highlight-video" data-src="/vids/n8n-progress.mp4" poster="/vids/posters/n8n-progress.webp" muted loop playsinline preload="metadata" width="1920" height="1080" aria-label="Narrated screen recording, about one minute: seven n8n practice exercises from webhooks to scheduled workflows. English captions available.">
+        <video class="highlight-video" data-src="/vids/n8n-progress.mp4" data-poster="/vids/posters/n8n-progress.webp" muted loop playsinline preload="none" width="1920" height="1080" aria-label="Narrated screen recording, about one minute: seven n8n practice exercises from webhooks to scheduled workflows. English captions available.">
           <track kind="captions" src="/vids/n8n-progress.en.vtt" srclang="en" label="English" default />
         </video>
         <p class="highlight-captions" aria-hidden="true" hidden></p>
@@ -200,7 +200,8 @@
       </button>
     </div>
     <div class="about-container" id="aboutContent">
-      <img class="about-hero" src="/img/profile.jpg" alt="Emmanuel Alcazar Jr. portrait" width="732" height="466" loading="eager" />
+      <!-- The overlay is laid out even while hidden, so the photo would load on every visit; main.js sets src on first open. -->
+      <img class="about-hero" data-src="/img/profile.jpg" alt="Emmanuel Alcazar Jr. portrait" width="732" height="466" decoding="async" />
 
       <div class="about-intro">
         <div class="about-headline-badge">

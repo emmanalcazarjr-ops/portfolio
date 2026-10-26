@@ -66,11 +66,16 @@ function Render-ProjectTiles {
   $html = New-Object System.Collections.Generic.List[string]
   for ($i = 0; $i -lt $projects.Count; $i++) {
     $p = $projects[$i]
+    # Only the first row is on the first screen. Everything below it waits: images use
+    # loading="lazy", posters use data-poster, and videos use data-src (main.js attaches
+    # them as they come into view).
+    $firstRow = $i -eq 0
+    $posterAttr = if ($firstRow) { "poster=`"$(Esc (Poster $p))`"" } else { "data-poster=`"$(Esc (Poster $p))`"" }
     $video = Fill @'
 
     <div class="card project-video-card" data-project-id="{{id}}" aria-hidden="true" style="--o:{{o}}; --i:{{o}}">
       <div class="project-video-frame">
-        <video src="{{video}}" muted loop playsinline preload="metadata" poster="{{poster}}"></video>
+        <video data-src="{{video}}" muted loop playsinline preload="none" {{posterAttr}}></video>
         <div class="video-fallback">
           {{fallbackIcon}}
           <span>Demo video unavailable</span>
@@ -81,14 +86,22 @@ function Render-ProjectTiles {
         </div>
       </div>
     </div>
-'@ @{ id = Esc $p.id; o = $i * 2; video = Esc $p.video; poster = Esc (Poster $p); fallbackIcon = Icon (ProjectIcon $p) 'icon-xl'; playIcon = Icon 'play' 'icon-xs' }
+'@ @{ id = Esc $p.id; o = $i * 2; video = Esc $p.video; posterAttr = $posterAttr; fallbackIcon = Icon (ProjectIcon $p) 'icon-xl'; playIcon = Icon 'play' 'icon-xs' }
+
+    # Scene image: a 640px copy (made by optimize-images.ps1 -Width 640) for 1x screens, 1024px otherwise.
+    $scene = if ($p.scene) { $p.scene } else { $p.image }
+    $small = $scene -replace '\.webp$', '-640.webp'
+    $srcset = if ($small -ne $scene -and (Test-Path (Join-Path 'public' $small.TrimStart('/')))) {
+      "srcset=`"$(Esc $small) 640w, $(Esc $scene) 1024w`" sizes=`"(max-width: 900px) calc(100vw - 32px), 540px`""
+    } else { '' }
+    $loading = if ($firstRow) { 'loading="eager" fetchpriority="high"' } else { 'loading="lazy"' }
 
     $live = if ($p.live) { "<a class=`"action-pill primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`" aria-label=`"$(Esc $p.name) live demo (opens in new tab)`">$(Icon 'arrow-up-right' 'icon-sm')<span>Live demo</span></a>" } else { '' }
     $repo = if ($p.repo) { "<a class=`"action-pill`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`" aria-label=`"$(Esc $p.name) source on GitHub (opens in new tab)`">$(Icon 'github' 'icon-sm')<span>GitHub</span></a>" } else { '' }
     $photo = Fill @'
 
     <div class="card project-photo-card is-interactive" data-project-id="{{id}}" style="--o:{{o}}; --i:{{o}}">
-      <img class="project-photo" src="{{scene}}" alt="{{alt}}" width="1024" height="1024" loading="lazy" decoding="async" />
+      <img class="project-photo" src="{{scene}}" {{srcset}} alt="{{alt}}" width="1024" height="1024" {{loading}} decoding="async" />
       <div class="photo-scrim" aria-hidden="true"></div>
       <div class="photo-caption">
         <span class="photo-kicker">{{category}}</span>
@@ -100,7 +113,7 @@ function Render-ProjectTiles {
         <a class="action-pill" href="/projects/{{id}}" aria-label="{{name}} case study">{{caseIcon}}<span>Case study</span></a>
       </div>
     </div>
-'@ @{ id = Esc $p.id; o = $i * 2 + 1; scene = Esc $(if ($p.scene) { $p.scene } else { $p.image }); alt = Esc $(if ($p.sceneAlt) { $p.sceneAlt } else { "$($p.name) in use" }); category = Esc $p.category; name = Esc $p.name; live = $live; repo = $repo; caseIcon = Icon 'layers-triple' 'icon-sm' }
+'@ @{ id = Esc $p.id; o = $i * 2 + 1; scene = Esc $scene; srcset = $srcset; loading = $loading; alt = Esc $(if ($p.sceneAlt) { $p.sceneAlt } else { "$($p.name) in use" }); category = Esc $p.category; name = Esc $p.name; live = $live; repo = $repo; caseIcon = Icon 'layers-triple' 'icon-sm' }
 
     # Alternate the video/photo order per row so the two columns form a checkerboard.
     if ($i % 2 -eq 0) { $html.Add($video); $html.Add($photo) } else { $html.Add($photo); $html.Add($video) }

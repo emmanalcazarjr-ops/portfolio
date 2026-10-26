@@ -58,6 +58,16 @@ function setOverlayOpen(open) {
 }
 
 $$('video', grid).forEach((video) => videoObserver.observe(video));
+
+// Posters below the first screen load a little before they scroll into view.
+const posterObserver = new IntersectionObserver((entries) => {
+  for (const { target, isIntersecting } of entries) {
+    if (!isIntersecting) continue;
+    target.poster = target.dataset.poster;
+    posterObserver.unobserve(target);
+  }
+}, { rootMargin: '600px 0px' });
+$$('video[data-poster]', grid).forEach((video) => posterObserver.observe(video));
 window.addEventListener('load', syncVideos, { once: true });
 reducedMotion.addEventListener('change', syncVideos);
 document.addEventListener('visibilitychange', syncVideos);
@@ -135,6 +145,8 @@ grid.addEventListener('click', (event) => {
 /* ---------- About overlay ---------- */
 
 function setAboutOpen(open) {
+  const photo = $('.about-hero', aboutView);
+  if (open && photo?.dataset.src && !photo.getAttribute('src')) photo.src = photo.dataset.src;
   aboutView.hidden = !open;
   [sidebar, grid].forEach((el) => { el.inert = open; });
   document.documentElement.classList.toggle('is-locked', open);

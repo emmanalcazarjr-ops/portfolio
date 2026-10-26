@@ -10,7 +10,11 @@ with a PowerShell build, so it needs no Node or npm install (Windows PowerShell 
 .\serve.ps1                               # preview dist/ at http://localhost:4173
 .\measure.ps1 -Url http://localhost:4173/ # page weight + screenshots (headless Edge)
 .\measure.ps1 -Url http://localhost:4173/ -Mobile   # same at 375px
+.\optimize-images.ps1 -Dir public/img/scenes -Width 640   # 640px copies of new scene images
 ```
+
+When you add a project scene image, run `optimize-images.ps1 -Width 640` so it gets a
+640px copy; the build adds it to `srcset` automatically.
 
 ## Where things live
 
