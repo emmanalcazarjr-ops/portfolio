@@ -15,7 +15,8 @@ param(
   [string]$Shots,
   [string]$Name = 'page',
   [int]$SettleSeconds = 6,
-  [switch]$NoScroll
+  [switch]$NoScroll,
+  [string[]]$Elements = @()
 )
 $ErrorActionPreference = 'Stop'
 $origin = ([Uri]$Url).GetLeftPart([UriPartial]::Authority)
@@ -77,7 +78,9 @@ try {
       $h = [int](Js 'document.documentElement.scrollHeight')
       $w = [int](Js 'innerWidth')
       $p.captureBeyondViewport = $true
-      $p.clip = @{ x = 0; y = 0; width = $w; height = [Math]::Min($h, 16000); scale = 1 }
+      # Mobile renders at 2x; capture full pages at 1x so tall pages stay under the GPU texture limit.
+      $scale = if ($Mobile) { 0.5 } else { 1 }
+      $p.clip = @{ x = 0; y = 0; width = $w; height = [Math]::Min($h, 16000); scale = $scale }
     }
     $data = (Cdp 'Page.captureScreenshot' $p).data
     [IO.File]::WriteAllBytes((Join-Path $Shots $file), [Convert]::FromBase64String($data))
@@ -117,6 +120,19 @@ try {
     Js "window.scrollTo({ top: 0, behavior: 'instant' })" | Out-Null
     Start-Sleep -Milliseconds 800
     Shot "$Name-$view-full.png" -Full
+  }
+
+  # Close-up screenshots of specific elements, e.g. -Elements '.learning-card','.sidebar'
+  foreach ($selector in $Elements) {
+    $rect = Js "(() => { const el = document.querySelector('$selector'); if (!el) return null; el.scrollIntoView({ block: 'center', behavior: 'instant' }); const r = el.getBoundingClientRect(); return { x: r.left + scrollX, y: r.top + scrollY, w: r.width, h: r.height }; })()"
+    if (-not $rect) { Write-Warning "No element for $selector"; continue }
+    Start-Sleep -Milliseconds 600
+    if ($Shots) {
+      $clip = @{ x = [Math]::Max(0, $rect.x - 12); y = [Math]::Max(0, $rect.y - 12); width = $rect.w + 24; height = [Math]::Min($rect.h + 24, 4000); scale = 1 }
+      $data = (Cdp 'Page.captureScreenshot' @{ format = 'png'; captureBeyondViewport = $true; clip = $clip }).data
+      $safe = ($selector -replace '[^\w-]+', '_').Trim('_')
+      [IO.File]::WriteAllBytes((Join-Path $Shots "$Name-$view-$safe.png"), [Convert]::FromBase64String($data))
+    }
   }
 
   $layout = Js @'
