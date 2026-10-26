@@ -1,0 +1,28 @@
+{
+  "name": "Emmanuel Alcazar Jr.",
+  "origin": "https://emmanalcazarjr.com",
+  "email": "emmanalcazarjr@gmail.com",
+  "cv": "/Emmanuel_Alcazar_Resume.pdf",
+  "openRepos": [
+    {
+      "name": "Automated Report Generator",
+      "impact": "Automated generation and compilation of engineering & telemetry inspection reports.",
+      "url": "https://github.com/emmanalcazarjr-ops/automated-report-generator"
+    },
+    {
+      "name": "Water Order Automation SaaS",
+      "impact": "SMS & PIN ordering for condo refilling stations with Claude API entity parsing.",
+      "url": "https://water.emmanalcazarjr.com"
+    },
+    {
+      "name": "Sure Win Board Reviewer",
+      "impact": "Responsive web & Android study app covering 127 official PRC board syllabus topics with KaTeX.",
+      "url": "https://emmanalcazarjr.com/boardkid"
+    },
+    {
+      "name": "AI Chatbot API",
+      "impact": "Stateful support agent with Supabase-backed conversation memory.",
+      "url": "https://github.com/emmanalcazarjr-ops/chatbot-api"
+    }
+  ]
+}
