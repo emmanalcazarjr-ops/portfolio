@@ -30,6 +30,16 @@ When you add a project scene image, run `optimize-images.ps1 -Width 640` so it g
 Template tokens: `{{icon name classes}}` inserts an icon from the sprite, `{{site.email}}` reads
 `site.json`, and `<!-- build:name -->` markers are filled by the matching block in `build.ps1`.
 
+## Before deploying
+
+`.\build.ps1` prints a yellow `!` line for every `[placeholder]` still in the pages. Fill these in:
+
+- **Benchmark captions** (`src/pages/index.html`, "Software & Systems Impact"): one line each
+  for the test set / conditions behind 99.4%, how Sub-320ms was timed, the airport deployment's
+  scope, and the licence exam/year.
+- **Problem statements** (`src/data/projects.json`, the `problem` field of each project).
+- **Gemini version** in the tech-stack chip (`src/pages/index.html`, "Google Gemini 2.5/3.7").
+
 ## Deploying
 
 Upload the contents of `dist/` to the Cloudflare project that serves the site.
@@ -37,3 +47,24 @@ Upload the contents of `dist/` to the Cloudflare project that serves the site.
 `/reybineye`, `/evalgate/` and `/boardkid` are separate apps on the same domain and are **not**
 in this folder. If your deploy replaces the whole site with `dist/`, copy those apps' files
 into `dist/` first, or they will stop working.
+
+## www redirect (Cloudflare)
+
+The canonical address is `https://www.emmanalcazarjr.com` (`origin` in `site.json`). Right now
+the bare domain `emmanalcazarjr.com` also serves the site with a 200, so search engines see two
+copies. Redirect it with a Cloudflare Redirect Rule (zone `emmanalcazarjr.com` > Rules >
+Redirect Rules > Create rule):
+
+- When: `Hostname` equals `emmanalcazarjr.com`
+- Then: Dynamic redirect to `concat("https://www.emmanalcazarjr.com", http.request.uri.path)`,
+  status **301**, preserve query string.
+
+**Check `/reybineye` first.** `emmanalcazarjr.com/reybineye` serves the ReybinEye demo, but
+`www.emmanalcazarjr.com/reybineye` serves the homepage, so whatever routes the demo (likely a
+Worker route) only covers the bare domain. Either add the same route for `www`, or exclude it
+from the redirect until you do:
+`(http.host eq "emmanalcazarjr.com" and not starts_with(http.request.uri.path, "/reybineye"))`.
+After that, switch the ReybinEye `live` link in `projects.json` to `www`.
+
+The bare-domain DNS record must stay proxied (orange cloud) for the rule to run. HTTP to HTTPS
+already redirects on both hostnames.
