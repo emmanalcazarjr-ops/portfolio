@@ -1,8 +1,12 @@
 {
   "name": "Emmanuel Alcazar Jr.",
-  "origin": "https://emmanalcazarjr.com",
+  "jobTitle": "Software Engineer & AI Solutions Developer",
+  "origin": "https://www.emmanalcazarjr.com",
   "email": "emmanalcazarjr@gmail.com",
   "cv": "/Emmanuel_Alcazar_Resume.pdf",
+  "linkedin": "https://www.linkedin.com/in/emmanalcazarjr/",
+  "github": "https://github.com/emmanalcazarjr-ops",
+  "x": "https://x.com/emmanalcazarjr",
   "openRepos": [
     {
       "name": "Automated Report Generator",
@@ -17,7 +21,7 @@
     {
       "name": "Sure Win Board Reviewer",
       "impact": "Responsive web & Android study app covering 127 official PRC board syllabus topics with KaTeX.",
-      "url": "https://emmanalcazarjr.com/boardkid"
+      "url": "https://www.emmanalcazarjr.com/boardkid/"
     },
     {
       "name": "AI Chatbot API",

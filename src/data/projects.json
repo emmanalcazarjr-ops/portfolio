@@ -343,7 +343,7 @@
     "poster": "/vids/posters/evalgate-demo.jpg",
     "scene": "/img/scenes/evalgate.webp",
     "sceneAlt": "Software engineer at an industrial desk reviewing a dark-mode prompt evaluation matrix with green PASS badges and an orange 0.90 threshold line",
-    "live": "https://emmanalcazarjr.com/evalgate/",
+    "live": "https://www.emmanalcazarjr.com/evalgate/",
     "repo": "https://github.com/emmanalcazarjr-ops/obsidian-vault/tree/main/03-projects/eval-gate-lab"
   }
 ]

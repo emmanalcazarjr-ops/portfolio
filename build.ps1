@@ -161,7 +161,21 @@ function Render-OpenRepos($style) {
   }) -join "`n          "
 }
 
+# schema.org Person for the homepage; profile links come from site.json (same values as the sidebar).
+function Render-PersonJsonLd {
+  $person = [ordered]@{
+    '@context' = 'https://schema.org'
+    '@type'    = 'Person'
+    name       = $site.name
+    jobTitle   = $site.jobTitle
+    url        = "$($site.origin)/"
+    sameAs     = @($site.linkedin, $site.github, $site.x)
+  }
+  "<script type=`"application/ld+json`">$(ConvertTo-Json $person -Depth 4 -Compress)</script>"
+}
+
 $blocks = @{
+  'person-jsonld'         = { Render-PersonJsonLd }
   'project-tiles'         = { Render-ProjectTiles }
   'open-repos-tools'      = { Render-OpenRepos 'tools' }
   'open-repos-builds'     = { Render-OpenRepos 'builds' }
@@ -190,6 +204,15 @@ for ($i = 0; $i -lt $projects.Count; $i++) {
 }
 foreach ($path in $pages.Keys) { Write-Text (Join-Path $Out $path) $pages[$path] }
 
+# ---- sitemap.xml and robots.txt (every built page, at its clean URL) ----
+$pageUrls = foreach ($path in $pages.Keys) {
+  if ($path -eq 'index.html') { "$($site.origin)/" } else { "$($site.origin)/$($path -replace '\.html$', '')" }
+}
+$sitemap = "<?xml version=`"1.0`" encoding=`"UTF-8`"?>`n<urlset xmlns=`"http://www.sitemaps.org/schemas/sitemap/0.9`">`n" +
+  (($pageUrls | ForEach-Object { "  <url><loc>$(Esc $_)</loc></url>" }) -join "`n") + "`n</urlset>`n"
+Write-Text (Join-Path $Out 'sitemap.xml') $sitemap
+Write-Text (Join-Path $Out 'robots.txt') "User-agent: *`nAllow: /`n`nSitemap: $($site.origin)/sitemap.xml`n"
+
 # ---- Checks ----
 $problems = @()
 foreach ($path in $pages.Keys) {
@@ -197,8 +220,14 @@ foreach ($path in $pages.Keys) {
   foreach ($required in '<title>', 'name="description"', 'rel="canonical"') {
     if (-not $html.Contains($required)) { $problems += "$path is missing $required" }
   }
-  foreach ($m in [regex]::Matches($html, '(?:href|src|poster|data-src)="(/[^"#?]*)')) {
+  $canonical = [regex]::Match($html, '<link rel="canonical" href="([^"]+)"').Groups[1].Value
+  if ($canonical -and -not $canonical.StartsWith("$($site.origin)/")) { $problems += "$path canonical $canonical is not on $($site.origin)" }
+  # Root-relative links, plus absolute ones on our own origin (og:image, canonical, ...).
+  # The separate apps deployed under the same domain are not in dist/, so they are skipped.
+  $origin = [regex]::Escape($site.origin)
+  foreach ($m in [regex]::Matches($html, "(?:href|src|poster|data-src|content)=`"(?:$origin)?(/[^`"#?]*)")) {
     $url = $m.Groups[1].Value
+    if ($url -match '^/(reybineye|evalgate|boardkid)(/|$)' -or $url.StartsWith('//')) { continue }
     $file = Join-Path $Out ($url.TrimStart('/') -replace '/', '\')
     $exists = (Test-Path $file -PathType Leaf) -or (Test-Path "$file.html") -or (Test-Path (Join-Path $file 'index.html'))
     if (-not $exists) { $problems += "$path links to missing $url" }
