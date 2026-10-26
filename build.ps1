@@ -97,7 +97,7 @@ function Render-ProjectTiles {
       <div class="photo-actions">
         {{live}}
         {{repo}}
-        <button class="action-pill" type="button" aria-haspopup="dialog" aria-label="Open {{name}} case study">{{caseIcon}}<span>Case study</span></button>
+        <a class="action-pill" href="/projects/{{id}}" aria-label="{{name}} case study">{{caseIcon}}<span>Case study</span></a>
       </div>
     </div>
 '@ @{ id = Esc $p.id; o = $i * 2 + 1; scene = Esc $(if ($p.scene) { $p.scene } else { $p.image }); alt = Esc $(if ($p.sceneAlt) { $p.sceneAlt } else { "$($p.name) in use" }); category = Esc $p.category; name = Esc $p.name; live = $live; repo = $repo; caseIcon = Icon 'layers-triple' 'icon-sm' }
@@ -108,65 +108,34 @@ function Render-ProjectTiles {
   ($html -join '').Trim()
 }
 
-function Render-CaseStudyTemplates {
-  $out = foreach ($p in $projects) {
-    $year = if ($p.meta -match '·\s*(.+)$') { $Matches[1].Trim() } else { '' }
-    $metrics = if ($p.metricsList) { '<ul class="dialog-metrics" aria-label="Key metrics">' + (($p.metricsList | ForEach-Object { "<li><b>$(Esc $_.val)</b><span>$(Esc $_.label)</span></li>" }) -join '') + '</ul>' } else { '' }
-    $actions = @()
-    if ($p.live) { $actions += "<a class=`"dialog-btn primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`">$(Icon 'globe' 'icon-sm') <span>Live Demo ↗</span></a>" }
-    if ($p.repo) { $actions += "<a class=`"dialog-btn secondary`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`">$(Icon 'github' 'icon-sm') <span>Code Repository ↗</span></a>" }
-    if (-not $p.live -and -not $p.repo) { $actions += "<a class=`"dialog-btn primary`" href=`"mailto:$(Esc $site.email)?subject=Inquiry%20regarding%20$([Uri]::EscapeDataString($p.name))`">$(Icon 'envelope' 'icon-sm') <span>Request Technical Walkthrough ↗</span></a>" }
-    Fill @'
-  <template id="case-{{id}}">
-    <div class="dialog-media">
-      <button class="dialog-close-btn" type="button" aria-label="Close case study" data-close-modal>
-        {{crossIcon}}
-      </button>
-      <video src="{{video}}" muted loop playsinline controls poster="{{poster}}"></video>
-      <div class="video-fallback">
-        {{projectIconXl}}
-        <span>Demo video unavailable</span>
-      </div>
-    </div>
-    <div class="dialog-content">
-      <div class="dialog-header-row">
-        <span class="dialog-category-badge">
-          {{projectIconXs}}
-          {{category}}
-        </span>
-        {{year}}
-      </div>
-      <h2 class="dialog-title" id="dlgTitle">{{name}}</h2>
-      <div class="dialog-impact-box">
-        <div class="impact-badge-tag">
-          {{speedIcon}}
-          <span>MEASURABLE SOFTWARE IMPACT</span>
-        </div>
-        <p class="impact-summary-text">{{impactSummary}}</p>
-        <div class="impact-metric-pill">{{metric}}</div>
-      </div>
-      {{metrics}}
-      <div class="dialog-desc-section">
-        <h3 class="dialog-subhead">
-          {{layersIcon}}
-          <span>System Architecture &amp; Execution</span>
-        </h3>
-        <p class="dialog-desc">{{desc}}</p>
-      </div>
-      <ul class="dialog-tags" aria-label="Technologies">{{tags}}</ul>
-      <div class="dialog-actions">{{actions}}</div>
-    </div>
-  </template>
-'@ @{
-      id = Esc $p.id; video = Esc $p.video; poster = Esc (Poster $p); category = Esc $p.category; name = Esc $p.name
-      year = $(if ($year) { "<span class=`"dialog-meta`">$(Esc $year)</span>" } else { '' })
-      impactSummary = Esc $p.impactSummary; metric = Esc $p.metric; metrics = $metrics; desc = Esc $p.desc
-      tags = (($p.tags | ForEach-Object { "<li>$(Esc $_)</li>" }) -join ''); actions = ($actions -join "`n        ")
-      crossIcon = Icon 'cross' 'icon-sm'; projectIconXl = Icon (ProjectIcon $p) 'icon-xl'; projectIconXs = Icon (ProjectIcon $p) 'icon-xs'
-      speedIcon = Icon 'speedometer' 'icon-xs bolt'; layersIcon = Icon 'layers-triple' 'icon-xs subhead-icon'
-    }
+# Meta description: the project's own metaDescription if set, else its impact summary cut to ~155 chars.
+function Get-Description($p) {
+  $text = if ($p.metaDescription) { $p.metaDescription } else { $p.impactSummary }
+  if ($text.Length -le 155) { return $text }
+  $cut = $text.Substring(0, 154)
+  $cut.Substring(0, $cut.LastIndexOf(' ')).TrimEnd(',', ';', ':') + '…'
+}
+
+# Values for src/pages/project.html ({{p.*}} and {{next.*}} tokens).
+function Get-ProjectTokens($p, $next) {
+  $year = if ($p.meta -match '·\s*(.+)$') { $Matches[1].Trim() } else { '' }
+  $actions = @()
+  if ($p.live) { $actions += "<a class=`"dialog-btn primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`">$(Icon 'globe' 'icon-sm') <span>Live Demo ↗</span></a>" }
+  if ($p.repo) { $actions += "<a class=`"dialog-btn secondary`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`">$(Icon 'github' 'icon-sm') <span>Code Repository ↗</span></a>" }
+  if (-not $p.live -and -not $p.repo) { $actions += "<a class=`"dialog-btn primary`" href=`"mailto:$(Esc $site.email)?subject=Inquiry%20regarding%20$([Uri]::EscapeDataString($p.name))`">$(Icon 'envelope' 'icon-sm') <span>Request Technical Walkthrough ↗</span></a>" }
+  $image = if ($p.scene) { $p.scene } else { Poster $p }
+  @{
+    'p.name' = Esc $p.name; 'p.category' = Esc $p.category; 'p.icon' = ProjectIcon $p
+    'p.yearBadge' = $(if ($year) { "<span class=`"dialog-meta`">$(Esc $year)</span>" } else { '' })
+    'p.cardMetric' = Esc $p.cardMetric; 'p.description' = Esc (Get-Description $p)
+    'p.url' = "$($site.origin)/projects/$($p.id)"; 'p.ogImage' = "$($site.origin)$image"
+    'p.video' = Esc $p.video; 'p.poster' = Esc (Poster $p)
+    'p.problem' = Esc $p.problem; 'p.desc' = Esc $p.desc; 'p.impactSummary' = Esc $p.impactSummary; 'p.metric' = Esc $p.metric
+    'p.tags' = (($p.tags | ForEach-Object { "<li>$(Esc $_)</li>" }) -join '')
+    'p.metrics' = $(if ($p.metricsList) { '<ul class="dialog-metrics" aria-label="Key metrics">' + (($p.metricsList | ForEach-Object { "<li><b>$(Esc $_.val)</b><span>$(Esc $_.label)</span></li>" }) -join '') + '</ul>' } else { '' })
+    'p.actions' = ($actions -join "`n      ")
+    'next.id' = Esc $next.id; 'next.name' = Esc $next.name
   }
-  ($out -join "`n").Trim()
 }
 
 function Render-OpenRepos($style) {
@@ -181,7 +150,6 @@ function Render-OpenRepos($style) {
 
 $blocks = @{
   'project-tiles'         = { Render-ProjectTiles }
-  'case-study-templates'  = { Render-CaseStudyTemplates }
   'open-repos-tools'      = { Render-OpenRepos 'tools' }
   'open-repos-builds'     = { Render-OpenRepos 'builds' }
 }
@@ -191,7 +159,7 @@ function Render-Page($template) {
   foreach ($name in $blocks.Keys) {
     if ($html.Contains("<!-- build:$name -->")) { $html = $html.Replace("<!-- build:$name -->", (& $blocks[$name])) }
   }
-  $html = $html.Replace('{{css}}', $assetUrl['main.css']).Replace('{{js}}', $assetUrl['main.js'])
+  $html = $html.Replace('{{css}}', $assetUrl['main.css']).Replace('{{js}}', $assetUrl['main.js']).Replace('{{projectJs}}', $assetUrl['project.js'])
   foreach ($prop in $site.PSObject.Properties) { if ($prop.Value -is [string]) { $html = $html.Replace("{{site.$($prop.Name)}}", (Esc $prop.Value)) } }
   $html = [regex]::Replace($html, '\{\{icon ([\w-]+)\s*([^}]*)\}\}', { param($m) Icon $m.Groups[1].Value $m.Groups[2].Value.Trim() })
   if ($html -match '\{\{[^}]+\}\}') { throw "Unfilled template token: $($Matches[0])" }
@@ -201,6 +169,12 @@ function Render-Page($template) {
 # ---- Pages ----
 $pages = [ordered]@{}
 $pages['index.html'] = Render-Page (Read-Text 'src/pages/index.html')
+# One case-study page per project at /projects/<id> (Cloudflare serves projects/<id>.html there).
+$projectTemplate = Read-Text 'src/pages/project.html'
+for ($i = 0; $i -lt $projects.Count; $i++) {
+  $p = $projects[$i]; $next = $projects[($i + 1) % $projects.Count]
+  $pages["projects/$($p.id).html"] = Render-Page (Fill $projectTemplate (Get-ProjectTokens $p $next))
+}
 foreach ($path in $pages.Keys) { Write-Text (Join-Path $Out $path) $pages[$path] }
 
 # ---- Checks ----

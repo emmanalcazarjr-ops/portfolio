@@ -2,7 +2,7 @@
 // - demo videos that play while on screen and pause otherwise
 // - the n8n highlight video (click to engage, "Play with sound", custom captions)
 // - the About overlay at #about
-// - the project case-study dialog
+// - project tiles that open their /projects/<id> page
 // - the "Explore project" cursor pill over demo videos
 
 const $ = (sel, root = document) => root.querySelector(sel);
@@ -13,8 +13,6 @@ const sidebar = $('.sidebar');
 const aboutView = $('#aboutView');
 const openAboutBtn = $('#openAboutBtn');
 const closeAboutBtn = $('#closeAboutBtn');
-const modal = $('#projectModal');
-const modalInner = $('#modalInner');
 const cursorPill = $('#cursorPill');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
@@ -122,40 +120,16 @@ function setUpCaptions() {
 }
 setUpCaptions();
 
-/* ---------- Case-study dialog ---------- */
+/* ---------- Project tiles open their case-study page ---------- */
 
-function openCaseStudy(id) {
-  const template = document.getElementById(`case-${id}`);
-  if (!template) return;
-  modalInner.replaceChildren(template.content.cloneNode(true));
-  const video = $('video', modalInner);
-  if (video && !reducedMotion.matches) video.autoplay = true;
-  modal.showModal();
-  setOverlayOpen(true);
-}
-
-modal.addEventListener('close', () => {
-  $('video', modalInner)?.pause();
-  setOverlayOpen(!aboutView.hidden);
-});
-
-// Light dismiss for browsers without <dialog closedby="any">.
-if (!('closedBy' in HTMLDialogElement.prototype)) {
-  modal.addEventListener('click', (event) => {
-    if (event.target !== modal) return;
-    const r = modal.getBoundingClientRect();
-    const inside = r.top <= event.clientY && event.clientY <= r.bottom && r.left <= event.clientX && event.clientX <= r.right;
-    if (!inside) modal.close();
-  });
-}
-modal.addEventListener('click', (event) => {
-  if (event.target.closest('[data-close-modal]')) modal.close();
-});
-
+// Each tile already has a "Case study" link; this makes the rest of the tile clickable too.
 grid.addEventListener('click', (event) => {
-  if (event.target.closest('a')) return;
+  if (event.target.closest('a, button, video[controls]')) return;
   const card = event.target.closest('[data-project-id]');
-  if (card) openCaseStudy(card.dataset.projectId);
+  if (!card) return;
+  const url = `/projects/${card.dataset.projectId}`;
+  if (event.ctrlKey || event.metaKey) window.open(url, '_blank', 'noopener');
+  else location.href = url;
 });
 
 /* ---------- About overlay ---------- */
@@ -164,7 +138,7 @@ function setAboutOpen(open) {
   aboutView.hidden = !open;
   [sidebar, grid].forEach((el) => { el.inert = open; });
   document.documentElement.classList.toggle('is-locked', open);
-  setOverlayOpen(open || modal.open);
+  setOverlayOpen(open);
 }
 
 function openAbout() {
@@ -184,7 +158,7 @@ openAboutBtn.addEventListener('click', openAbout);
 closeAboutBtn.addEventListener('click', closeAbout);
 window.addEventListener('popstate', () => setAboutOpen(location.hash === '#about'));
 window.addEventListener('keydown', (event) => {
-  if (event.key === 'Escape' && !aboutView.hidden && !modal.open) closeAbout();
+  if (event.key === 'Escape' && !aboutView.hidden) closeAbout();
 });
 if (location.hash === '#about') openAbout();
 
@@ -201,7 +175,7 @@ if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
   window.addEventListener('pointermove', (event) => {
     targetX = event.clientX;
     targetY = event.clientY;
-    const show = Boolean(event.target.closest?.('.project-video-card')) && !modal.open && aboutView.hidden;
+    const show = Boolean(event.target.closest?.('.project-video-card')) && aboutView.hidden;
     cursorPill.classList.toggle('visible', show);
     if (show && !frame) frame = requestAnimationFrame(follow);
   }, { passive: true });

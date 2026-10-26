@@ -57,7 +57,7 @@
 
   <!-- Bento grid -->
   <main class="bn-grid grid" id="main-grid" aria-label="Projects and impact">
-    <h2 class="sr-only">Selected projects</h2>
+    <h2 class="sr-only" id="projects">Selected projects</h2>
     <!-- build:project-tiles -->
 
     <section class="card bento-widget" aria-label="Software and Systems Metrics">
@@ -293,12 +293,6 @@
       </section>
     </div>
   </section>
-
-  <!-- Project case-study dialog; content comes from the <template> for the clicked project -->
-  <dialog id="projectModal" closedby="any" aria-labelledby="dlgTitle">
-    <div id="modalInner"></div>
-  </dialog>
-  <!-- build:case-study-templates -->
 
   <!-- Custom cursor pill over demo videos -->
   <div class="cursor-pill" id="cursorPill" aria-hidden="true">Explore project ↗</div>
