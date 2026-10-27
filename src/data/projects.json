@@ -345,5 +345,50 @@
     "sceneAlt": "Software engineer at an industrial desk reviewing a dark-mode prompt evaluation matrix with green PASS badges and an orange 0.90 threshold line",
     "live": "https://www.emmanalcazarjr.com/evalgate/",
     "repo": "https://github.com/emmanalcazarjr-ops/obsidian-vault/tree/main/03-projects/eval-gate-lab"
+  },
+  {
+    "id": "parksense",
+    "name": "ParkSense",
+    "category": "Embedded Vision & IoT",
+    "meta": "Embedded Vision & IoT · 2025",
+    "cardMetric": "100% Accuracy (80/80) · ₱7,544 BOM",
+    "problem": "Traditional campus and municipal parking management relies on manual attendant patrols or high-cost commercial sensor systems, leading to high hardware expenditures and traffic congestion during peak occupancy turnover.",
+    "impactSummary": "Solar-powered ESP8266 ultrasonic trigger nodes paired with a Raspberry Pi 4B YOLOv5 vision gate for real-time campus parking occupancy detection.",
+    "desc": "Wireless parking space detector integrating low-cost solar ESP8266 ultrasonic proximity nodes with an edge YOLOv5 vision gate on a Raspberry Pi 4B. Evaluated across 80 live field trials at UST-Legazpi with 100% detection accuracy across both occupied and vacant states, 72.02% average model confidence, and 15.04s detection time at ₱7,544 total 4-slot hardware BOM.",
+    "metric": "100% accuracy (80/80) · 72.02% avg YOLOv5 confidence · 15.04s detection · ₱7,544 BOM",
+    "metricsList": [
+      {
+        "val": "100%",
+        "label": "Field accuracy (80/80 trials)"
+      },
+      {
+        "val": "72.02%",
+        "label": "Avg YOLOv5 confidence"
+      },
+      {
+        "val": "15.04s",
+        "label": "Real-time detection"
+      },
+      {
+        "val": "₱7,544",
+        "label": "Total 4-slot BOM cost"
+      }
+    ],
+    "tags": [
+      "Raspberry Pi 4B",
+      "YOLOv5 (PyTorch)",
+      "ESP8266 Wi-Fi",
+      "Ultrasonic HC-SR04",
+      "Solar CC/CV (TP4056)",
+      "OpenCV",
+      "Python Tkinter",
+      "Remotion"
+    ],
+    "image": "/img/parksense.jpg",
+    "video": "/vids/parksense-demo.mp4",
+    "poster": "/vids/posters/parksense-demo.webp",
+    "scene": "/img/scenes/parksense.webp",
+    "sceneAlt": "Field engineer inspecting an ultrasonic parking sensor node installed at a campus parking bay",
+    "live": "/vids/parksense-extended.mp4"
   }
 ]

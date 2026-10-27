@@ -1,37 +1,53 @@
 WEBVTT
 
-1
-00:00:00.450 --> 00:00:05.900
-Here's my progress on DataCamp's Intermediate Workflow Automation with n8n course.
+00:00:00.300 --> 00:00:04.800
+A production automation pipeline built in n8n.
 
-2
-00:00:07.050 --> 00:00:12.400
-First, I built a webhook workflow that receives a request and sends back a reply.
+00:00:05.500 --> 00:00:15.500
+Starting with REST APIs: configuring HTTP Request nodes with dynamic query parameters to ingest live endpoint data.
 
-3
-00:00:13.650 --> 00:00:19.400
-Next, I added an If node, so requests missing an email get an error instead.
+00:00:17.500 --> 00:00:25.500
+For complex data manipulation, JavaScript Code nodes transform nested arrays using dollar-input dot-all.
 
-4
-00:00:20.600 --> 00:00:25.550
-Then I flattened nested order data into simple fields using dot notation.
+00:00:27.500 --> 00:00:35.000
+Python validation separates valid records from invalid payloads into dedicated branches.
 
-5
-00:00:26.800 --> 00:00:32.800
-I made one workflow call another with an HTTP Request: the producer-consumer pattern.
+00:00:39.500 --> 00:00:47.000
+Clean data is stored in n8n Data Tables with unique key matching and atomic upserts.
 
-6
-00:00:34.050 --> 00:00:39.100
-Then I checked that reply, sending success and failure down separate paths.
+00:00:50.500 --> 00:00:59.000
+To ensure idempotency, workflows query existing rows first, routing duplicate records to do nothing.
 
-7
-00:00:40.200 --> 00:00:44.850
-I scheduled a workflow to run every thirty minutes, with a business-hours check.
+00:01:02.500 --> 00:01:11.000
+Chapter 2 scales throughput: batching items with Loop Over Items and rate-limiting with Wait nodes.
 
-8
-00:00:46.100 --> 00:00:50.950
-Finally, I connected that schedule to the consumer workflow, as a test run.
+00:01:14.500 --> 00:01:22.500
+Flattening nested line items with Split Out, then aggregating grouped revenue with Summarize nodes.
 
-9
-00:00:52.200 --> 00:00:59.200
-That's Chapter One: seven practice exercises done, a quarter of the way through. Still learning.
+00:01:26.500 --> 00:01:34.000
+Calculating per-item profit margins across split records and re-aggregating batch summaries.
+
+00:01:36.500 --> 00:01:44.500
+Modular architecture: encapsulating complex business logic into reusable sub-workflows.
+
+00:01:48.500 --> 00:01:57.000
+Chapter 3 adds production resilience: multi-stage validation checkpoints catching malformed fields early.
+
+00:02:00.500 --> 00:02:08.000
+Dedicated Error Trigger nodes capture exceptions and dispatch structured alert notifications.
+
+00:02:11.500 --> 00:02:20.000
+HTTP nodes continue using error output, routing failed network calls to dedicated fallback paths.
+
+00:02:21.500 --> 00:02:31.000
+Run metrics track throughput, and an automated 95 percent quality gate halts execution if error thresholds are exceeded.
+
+00:02:33.500 --> 00:02:43.000
+The capstone project combines all techniques into a 17-node observable pipeline processing 1,001 records end to end.
+
+00:02:46.400 --> 00:02:53.000
+Production automation: APIs, custom code, tables, and resilience.
+
+00:02:54.300 --> 00:02:59.500
+Built by Emmanuel Alcazar Jr. at emmanalcazarjr.com.
+

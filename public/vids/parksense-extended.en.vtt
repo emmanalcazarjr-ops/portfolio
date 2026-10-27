@@ -1,0 +1,25 @@
+WEBVTT
+
+1
+00:00:00.300 --> 00:00:12.000
+At UST-Legazpi, ultrasonic sensors alone trigger false alarms on pedestrians, while continuous video inference wastes power. ParkSense combines both.
+
+2
+00:00:12.300 --> 00:00:25.800
+Each slot runs a solar ESP8266 node with a TP4056 charger and 3.3-volt regulator. Below 100 cm, it sends a wireless trigger.
+
+3
+00:00:26.300 --> 00:00:38.500
+Over a local Raspberry Pi hotspot—with zero internet needed—an overhead camera checks the slot. If a pedestrian triggered the curb, YOLOv5 rejects it.
+
+4
+00:00:39.300 --> 00:00:50.500
+In the Python Tkinter monitor and mobile app, four color-coded slots update in real time—recording a 15-second detection with YOLOv5 confidence.
+
+5
+00:00:51.300 --> 00:01:04.500
+Across 80 occupied and vacant trials, ParkSense achieved 100% detection accuracy, 72% average confidence, and a ₱7,544 hardware cost.
+
+6
+00:01:05.300 --> 00:01:13.500
+ParkSense—engineered at UST-Legazpi by Emmanuel Alcazar Junior, Justin Lanuza, and Laurence Nidea.

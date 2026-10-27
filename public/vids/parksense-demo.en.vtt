@@ -1,0 +1,13 @@
+WEBVTT
+
+1
+00:00:00.200 --> 00:00:04.850
+A solar ultrasonic sensor detects an incoming car at the curb.
+
+2
+00:00:04.900 --> 00:00:10.750
+Raspberry Pi crops the slot and verifies the car with YOLOv5.
+
+3
+00:00:10.800 --> 00:00:15.950
+100% accuracy across 80 trials at UST-Legazpi.

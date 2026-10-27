@@ -1,2 +1,4 @@
-﻿dist/
+dist/
+.wrangler/
+reference/subapps/
 reference/*.nosvg.html

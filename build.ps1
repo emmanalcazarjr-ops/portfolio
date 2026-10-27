@@ -1,4 +1,4 @@
-﻿<#
+<#
   Builds the site into dist/ (the folder to deploy).
 
     .\build.ps1
@@ -56,7 +56,7 @@ function Icon($name, $classes = '') {
 # Icon used in the fallback panel and dialog badge for each project.
 $projectIcon = @{
   'specula' = 'eye'; 'rag' = 'layers-triple'; 'rushdailybot' = 'telegram'; 'reybineye' = 'camcorder-handheld'
-  'rush-voice' = 'microphone'; 'emmanpi' = 'raspberry-pi'; 'bridgely' = 'server-network'
+  'rush-voice' = 'microphone'; 'emmanpi' = 'raspberry-pi'; 'bridgely' = 'server-network'; 'parksense' = 'raspberry-pi'
 }
 function ProjectIcon($p) { if ($projectIcon.ContainsKey($p.id)) { $projectIcon[$p.id] } else { 'command' } }
 function Poster($p) { if ($p.poster) { $p.poster } else { $p.image } }
@@ -133,9 +133,9 @@ function Get-Description($p) {
 function Get-ProjectTokens($p, $next) {
   $year = if ($p.meta -match '·\s*(.+)$') { $Matches[1].Trim() } else { '' }
   $actions = @()
-  if ($p.live) { $actions += "<a class=`"dialog-btn primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`">$(Icon 'globe' 'icon-sm') <span>Live Demo ↗</span></a>" }
-  if ($p.repo) { $actions += "<a class=`"dialog-btn secondary`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`">$(Icon 'github' 'icon-sm') <span>Code Repository ↗</span></a>" }
-  if (-not $p.live -and -not $p.repo) { $actions += "<a class=`"dialog-btn primary`" href=`"mailto:$(Esc $site.email)?subject=Inquiry%20regarding%20$([Uri]::EscapeDataString($p.name))`">$(Icon 'envelope' 'icon-sm') <span>Request Technical Walkthrough ↗</span></a>" }
+  if ($p.live) { $actions += "<a class=`"dialog-btn primary`" href=`"$(Esc $p.live)`" target=`"_blank`" rel=`"noopener`">$(Icon 'globe' 'icon-sm') <span>Live Demo &#x2197;</span></a>" }
+  if ($p.repo) { $actions += "<a class=`"dialog-btn secondary`" href=`"$(Esc $p.repo)`" target=`"_blank`" rel=`"noopener`">$(Icon 'github' 'icon-sm') <span>Code Repository &#x2197;</span></a>" }
+  if (-not $p.live -and -not $p.repo) { $actions += "<a class=`"dialog-btn primary`" href=`"mailto:$(Esc $site.email)?subject=Inquiry%20regarding%20$([Uri]::EscapeDataString($p.name))`">$(Icon 'envelope' 'icon-sm') <span>Request Technical Walkthrough &#x2197;</span></a>" }
   $image = if ($p.scene) { $p.scene } else { Poster $p }
   @{
     'p.name' = Esc $p.name; 'p.category' = Esc $p.category; 'p.icon' = ProjectIcon $p
@@ -154,9 +154,9 @@ function Get-ProjectTokens($p, $next) {
 function Render-OpenRepos($style) {
   ($site.openRepos | ForEach-Object {
     if ($style -eq 'tools') {
-      "<li><a href=`"$(Esc $_.url)`" target=`"_blank`" rel=`"noopener`"><span class=`"t-name`">$(Esc $_.name) ↗</span><span class=`"t-desc`">$(Esc $_.impact)</span></a></li>"
+      "<li><a href=`"$(Esc $_.url)`" target=`"_blank`" rel=`"noopener`"><span class=`"t-name`">$(Esc $_.name) &#x2197;</span><span class=`"t-desc`">$(Esc $_.impact)</span></a></li>"
     } else {
-      "<li><a href=`"$(Esc $_.url)`" target=`"_blank`" rel=`"noopener`" class=`"build-link-item`"><b>$(Esc $_.name) ↗</b><span>$(Esc $_.impact)</span></a></li>"
+      "<li><a href=`"$(Esc $_.url)`" target=`"_blank`" rel=`"noopener`" class=`"build-link-item`"><b>$(Esc $_.name) &#x2197;</b><span>$(Esc $_.impact)</span></a></li>"
     }
   }) -join "`n          "
 }
